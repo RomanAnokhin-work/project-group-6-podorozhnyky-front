@@ -13,7 +13,7 @@ const inter = Inter({
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ['cyrillic'],
-  weight: ['400'],
+  weight: ['400', '600', '700']
 })
 
 export const metadata: Metadata = {
