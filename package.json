@@ -13,6 +13,7 @@
     "axios": "^1.13.5",
     "cookie": "^1.1.1",
     "formik": "^2.4.9",
+    "link": "^2.1.2",
     "modern-normalize": "^3.0.1",
     "next": "16.1.6",
     "next-router-mock": "^1.0.5",
@@ -20,6 +21,7 @@
     "react-dom": "19.2.3",
     "react-paginate": "^8.3.0",
     "use-debounce": "^10.1.0",
+    "yarn": "^1.22.22",
     "yup": "^1.7.1",
     "zustand": "^5.0.11"
   },
