@@ -1,7 +1,9 @@
 :root {
   --background: #F7F9FF;
   --color-royal-blue-lighter: #e8eeff;
+  --color-royal-blue: #4169E1;
   --background-footer: var(--color-royal-blue-lighter);
+  --background-button: var(--color-royal-blue);
 }
 
 html,
@@ -12,8 +14,8 @@ body {
 
 body {
   background: var(--background);
-  font-family: var(--font-inter),var(--font-nunito-sans), sans-serif;
-  /* --second-family: 'Sora', sans-serif; */
+  font-family: var(--font-nunito-sans), sans-serif;
+  --second-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
