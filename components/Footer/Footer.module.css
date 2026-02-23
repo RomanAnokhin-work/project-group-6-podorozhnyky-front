@@ -4,6 +4,7 @@
     text-align: center;
     min-width: 335px;
     margin-top: auto;
+    max-width: 1440px;
 }
 
 .logo {
@@ -131,6 +132,7 @@
     .links_list {
         gap: 12px;
         padding-top: 6px;
+        padding-right: 32px;
     }
 
     .footer_icon {
@@ -146,7 +148,7 @@
 
 @media (min-width: 1440px) {
     .footer {
-        padding: 80px 0px;
+        padding: 80px 64px;
     }
 
     .wrap {
