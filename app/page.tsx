@@ -4,6 +4,7 @@ import Hero from "@/components/Hero/Hero";
 import About from "@/components/About/About";
 import Join from "@/components/Join/Join";
 import OurTravellers from "@/components/OurTravellers/OurTravellers"
+import MessageNoStories from "@/components/MessageNoStories/MessageNoStories";
 
 
 export default function Home() {
@@ -14,7 +15,12 @@ export default function Home() {
       <About/>
       <PopularStories/>
       <OurTravellers/>
-      <Join/>
+      <Join />
+      {/* <MessageNoStories 
+        text="Some Text"
+        buttonText="Some Button Text"
+        buttonRoute="/stories"
+      /> */}
     </>
   );
 }

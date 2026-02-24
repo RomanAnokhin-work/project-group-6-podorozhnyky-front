@@ -1,5 +1,9 @@
 :root {
   --background: #F7F9FF;
+  --color-royal-blue-lighter: #e8eeff;
+  --color-royal-blue: #4169E1;
+  --background-footer: var(--color-royal-blue-lighter);
+  --background-button: var(--color-royal-blue);
 }
 
 html,
@@ -10,19 +14,71 @@ body {
 
 body {
   background: var(--background);
-  font-family: var(--font-inter),var(--font-nunito-sans), sans-serif;
+  font-family: var(--font-nunito-sans), sans-serif;
+  --second-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 a {
-  color: inherit;
+  color: currentColor;
   text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.main {
+  flex: 1;
+}
