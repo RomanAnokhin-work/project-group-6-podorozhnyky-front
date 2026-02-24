@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AuthNavigation from "@/components/AuthNavigation/AuthNavigation";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import AuthProvider from "@/components/AuthProvider/AuthProvider";
 
 
 
@@ -32,10 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
+        <TanStackProvider>
+          <AuthProvider>
               <Header />
-              <AuthNavigation />
         <main>{children}</main>
-      <Footer />
+            <Footer />
+          </AuthProvider>
+        </TanStackProvider>
       </body>
     </html>
   );

@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export const nextServer = axios.create({
-//   baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
-  baseURL: "http://localhost:3000",
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
+const instance = axios.create({
+  baseURL: baseURL,
   withCredentials: true,
 });
+
+export { instance };
+
+
 import type { StoriesResponse } from "@/types/story";
 
 export async function fetchStories(
