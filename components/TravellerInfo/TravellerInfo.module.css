@@ -1,0 +1,100 @@
+.card {                               
+  width: 335px;
+    height: 363px;
+  background-color: #f0f4ff;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; 
+  align-items: start;
+justify-content: space-between;
+}
+
+.avatar {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 24px; 
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  /* padding-bottom: 24px; */
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 16px 0;
+  text-align: start;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333333;
+  margin: 0 0 16px 0; 
+  text-align: start;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  
+  min-height: 72px; 
+  max-height: 81px; 
+}
+
+.linkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px; 
+  background-color: #dfe4f2;
+  border: 1px solid #c8cedc;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+  transition: background-color 0.2s ease; 
+  /* margin-top: auto; */
+  
+}
+
+.linkButton:hover {
+  background: var(--Color-Royal-Blue, #4169E1);
+
+}
+
+
+@media (min-width: 768px) {
+  .card {
+    width: 340px; 
+    /* flex-direction: column;  */
+  }
+
+  /* .avatar {
+    margin-bottom: 24px; 
+  } */
+
+  /* .content {
+
+    align-items: start;
+  } */
+}
+@media (min-width: 1440px) {
+  .card {
+    width: 310px; 
+    height: 384px;
+  }
+  
+
+}
