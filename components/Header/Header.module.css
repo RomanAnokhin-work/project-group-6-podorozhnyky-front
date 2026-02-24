@@ -1,56 +1,151 @@
-/* overlay затемнення */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 99;
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    min-width: 320px;
+    /* Гумова від 320px */
 }
 
-/* blur як у макеті */
+@media screen and (min-width: 375px) {
+    .container {
+        max-width: 375px;
+        /* Адаптивна з 375px */
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+        padding: 0 32px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1440px;
+        padding: 0 128px;
+    }
+}
+
+/* --- Header --- */
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
     backdrop-filter: blur(10px);
+    /* Додайте фон, щоб блюр був помітним */
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* hover */
-.nav a:hover {
+/* --- Навігація (Desktop) --- */
+.nav {
+    display: none;
+    /* Ховаємо на мобільних за замовчуванням */
+}
+
+@media screen and (min-width: 1440px) {
+    .nav {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+}
+
+/* --- Інтерактивні елементи та Hover-ефекти --- */
+.navLink {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.navLink:hover {
     opacity: 0.7;
 }
 
-.primary:hover {
-    background: #3d5be0;
-}
-
-.login:hover {
-    text-decoration: underline;
-}
-
-/* active link */
 .active {
     border-bottom: 2px solid white;
 }
 
-/* burger animation */
+.primaryBtn {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.primaryBtn:hover {
+    background-color: #3d5be0;
+}
+
+.loginBtn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.loginBtn:hover {
+    text-decoration: underline;
+}
+
+/* --- Бургер-меню (Мобільне) --- */
 .burger {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+@media screen and (min-width: 1440px) {
+    .burger {
+        display: none;
+        /* Ховаємо бургер на десктопі */
+    }
 }
 
 .line {
     width: 20px;
     height: 2px;
     background: white;
-    transition: 0.3s;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.line1 {
-    transform: rotate(45deg) translate(4px, 4px);
+/* Класи для стану 'відкрито', які ти будеш додавати через JS */
+.burgerOpen .line1 {
+    transform: translateY(6px) rotate(45deg);
 }
 
-.line2 {
+.burgerOpen .line2 {
     opacity: 0;
 }
 
-.line3 {
-    transform: rotate(-45deg) translate(4px, -4px);
+.burgerOpen .line3 {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- Overlay / Mobile Menu Screen --- */
+.mobileMenu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99;
+
+    /* Плавна поява за ТЗ */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
 }
