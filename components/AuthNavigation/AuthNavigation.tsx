@@ -1,37 +1,42 @@
-import React from "react";
-import Link from "next/link";
+'use client';
 
-const Navigation: React.FC = () => {
-  const isAuthorized = false; 
+import Link from 'next/link';
+import css from './AuthNavigation.module.css';
 
-  return (
-    <nav className="navigation">
-      <ul>
-        <li><Link href="/">Головна</Link></li>
-        <li><Link href="/stories">Історії</Link></li>
-        <li><Link href="/travelers">Мандрівники</Link></li>
-
-        {isAuthorized ? (
-          <>
-            <li><Link href="/profile">Мій Профіль</Link></li>
-            <li><Link href="/stories/create">Опублікувати історію</Link></li>
-            <li className="user-info">
-              <img src="/avatar.png" alt="avatar" className="avatar" />
-              <span>Ім’я користувача</span>
-            </li>
-            <li>
-              <button className="logout-btn">➡️</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li><Link href="/auth/login">Вхід</Link></li>
-            <li><Link href="/auth/register">Реєстрація</Link></li>
-          </>
-        )}
-      </ul>
-    </nav>
-  );
+type AuthNavigationProps = {
+  variant?: 'desktop' | 'modal';
+  onClose?: () => void;
 };
 
-export default Navigation;
+export default function AuthNavigation({
+  variant = 'desktop',
+  onClose,
+}: AuthNavigationProps) {
+  const handleClick = () => {
+    if (onClose) onClose();
+  };
+
+  if (variant === 'modal') {
+    return (
+      <div className={css.modalAuth}>
+        <Link href="/auth/login" className={css.modalLogin} onClick={handleClick}>
+          Вхід
+        </Link>
+        <Link href="/auth/register" className={css.modalRegister} onClick={handleClick}>
+          Реєстрація
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className={css.desktopAuth}>
+      <Link href="/auth/login" className={css.loginButton}>
+        Вхід
+      </Link>
+      <Link href="/auth/register" className={css.registerButton}>
+        Реєстрація
+      </Link>
+    </div>
+  );
+}
