@@ -1,56 +1,16 @@
-/* overlay затемнення */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 99;
-}
-
-/* blur як у макеті */
 .header {
-    backdrop-filter: blur(10px);
-}
-
-/* hover */
-.nav a:hover {
-    opacity: 0.7;
-}
-
-.primary:hover {
-    background: #3d5be0;
-}
-
-.login:hover {
-    text-decoration: underline;
-}
-
-/* active link */
-.active {
-    border-bottom: 2px solid white;
-}
-
-/* burger animation */
-.burger {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    padding: 12px;
+    border-block-end: 1px solid #ccc;
 }
 
-.line {
-    width: 20px;
-    height: 2px;
-    background: white;
-    transition: 0.3s;
-}
-
-.line1 {
-    transform: rotate(45deg) translate(4px, 4px);
-}
-
-.line2 {
-    opacity: 0;
-}
-
-.line3 {
-    transform: rotate(-45deg) translate(4px, -4px);
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    list-style-type: none;
 }
