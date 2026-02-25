@@ -1,6 +1,5 @@
 .card {                               
   width: 335px;
-    height: 363px;
   background-color: #f0f4ff;
   border-radius: 24px;
   padding: 24px;
@@ -8,7 +7,7 @@
   flex-direction: column;
   box-sizing: border-box; 
   align-items: start;
-justify-content: space-between;
+/* justify-content: space-between; */
 }
 
 .avatar {
@@ -36,11 +35,15 @@ justify-content: space-between;
 }
 
 .description {
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
   color: #333333;
   margin: 0 0 16px 0; 
   text-align: start;
+width: 287;
+height: 72;
+
 
   display: -webkit-box;
   -webkit-line-clamp: 3; 
@@ -93,7 +96,7 @@ justify-content: space-between;
 @media (min-width: 1440px) {
   .card {
     width: 310px; 
-    height: 384px;
+
   }
   
 
