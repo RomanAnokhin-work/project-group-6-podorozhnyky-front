@@ -46,7 +46,7 @@ export default function Header() {
       <header className={css.header}>
         <div className={`container ${css.container}`}>
           <Link href="/" className={css.logo_link} aria-label="Home">
-            <svg  >
+            <svg>
               <use href="/icons.svg#icon-Company-Logo" />
             </svg>
           </Link>

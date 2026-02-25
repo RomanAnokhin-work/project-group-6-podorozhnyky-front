@@ -95,3 +95,7 @@ img {
 .pageContent { 
   padding-top: 72px;
 }
+svg {
+  width: 100px;
+  height: auto;
+}
