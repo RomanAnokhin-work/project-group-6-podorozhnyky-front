@@ -12,9 +12,17 @@ interface CheckSessionResponse {
   success: boolean;
 }
 
-export const getUsers = async (): Promise<GetUsersResponse> => {
-  const { data } = await instance.get<GetUsersResponse>("/users");
-  console.log(data.users);
+export const getUsers = async (
+  page: number,
+  perPage?: number,
+): Promise<GetUsersResponse> => {
+  const { data } = await instance.get<GetUsersResponse>("/users", {
+    params: {
+      page,
+      perPage,
+    },
+  });
+
   return data;
 };
 

@@ -1,18 +1,15 @@
-"use client";
-
-import { User } from "@/types/user";
-import TravellerInfo from "../TravellerInfo/TravellerInfo";
 import css from "./TravellersList.module.css";
+import TravellerInfo from "../TravellerInfo/TravellerInfo";
+import { User } from "@/types/user";
 
 type Props = {
   users: User[];
-  page: number;
-  totalPages: number;
-  //onLoadMore: () => void;
+  page?: number;
+  totalPages?: number;
+  onLoadMore?: () => void;
 };
 
-const TravellersList = ({ users, page, totalPages }: Props) => {
-  const onLoadMore = () => {};
+const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
   return (
     <div className={css.travellersListWrapper}>
       {users.length === 0 ? (
@@ -21,12 +18,12 @@ const TravellersList = ({ users, page, totalPages }: Props) => {
         <ul className={css.travellersList}>
           {users.map((user) => (
             <li key={user._id} className={css.travellersItem}>
-              <TravellerInfo traveller={user} />
+              <TravellerInfo user={user} />
             </li>
           ))}
         </ul>
       )}
-      {page < totalPages && (
+      {onLoadMore && page && totalPages && page < totalPages && (
         <button onClick={onLoadMore} className={css.loadMoreBtn}>
           Показати ще
         </button>
