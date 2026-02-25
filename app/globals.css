@@ -1,5 +1,7 @@
 :root {
-  --background: #F7F9FF;
+  --background: #f7f9ff;
+  --color-white: #fff;
+  --color-royal-blue: #4169e1;
   --color-royal-blue-lighter: #e8eeff;
   --background-footer: var(--color-royal-blue-lighter);
 }
@@ -12,16 +14,16 @@ body {
 
 body {
   background: var(--background);
-  font-family: var(--font-inter),var(--font-nunito-sans), sans-serif;
+  font-family: var(--font-inter), var(--font-nunito-sans), sans-serif;
   /* --second-family: 'Sora', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+  font-weight: 400;
+  line-height: 1.5;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 * {

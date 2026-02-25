@@ -1,0 +1,58 @@
+.travellersListWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.travellersList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  max-width: 335px;
+}
+
+.loadMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--color-royal-blue);
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 100%;
+  max-width: 335px;
+  height: 48px;
+
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-white);
+  white-space: nowrap;
+
+  background-color: var(--color-royal-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .travellersItem {
+    width: calc((100% - 24px) / 2);
+  }
+
+  .loadMoreBtn {
+    width: auto;
+    max-width: auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .travellersItem {
+    width: calc((100% - 24px) / 2);
+  }
+  .loadMoreBtn {
+    font-size: 18px;
+  }
+}
