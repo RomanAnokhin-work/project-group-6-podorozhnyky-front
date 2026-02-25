@@ -8,6 +8,7 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   padding: 0 16px;
+  max-width: 375px;
 }
 
 .container {
@@ -130,6 +131,7 @@
 .mobileBurger:hover { opacity: 0.8; }
 
 @media (min-width: 768px) {
+  .header { max-width: 768px; }
   .tabletActions { display: flex; }
   .burgerButton { display: flex; }
   .mobileBurger { display: none; }
@@ -139,6 +141,11 @@
 }
 
 @media (min-width: 1440px) {
+.header {
+  max-width: 1440px;
+
+}
+
   .desktopNav {
     display: flex;
     align-items: center;
