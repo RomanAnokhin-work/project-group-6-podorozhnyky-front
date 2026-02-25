@@ -11,6 +11,15 @@ interface GetUsersResponse {
 interface CheckSessionResponse {
   success: boolean;
 }
+interface LoginRequest {
+  email: string;
+  password: string;
+}
+interface RegisterRequest {
+  email: string;
+  password: string;
+  name?: string;
+}
 
 
 export const getUsers = async ():Promise<GetUsersResponse> => {
@@ -28,3 +37,15 @@ export async function getMe(): Promise<User> {
   const { data } = await instance.get<User>("/users/me");
   return data;
 }
+
+export async function login(loginData: LoginRequest): Promise<User> {
+  const { data } = await instance.post<User>("/auth/login", loginData);
+  return data;
+}
+
+export async function register(registerData: RegisterRequest) {
+  const { data } = await instance.post<User>("/auth/register", registerData);
+  return data;
+}
+
+export type {  LoginRequest, RegisterRequest };
