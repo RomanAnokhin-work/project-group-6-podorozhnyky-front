@@ -29,7 +29,7 @@ return data
 }
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.get<CheckSessionResponse>("/auth/session");
+  const { data } = await instance.post<CheckSessionResponse>("/auth/session");
   return data;
 }
 
