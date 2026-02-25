@@ -28,6 +28,8 @@
   font-size: 15px;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  width: 156px;
+  height: 40px;
 }
 
 .logo_link:hover { opacity: 0.8; }
