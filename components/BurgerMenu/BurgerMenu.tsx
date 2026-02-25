@@ -42,7 +42,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
 
         <nav className={css.modalNav}>
           <ul className={css.navigation}>
-            <li>
+            <li className={css.navigationItem}>
               <Link
                 href="/"
                 className={`${css.navigationLink} ${pathname === '/' ? css.active : ''}`}
@@ -51,7 +51,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
                 Головна
               </Link>
             </li>
-            <li>
+            <li className={css.navigationItem}            >
               <Link
                 href="/stories"
                 className={`${css.navigationLink} ${pathname === '/stories' ? css.active : ''}`}
@@ -60,7 +60,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
                 Історії
               </Link>
             </li>
-            <li>
+            <li className={css.navigationItem}>
               <Link
                 href="/travellers"
                 className={`${css.navigationLink} ${pathname === '/travellers' ? css.active : ''}`}
