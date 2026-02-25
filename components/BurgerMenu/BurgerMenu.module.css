@@ -119,5 +119,9 @@
   transition: color 0.2s ease;
 }
 
+.navigationItem {
+  display: flex;
+  justify-content: center;
+}
 .navigationLink:hover,
 .navigationLink.active { color: #4169e1; }

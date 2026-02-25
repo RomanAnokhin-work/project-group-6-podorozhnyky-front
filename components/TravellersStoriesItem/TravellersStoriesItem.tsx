@@ -1,11 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import {
   addArticleToSaved,
   removeArticleFromSaved,
 } from '@/app/api/api';
+import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
 import css from './TravellersStoriesItem.module.css';
 
 type StoryOwner = {
@@ -40,29 +42,26 @@ export default function TravellersStoriesItem({
   story,
   isAuthenticated = false,
   isSaved = false,
-  onNeedAuth,
 }: TravellersStoriesItemProps) {
   const [saved, setSaved] = useState(isSaved);
   const [count, setCount] = useState(story.favoriteCount || 0);
   const [loading, setLoading] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const categoryName =
-    typeof story.category === 'string' ? story.category : (story.category?.name ?? '');
-  const ownerSource = story.owner || story.ownerId;
-  const authorName = typeof ownerSource === 'object' ? (ownerSource.name ?? '') : '';
-  const authorAvatarUrl = typeof ownerSource === 'object' ? (ownerSource.avatarUrl ?? '') : '';
-  const date = new Date(story.date);
-  const formattedDate = Number.isNaN(date.getTime())
-    ? story.date
-    : date.toLocaleDateString('uk-UA');
+    (story.category as StoryCategory)?.name || (story.category as string) || '';
+  const ownerSource = (story.owner || story.ownerId) as StoryOwner;
+  const authorName = ownerSource?.name || '';
+  const authorAvatarUrl = ownerSource?.avatarUrl || '';
+  const formattedDate = new Date(story.date).toLocaleDateString('uk-UA');
+
+  const openAuthModal = () => setShowAuthModal(true);
 
   const handleSaveClick = async () => {
     if (loading) return;
 
     if (!isAuthenticated) {
-      if (onNeedAuth) {
-        onNeedAuth();
-      }
+      openAuthModal();
       return;
     }
 
@@ -83,7 +82,7 @@ export default function TravellersStoriesItem({
     } catch {
       setSaved(oldSaved);
       setCount(oldCount);
-      // TODO: show push notification with API error message
+      openAuthModal();
     } finally {
       setLoading(false);
     }
@@ -91,8 +90,8 @@ export default function TravellersStoriesItem({
 
   return (
     <article className={css.card}>
-      <div className={css.imageWrap}>
-        <img className={css.image} src={story.img} alt={story.title} />
+      <div className={css.imageWrap} style={{ position: "relative" }}>
+        <Image className={css.image} src={story.img} alt={story.title} fill />
       </div>
 
       <div className={css.content}>
@@ -103,11 +102,18 @@ export default function TravellersStoriesItem({
         </div>
 
         <div className={css.authorBlock}>
-          <div className={css.avatarWrap}>
+          <div className={css.avatarWrap} style={{ position: "relative" }}>
             {authorAvatarUrl ? (
-              <img className={css.avatar} src={authorAvatarUrl} alt={authorName} />
+              <Image
+                className={css.avatar}
+                src={authorAvatarUrl}
+                alt={authorName || "Author avatar"}
+                fill
+              />
             ) : (
-              <span className={css.avatarFallback}>{authorName.slice(0, 1)}</span>
+              <span className={css.avatarFallback}>
+                {authorName.slice(0, 1)}
+              </span>
             )}
           </div>
 
@@ -117,7 +123,12 @@ export default function TravellersStoriesItem({
               <span>{formattedDate}</span>
               <span className={css.dot}>&bull;</span>
               <span>{count}</span>
-              <svg className={css.metaIcon} width="16" height="16" aria-hidden="true">
+              <svg
+                className={css.metaIcon}
+                width="16"
+                height="16"
+                aria-hidden="true"
+              >
                 <use href="/icons.svg#icon-bookmark" />
               </svg>
             </p>
@@ -126,27 +137,31 @@ export default function TravellersStoriesItem({
 
         <div className={css.actions}>
           <Link className={css.viewButton} href={`/stories/${story._id}`}>
-            {'Переглянути статтю'}
+            {"Переглянути статтю"}
           </Link>
 
           <button
-            className={`${css.saveButton} ${saved ? css.saveButtonActive : ''}`}
+            className={css.saveButton}
             type="button"
             onClick={handleSaveClick}
             disabled={loading}
-            aria-label={
-              saved
-                ? 'Видалити зі збережених'
-                : 'Додати в збережені'
-            }
+            aria-pressed={saved}
+            aria-label={saved ? "Видалити зі збережених" : "Додати в збережені"}
           >
-            <svg className={css.bookmarkIcon} width="20" height="20" aria-hidden="true">
+            <svg
+              className={css.bookmarkIcon}
+              aria-hidden="true"
+              
+            >
               <use href="/icons.svg#icon-bookmark" />
             </svg>
           </button>
         </div>
 
-        {/* TODO: showAuthModal && <AuthNavModal onClose={...} /> */}
+        <AuthNavModal
+          isOpen={showAuthModal}
+          onClose={() => setShowAuthModal(false)}
+        />
       </div>
     </article>
   );
