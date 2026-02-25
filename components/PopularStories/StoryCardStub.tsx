@@ -44,6 +44,7 @@ export default function StoryCardStub({ story }: Props) {
   const excerpt = makeExcerpt(article);
 
   return (
+    <div className={css.container}>
     <article className={css.card}>
       <div className={css.imageWrap}>
         {img ? (
@@ -107,6 +108,6 @@ export default function StoryCardStub({ story }: Props) {
           </button>
         </div>
       </div>
-    </article>
+    </article></div>
   );
 }

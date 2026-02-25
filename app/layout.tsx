@@ -21,6 +21,7 @@ const nunitoSans = Nunito_Sans({
   weight: ['400', '600', '700']
 })
 
+
 export const metadata: Metadata = {
   title: "Podorozhnyky App",
   description: "Podorozhnyky app",
@@ -37,7 +38,7 @@ export default function RootLayout({
         <TanStackProvider>
           <AuthProvider>
               <Header />
-        <main>{children}</main>
+        <main >{children}</main>
             <Footer />
           </AuthProvider>
         </TanStackProvider>

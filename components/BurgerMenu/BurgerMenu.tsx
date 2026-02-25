@@ -23,7 +23,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
           <div className={css.logoModal}>
            <Link className={css.logo_link} href="/">
                 <svg className={css.logo_icon} width="23" height="23">
-                <use href="/icons.svg#icon-Favicon"/>
+                <use href="/icons.svg#icon-Company-Logo"/>
                 </svg>
                 <p className={css.logo_text}>Подорожники</p>
               </Link>

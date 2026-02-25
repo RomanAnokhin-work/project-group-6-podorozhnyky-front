@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import css from './Header.module.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
+import Container from '../Container/Container';
 
 export default function Header() {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
@@ -44,7 +45,9 @@ export default function Header() {
   return (
     <>
       <header className={css.header}>
-        <div className={`container ${css.container}`}>
+
+        <Container className={css.container}>
+         
           <Link href="/" className={css.logo_link} aria-label="Home">
             <svg className={css.logo_icon} width="32" height="32">
               <use href="/icons.svg#icon-Favicon-1" />
@@ -99,7 +102,7 @@ export default function Header() {
               <use href="/icons.svg#icon-menu" />
             </svg>
           </button>
-        </div>
+          </Container>
       </header>
 
       {isBurgerOpen && (
