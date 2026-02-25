@@ -13,6 +13,7 @@ export default async function PopularStories() {
     .slice(0, ITEMS_IN_LAYOUT);
   
   return (
+   <div className={css.container}>
     <section className={css.section}>
       <h2 className={css.h2}>Популярні історії</h2>
 
@@ -29,5 +30,6 @@ export default async function PopularStories() {
   </button>
 </div>
     </section>
+  </div>
   );
 }
