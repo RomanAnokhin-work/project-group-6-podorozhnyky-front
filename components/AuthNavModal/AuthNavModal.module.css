@@ -38,6 +38,14 @@
   border: none;
   font-size: 18px;
   cursor: pointer;
+  
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
 }
 .contentWrapper {
   display: flex;
