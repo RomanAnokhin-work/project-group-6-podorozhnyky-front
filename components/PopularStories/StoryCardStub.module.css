@@ -1,0 +1,125 @@
+.card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #eaf0ff;
+}
+
+.imageWrap {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #cfd9ff;
+}
+
+.image {
+    object-fit: cover;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    background: #cfd9ff;
+}
+
+.body {
+    padding: 16px;
+}
+
+.category {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.excerpt {
+    margin: 0 0 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.85;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.metaRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.avatar {
+    border-radius: 999px;
+}
+
+.avatarPlaceholder {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #cfd9ff;
+}
+
+.authorName {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+
+.dot {
+    opacity: 0.6;
+}
+
+.footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.button {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.35);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bookmark {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+}
