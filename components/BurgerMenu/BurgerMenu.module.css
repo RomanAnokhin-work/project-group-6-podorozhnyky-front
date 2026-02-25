@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f7f9ff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  width: 100%;
+  max-width: 375px;
+  height: 100%;
+  max-height: 595px;
+  background: #f7f9ff;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logoModal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logoModal:hover { opacity: 0.8; }
+
+.logoModalIcon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.logoModalText { white-space: nowrap; }
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.closeButton:hover {
+  opacity: 0.7;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.closeButton:active {
+  opacity: 0.5;
+  background: rgba(0, 0, 0, 0.15);
+}
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.modalNav { width: 100%; }
+
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.navigationLink {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 0;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.navigationLink:hover,
+.navigationLink.active { color: #4169e1; }

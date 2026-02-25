@@ -4,6 +4,10 @@ import Hero from "@/components/Hero/Hero";
 import About from "@/components/About/About";
 import Join from "@/components/Join/Join";
 import OurTravellers from "@/components/OurTravellers/OurTravellers";
+import MessageNoStories from "@/components/MessageNoStories/MessageNoStories";
+import AuthNavModal from "@/components/AuthNavModal/AuthNavModal";
+import TravellersStoriesItem from "@/components/TravellersStoriesItem/TravellersStoriesItem";
+import AuthNavModalWrapper from "@/components/AuthNavModal/AuthNavModalWrapper";
 import TravellersList from "@/components/TravellersList/TravellersList";
 
 export default function Home() {
@@ -16,6 +20,12 @@ export default function Home() {
       <PopularStories />
       <OurTravellers />
       <Join />
+      {/* <MessageNoStories 
+        text="Some Text"
+        buttonText="Some Button Text"
+        buttonRoute="/stories"
+      /> */}
+      {/* <TravellersStoriesItem /> */}
       <TravellersList
         users={[
           { _id: "1", name: "Anna" },
@@ -24,6 +34,7 @@ export default function Home() {
         page={1}
         totalPages={2}
       />
+      <AuthNavModalWrapper />
     </>
   );
 }

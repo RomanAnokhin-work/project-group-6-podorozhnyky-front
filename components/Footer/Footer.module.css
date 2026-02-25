@@ -4,6 +4,7 @@
     text-align: center;
     min-width: 335px;
     margin-top: auto;
+    max-width: 385px;
 }
 
 .logo {
@@ -111,7 +112,13 @@
     transform: scale(1.1);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px)  {
+    .footer {
+        padding: 64px 32px;
+        max-width: 768px;
+     
+    }
+    
     .content {
         display: flex;
         flex-direction: row;
@@ -131,6 +138,7 @@
     .links_list {
         gap: 12px;
         padding-top: 6px;
+        padding-right: 32px;
     }
 
     .footer_icon {
@@ -146,7 +154,8 @@
 
 @media (min-width: 1440px) {
     .footer {
-        padding: 80px 0px;
+        padding: 80px 64px;
+        max-width: 1440px;
     }
 
     .wrap {

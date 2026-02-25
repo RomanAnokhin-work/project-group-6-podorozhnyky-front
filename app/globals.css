@@ -3,7 +3,19 @@
   --color-white: #fff;
   --color-royal-blue: #4169e1;
   --color-royal-blue-lighter: #e8eeff;
+  --color-royal-blue: #4169e1;
+  --color-royal-blue-lightest: #f7f9ff;
+  --color-neutral-darkest: #000;
+  --color-white: #fff;
+  --opacity-transparent: rgba(255, 255, 255, 0);
+  --opacity-neutral-darkest-15: rgba(0, 0, 0, 0.15);
+  --opacity-neutral-darkest-5: rgba(0, 0, 0, 0.05);
   --background-footer: var(--color-royal-blue-lighter);
+  --background-button: var(--color-royal-blue);
+  --background-modal: var(--color-royal-blue-lightest);
+  --text-modal: var(--color-neutral-darkest);
+  --color-scheme-2-border: var(--opacity-neutral-darkest-15);
+  --color-scheme-1-text: var(--color-neutral-darkest);
 }
 
 html,
@@ -14,8 +26,8 @@ body {
 
 body {
   background: var(--background);
-  font-family: var(--font-inter), var(--font-nunito-sans), sans-serif;
-  /* --second-family: 'Sora', sans-serif; */
+  font-family: var(--font-nunito-sans), sans-serif;
+  --second-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
@@ -30,7 +42,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  min-height: 100%;
 }
 
 h1,
@@ -81,4 +92,12 @@ img {
 
 .main {
   flex: 1;
+}
+
+.pageContent {
+  padding-top: 72px;
+}
+svg {
+  width: 100px;
+  height: auto;
 }
