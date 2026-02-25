@@ -26,10 +26,12 @@ function AuthNavModal({ isOpen, onClose }: AuthNavModalProps) {
     };
 
     document.addEventListener("keydown", handleKeyDown);
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
@@ -49,7 +51,7 @@ function AuthNavModal({ isOpen, onClose }: AuthNavModalProps) {
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <button className={css.closeBtn} onClick={onClose}>
-          <svg width="24" height="24">
+          <svg className={css.closeIcon} width="24" height="24">
             <use href="/icons.svg#icon-close" />
           </svg>
         </button>
