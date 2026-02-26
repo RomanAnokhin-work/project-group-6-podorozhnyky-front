@@ -1,5 +1,6 @@
 import { User } from "../../types/user";
 import { instance } from "./api";
+import { isAxiosError } from "axios";
 
 interface GetUsersResponse {
   page: number;
@@ -36,8 +37,15 @@ export const getUsers = async (
 };
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.post<CheckSessionResponse>("/auth/session");
-  return data;
+  try {
+    await instance.post("/auth/session");
+    return { success: true };
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 401) {
+      return { success: false };
+    }
+    throw error;
+  }
 }
 
 export async function getMe(): Promise<User> {

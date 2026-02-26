@@ -26,14 +26,14 @@ export default function Home() {
         buttonRoute="/stories"
       /> */}
       {/* <TravellersStoriesItem /> */}
-      <TravellersList
+      {/* <TravellersList
         users={[
           { _id: "1", name: "Anna" },
           { _id: "2", name: "Maria" },
         ]}
         page={1}
         totalPages={2}
-      />
+      /> */}
       <AuthNavModalWrapper />
     </>
   );
