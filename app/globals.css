@@ -1,13 +1,15 @@
 :root {
-  --background: #F7F9FF;
+  --background: #f7f9ff;
+  --color-white: #fff;
+  --color-royal-blue: #4169e1;
   --color-royal-blue-lighter: #e8eeff;
-  --color-royal-blue: #4169E1;
+  --color-royal-blue: #4169e1;
   --color-royal-blue-lightest: #f7f9ff;
   --color-neutral-darkest: #000;
   --color-white: #fff;
   --opacity-transparent: rgba(255, 255, 255, 0);
-    --opacity-neutral-darkest-15: rgba(0, 0, 0, 0.15);
-      --opacity-neutral-darkest-5: rgba(0, 0, 0, 0.05);
+  --opacity-neutral-darkest-15: rgba(0, 0, 0, 0.15);
+  --opacity-neutral-darkest-5: rgba(0, 0, 0, 0.05);
   --background-footer: var(--color-royal-blue-lighter);
   --background-button: var(--color-royal-blue);
   --background-modal: var(--color-royal-blue-lightest);
@@ -29,11 +31,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+  font-weight: 400;
+  line-height: 1.5;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 * {
@@ -59,7 +61,6 @@ body {
     max-width: 1440px;
   }
 }
-
 
 h1,
 h2,
@@ -111,7 +112,7 @@ img {
   flex: 1;
 }
 
-.pageContent { 
+.pageContent {
   padding-top: 72px;
 }
 svg {
