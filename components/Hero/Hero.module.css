@@ -1,0 +1,126 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 0 20px;
+  color: #ffffff;
+  text-align: left;
+  overflow: hidden;
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: image-set(
+    url("/images/hero/mob1x.webp") 1x,
+    url("/images/hero/mob2x.webp") 2x,
+    url("/images/hero/mob3x.webp") 3x
+  );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.52);
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--second-family), sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--color-white);
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-white);
+  font-family: var(--font-nunito-sans), sans-serif;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.joinLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  border-radius: 8px;
+  background-color: var(--color-royal-blue);
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.joinLink:hover,
+.joinLink:focus-visible {
+  opacity: 1;
+  background-color: var(--color-royal-blue-lighter);
+  color: var(--color-scheme-1-text);
+  cursor: pointer;
+}
+
+.joinLink:active {
+  background-color: #7a96ea;
+  color: var(--color-neutral-darkest);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    background-image: image-set(
+      url("/images/hero/tab1x.webp") 1x,
+      url("/images/hero/tab2x.webp") 2x,
+      url("/images/hero/tab3x.webp") 3x
+    );
+    padding: 0 32px;
+  }
+  .title {
+    font-size: 48px;
+    line-height: 1.1;
+    max-width: 612px;
+  }
+  .joinLink {
+    display: inline-flex;
+    padding: 8px 12px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    background-image: image-set(
+      url("/images/hero/des1x.webp") 1x,
+      url("/images/hero/des2x.webp") 2x,
+      url("/images/hero/des3x.webp") 3x
+    );
+    padding: 0 64px;
+  }
+  .content {
+    max-width: 760px;
+  }
+  .title {
+    font-size: 56px;
+  }
+
+  .description {
+    font-size: 20px;
+  }
+  .joinLink {
+    padding: 6px 12px;
+    font-size: 18px;
+  }
+}
