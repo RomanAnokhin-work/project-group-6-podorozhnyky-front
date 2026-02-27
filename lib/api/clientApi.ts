@@ -22,9 +22,10 @@ interface RegisterRequest {
 }
 
 
-export const getUsers = async ():Promise<GetUsersResponse> => {
-const {data} = await instance.get<GetUsersResponse>('/users');
-console.log(data.users)
+export const getUsers = async ({ page = 1, perPage = 8 }):Promise<GetUsersResponse> => {
+const {data} = await instance.get<GetUsersResponse>('/users', {
+    params: { page, perPage }
+  });
 return data
 }
 
