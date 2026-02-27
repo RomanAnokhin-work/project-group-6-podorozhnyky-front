@@ -28,7 +28,10 @@
   background: var(--color-scheme-2-foreground);
   border: 0 solid var(--color-scheme-1-border);
 }
-
+/* по умолчанию (mobile + desktop) — показываем 3 */
+.item:nth-child(4) {
+  display: none;
+}
 /* ===== Footer / Load more ===== */
 .footer {
   display: none;
@@ -103,6 +106,10 @@
     flex: 0 0 calc(50% - 12px);
     height: 578px;
   }
+    /* Tablet — показываем 4 */
+      .item:nth-child(4) {
+        display: block;
+      }
 
   .footer {
     display: flex;
