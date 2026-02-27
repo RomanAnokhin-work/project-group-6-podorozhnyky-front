@@ -15,6 +15,7 @@ export default function RegisterPage() {
     try {
       const email = formData.get("email");
       const password = formData.get("password");
+      const name = formData.get("name");
 
       if (typeof email !== "string" || typeof password !== "string") {
         throw new Error("Invalid form data");
@@ -23,6 +24,7 @@ export default function RegisterPage() {
       const formValues: RegisterRequest = {
         email,
         password,
+        name: name?.toString(),
       };
 
       const res = await register(formValues);
