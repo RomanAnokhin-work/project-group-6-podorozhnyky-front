@@ -13,7 +13,7 @@ const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
   return (
     <div className={css.travellersListWrapper}>
       {users.length === 0 ? (
-        <p>Немає користувачів для відображення</p>                                                          
+        <p>Немає користувачів для відображення</p>
       ) : (
         <ul className={css.travellersList}>
           {users.map((user) => (

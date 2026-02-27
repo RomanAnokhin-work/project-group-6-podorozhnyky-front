@@ -9,18 +9,20 @@ const instance = axios.create({
 
 export { instance };
 
-
 import type { StoriesResponse } from "@/types/story";
 
 export async function fetchStories(
   page = 1,
   perPage = 10,
-  category?: string
+  category?: string,
 ): Promise<StoriesResponse> {
   const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) throw new Error("BACKEND_URL is not defined in .env.local");
 
-  const qs = new URLSearchParams({ page: String(page), perPage: String(perPage) });
+  const qs = new URLSearchParams({
+    page: String(page),
+    perPage: String(perPage),
+  });
   if (category) qs.set("category", category);
 
   const res = await fetch(`${backendUrl}/stories?${qs.toString()}`, {

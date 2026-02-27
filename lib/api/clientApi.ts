@@ -1,12 +1,13 @@
-import {User} from "../../types/user";
-import {instance} from "./api";
+import { User } from "../../types/user";
+import { instance } from "./api";
+import { isAxiosError } from "axios";
 
 interface GetUsersResponse {
-    page: number;
-    perPage: number;
-    totalUser: number;
-    totalPages: number;
-    users: User[];
+  page: number;
+  perPage: number;
+  totalUser: number;
+  totalPages: number;
+  users: User[];
 }
 interface CheckSessionResponse {
   success: boolean;
@@ -21,17 +22,30 @@ interface RegisterRequest {
   name?: string;
 }
 
-
-export const getUsers = async ({ page = 1, perPage = 8 }):Promise<GetUsersResponse> => {
-const {data} = await instance.get<GetUsersResponse>('/users', {
-    params: { page, perPage }
+export const getUsers = async (
+  page: number,
+  perPage?: number,
+): Promise<GetUsersResponse> => {
+  const { data } = await instance.get<GetUsersResponse>("/users", {
+    params: {
+      page,
+      perPage,
+    },
   });
-return data
-}
+
+  return data;
+};
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.post<CheckSessionResponse>("/auth/session");
-  return data;
+  try {
+    await instance.post("/auth/session");
+    return { success: true };
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 401) {
+      return { success: false };
+    }
+    throw error;
+  }
 }
 
 export async function getMe(): Promise<User> {
@@ -49,4 +63,4 @@ export async function register(registerData: RegisterRequest) {
   return data;
 }
 
-export type {  LoginRequest, RegisterRequest };
+export type { LoginRequest, RegisterRequest };
