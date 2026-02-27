@@ -1,6 +1,6 @@
 import css from "./TravellersList.module.css";
-import TravellerInfo from "../TravellerInfo/TravellerInfo";
 import { User } from "@/types/user";
+import TravellersListItem from "../TravellersListItem/TravellersListItem";
 
 type Props = {
   users: User[];
@@ -18,7 +18,7 @@ const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
         <ul className={css.travellersList}>
           {users.map((user) => (
             <li key={user._id} className={css.travellersItem}>
-              <TravellerInfo user={user} />
+              <TravellersListItem user={user} />
             </li>
           ))}
         </ul>

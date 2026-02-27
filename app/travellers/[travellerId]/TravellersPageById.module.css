@@ -1,0 +1,10 @@
+.h2 {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-neutral-darkest);
+
+  margin-bottom: 40px;
+}
