@@ -40,15 +40,8 @@ export const getUsers = async (
 };
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  try {
-    await instance.post("/auth/session");
-    return { success: true };
-  } catch (error) {
-    if (isAxiosError(error) && error.response?.status === 401) {
-      return { success: false };
-    }
-    throw error;
-  }
+  const { data } = await instance.get<CheckSessionResponse>("/auth/session");
+  return data;
 }
 
 export async function getMe(): Promise<User> {
@@ -66,4 +59,7 @@ export async function register(registerData: RegisterRequest) {
   return data;
 }
 
+export async function logout(): Promise<void> {
+  await instance.post("/auth/logout");
+}
 export type { LoginRequest, RegisterRequest };
