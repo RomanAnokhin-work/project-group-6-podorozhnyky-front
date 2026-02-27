@@ -1,7 +1,9 @@
+import TravellersStories from "@/components/TravellersStories/TravellersStories";
+
 export default function StoriesPage() {
   return (
     <div >
-    <h1>Stories Page</h1>
+   <TravellersStories />
     </div>
   );
 }

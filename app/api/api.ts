@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  withCredentials: false,
+  withCredentials: true,
 });
 
 export const addArticleToSaved = async (articleId: string) => {
