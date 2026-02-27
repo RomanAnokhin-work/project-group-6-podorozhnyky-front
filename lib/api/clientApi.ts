@@ -21,10 +21,13 @@ interface RegisterRequest {
   password: string;
   name?: string;
 }
+interface GetUsersParams {
+  page?: number;
+  perPage?: number;
+}
 
 export const getUsers = async (
-  page: number,
-  perPage?: number,
+  { page, perPage }: GetUsersParams
 ): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {

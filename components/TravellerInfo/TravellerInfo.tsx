@@ -8,11 +8,15 @@ interface TravellerInfoResponse {
 }
 
 export default function TravellerInfo({ user }: TravellerInfoResponse) {
-  console.log(user);
-
+  
   return (
     <div className={styles.card}>
-      <Image src={user.avatarUrl} alt={user.name} className={styles.avatar} />
+
+      <Image src={user.avatarUrl} 
+        alt={user.name} 
+        className={styles.avatar} 
+        width="112"
+        height="112"/>
 
       {/* <Image src="https://ftp.goit.study/img/harmoniq/users/6881563901add19ee16fcff5.webp" 
         alt="Дмитро Романенко"
@@ -27,11 +31,8 @@ export default function TravellerInfo({ user }: TravellerInfoResponse) {
         {/* <p className={styles.description}>
           Привіт! Я Дмитро. Люблю знаходити приховані перлини у кожній поїздці та ділитися ними. Світ повний дивовижних відкриттів!
         </p> */}
-
-        <Link
-          href={`/travellers/6881563901add19ee16fcff5`}
-          className={styles.linkButton}
-        >
+        
+        <Link href={`/travellers/${user._id}`} className={styles.linkButton}>
           Переглянути профіль
         </Link>
         {/* <Link href={`/travellers`} className={styles.linkButton}>

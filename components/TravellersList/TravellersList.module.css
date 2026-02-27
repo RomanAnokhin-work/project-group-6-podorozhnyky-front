@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  padding-bottom: 64px;
 }
 
 .travellersList {
@@ -58,6 +59,9 @@
 }
 
 @media (min-width: 1440px) {
+  .travellersListWrapper {
+    padding-bottom: 72px;
+  }
   .travellersList {
     grid-template-columns: repeat(4, 1fr);
     max-width: 1312px;
