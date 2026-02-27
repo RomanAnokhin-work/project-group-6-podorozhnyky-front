@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ConfirmModal from '../ConfirmModal/ConfirmModal'; // Переконайтеся, що шлях правильний
+import ConfirmModal from '../ConfirmModal/ConfirmModal'; 
+import { logout } from '../../lib/api/clientApi'; 
 
 interface ModalProps {
   onClose: () => void;
@@ -10,7 +11,6 @@ interface ModalProps {
 
 
 const clearLocalUserData = () => {
-  
   localStorage.removeItem('user'); 
 };
 
@@ -22,21 +22,9 @@ export default function Modal({ onClose }: ModalProps) {
     setIsLoading(true);
     
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'; 
       
-      const response = await fetch(`${API_URL}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include', 
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error('Помилка при виході з системи');
-      }
+      await logout();
 
-   
       clearLocalUserData();
 
       console.log('Вихід пройшов успішно');
@@ -46,6 +34,7 @@ export default function Modal({ onClose }: ModalProps) {
       
     } catch (error) {
       console.error('Помилка при виході:', error);
+      
     } finally {
       setIsLoading(false); 
     }
