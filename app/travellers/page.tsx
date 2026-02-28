@@ -1,6 +1,8 @@
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import { getUsers } from "@/lib/api/clientApi";
 import TravellersClient from "./Travellers.client";
+import Container from "@/components/Container/Container";
+// import css from "@/components/Container/Container.module.css"
 
 
 export default async function TravellersPage() {
@@ -12,10 +14,12 @@ await queryClient.prefetchInfiniteQuery({
   initialPageParam: 1,
 });
   return (
-    <section style={{paddingTop: '72px'}}>
+    // <section style={{paddingTop: '72px'}}>
+    // <Container >
     <HydrationBoundary state={dehydrate(queryClient)}>
       <TravellersClient/>
     </HydrationBoundary>
-    </section>
+    // </Container>
+    // </section>
   );
 }
