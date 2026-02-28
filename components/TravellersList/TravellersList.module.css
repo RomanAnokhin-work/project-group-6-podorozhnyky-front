@@ -1,0 +1,73 @@
+.travellersListWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 64px;
+}
+
+.travellersList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 335px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.travellersItem {
+  width: 100%;
+  max-width: 335px;
+}
+
+.loadMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--color-royal-blue);
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 100%;
+  max-width: 335px;
+  height: 48px;
+
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-white);
+  white-space: nowrap;
+
+  background-color: var(--color-royal-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .travellersList {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 704px;
+  }
+
+  .travellersItem {
+    max-width: 100%;
+  }
+
+  .loadMoreBtn {
+    width: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .travellersListWrapper {
+    padding-bottom: 72px;
+  }
+  .travellersList {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1312px;
+  }
+
+  .loadMoreBtn {
+    font-size: 18px;
+  }
+}

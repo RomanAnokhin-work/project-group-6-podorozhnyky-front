@@ -1,33 +1,19 @@
+import Container from "../Container/Container";
 import css from "./PopularStories.module.css";
-import { fetchStories } from "@/lib/api/api";
-import StoryCardStub from "./StoryCardStub";
+import PopularStoriesClient from "./PopularStoriesClient";
+import { fetchPopularStoriesPage } from "@/lib/api/api";
 
-const ITEMS_IN_LAYOUT = 4;
+const FETCH_PER_PAGE = 10;
 
 export default async function PopularStories() {
-  const data = await fetchStories(1, 10);
+  const initial = await fetchPopularStoriesPage(1, FETCH_PER_PAGE);
 
- const stories = (data.stories ?? [])
-  .slice()
-  .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
-    .slice(0, ITEMS_IN_LAYOUT);
-  
   return (
-    <section className={css.section}>
-      <h2 className={css.h2}>Популярні історії</h2>
-
-      <div className={css.list}>
-        {stories.map((story) => (
-          <div key={story._id} className={css.item}>
-            <StoryCardStub story={story} />
-          </div>
-        ))}
-      </div>
-      <div className={css.footer}>
-  <button type="button" className={css.moreBtn}>
-    Переглянути всі
-  </button>
-</div>
-    </section>
+    <Container className={css.container}>
+      <section className={css.section}>
+        <h2 className={css.h2}>Популярні історії</h2>
+        <PopularStoriesClient initial={initial} fetchPerPage={FETCH_PER_PAGE} />
+      </section>
+    </Container>
   );
 }
