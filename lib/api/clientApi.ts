@@ -1,6 +1,10 @@
 import { User } from "../../types/user";
 import { instance } from "./api";
 import { isAxiosError } from "axios";
+import { ApiStory } from "@/types/story";
+
+
+
 
 interface GetUsersResponse {
   page: number;
@@ -25,6 +29,28 @@ interface GetUsersParams {
   page?: number;
   perPage?: number;
 }
+
+export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
+  const { data } = await instance.get(`/stories/${storyId}`);
+  return data.data;
+};
+
+export const deleteStory = async (storyId: string) => {
+  const res = await instance.delete(`/stories/${storyId}`);
+  return res.data;
+};
+
+export const addFavorite = async (storyId: string): Promise<User> => {
+  const { data } = await instance.patch('/stories/saved', { storyId });
+  return data.data;
+};
+
+export const removeFavorite = async (storyId: string): Promise<User> => {
+  const { data } = await instance.delete('/stories/saved', {
+    data: { storyId }
+  });
+  return data.data;
+};
 
 export const getUsers = async (
   { page, perPage }: GetUsersParams
