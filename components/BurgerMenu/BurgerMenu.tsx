@@ -25,12 +25,12 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
         <div className={css.modalHeader}>
           <div className={css.logoModal}>
-            <Link className={css.logo_link} href="/" onClick={handleNavClick}>
-              <svg className={css.logo_icon} width="23" height="23">
-                <use href="/icons.svg#icon-Favicon" />
-              </svg>
-              <p className={css.logo_text}>Подорожники</p>
-            </Link>
+           <Link className={css.logo_link} href="/">
+                <svg className={css.logo_icon} width="23" height="23">
+                <use href="/icons.svg#icon-Company-Logo"/>
+                </svg>
+                <p className={css.logo_text}>Подорожники</p>
+              </Link>
           </div>
           <button
             type="button"
@@ -46,7 +46,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
 
         <nav className={css.modalNav}>
           <ul className={css.navigation}>
-            <li>
+            <li className={css.navigationItem}>
               <Link
                 href="/"
                 className={`${css.navigationLink} ${pathname === '/' ? css.active : ''}`}
@@ -55,7 +55,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
                 Головна
               </Link>
             </li>
-            <li>
+            <li className={css.navigationItem}            >
               <Link
                 href="/stories"
                 className={`${css.navigationLink} ${pathname === '/stories' ? css.active : ''}`}
@@ -64,7 +64,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
                 Історії
               </Link>
             </li>
-            <li>
+            <li className={css.navigationItem}>
               <Link
                 href="/travellers"
                 className={`${css.navigationLink} ${pathname === '/travellers' ? css.active : ''}`}

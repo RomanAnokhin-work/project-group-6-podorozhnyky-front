@@ -8,14 +8,13 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   padding: 0 16px;
-  max-width: 1440px;
+  /* max-width: 375px; */
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
 }
 
 .logo_link {
@@ -28,6 +27,8 @@
   font-size: 15px;
   cursor: pointer;
   transition: opacity 0.2s ease;
+  width: 156px;
+  height: 40px;
 }
 
 .logo_link:hover { opacity: 0.8; }
@@ -148,6 +149,7 @@
 .burgerButton:hover { opacity: 0.8; }
 
 @media (min-width: 768px) {
+  /* .header { max-width: 768px; } */
   .tabletActions { display: flex; }
   .burgerButton { display: flex; }
   .mobileBurger { display: none; }
@@ -157,6 +159,8 @@
 }
 
 @media (min-width: 1440px) {
+
+
   .desktopNav {
     display: flex;
     align-items: center;

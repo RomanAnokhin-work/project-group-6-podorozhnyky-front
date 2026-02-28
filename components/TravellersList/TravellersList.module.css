@@ -1,0 +1,47 @@
+.travellersListWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 64px;
+}
+
+.travellersList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 335px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.travellersItem {
+  width: 100%;
+  max-width: 335px;
+}
+
+
+
+@media screen and (min-width: 768px) {
+  .travellersList {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 704px;
+  }
+
+  .travellersItem {
+    max-width: 100%;
+  }
+  .travellersListWrapper {
+    padding-bottom: 48px;
+  }
+
+
+}
+
+@media (min-width: 1440px) {
+  .travellersList {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1312px;
+  }
+}
