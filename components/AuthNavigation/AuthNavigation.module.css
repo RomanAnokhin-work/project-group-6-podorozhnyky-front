@@ -4,6 +4,48 @@
   gap: 12px;
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logoutButton:hover { opacity: 0.8; }
+.logoutButton:active { opacity: 0.6; }
+
+.logoutIcon {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
 .loginButton,
 .registerButton {
   text-decoration: none;
@@ -32,10 +74,6 @@
   color: #000;
 }
 
-.loginButton:active {
-  background: #7a96ea;
-}
-
 .registerButton {
   width: 113px;
   background: #fff;
@@ -45,11 +83,6 @@
 
 .registerButton:hover {
   background: #7f7f7f;
-  color: #fff;
-}
-
-.registerButton:active {
-  background: #4c4c4c;
   color: #fff;
 }
 
@@ -71,22 +104,17 @@
   transition: background-color 0.2s ease, color 0.2s ease;
   text-align: center;
   width: 100%;
+  border: none;
 }
 
 .modalLogin {
-  background: #f0f0f5;
-  color: #1a1a1a;
+  background: #6c6c6c;
+  color: #fff;
 }
 
 .modalLogin:hover {
   background: #4169e1;
   color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.modalLogin:active {
-  background: #7a96ea;
-  color: #000;
 }
 
 .modalRegister {
@@ -98,9 +126,4 @@
   background: #e8eeff;
   color: #000;
   border: 1px solid #4169e1;
-}
-
-.modalRegister:active {
-  background: #1a2a5a;
-  color: #fff;
 }
