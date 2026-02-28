@@ -3,7 +3,7 @@ import axios from 'axios';
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
-});
+  });
 
 export const addArticleToSaved = async (articleId: string) => {
   const { data } = await api.patch('/me/saved-articles', { articleId });
