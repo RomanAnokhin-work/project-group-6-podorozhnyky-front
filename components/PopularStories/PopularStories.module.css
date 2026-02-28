@@ -35,6 +35,7 @@
 /* ===== Footer / Load more ===== */
 .footer {
   display: none;
+  margin-top: 40px;
 }
 
 .moreBtn {
@@ -60,26 +61,31 @@
   transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
+/* hover */
 .moreBtn:hover {
   background: var(--color-royal-blue-lighter);
   color: var(--color-scheme-2-text);
 }
 
+/* active */
 .moreBtn:active {
-  background: var(--opacity-neutral-darkest-5);
-  color: var(--color-neutral-darkest);
+background: var(--color-royal-blue-light);
+  color: var(--color-scheme-2-text);
 }
 
+/* disabled (для button) */
 .moreBtn:disabled {
-  opacity: 0.6;
+background: var(--color-royal-blue);
+  opacity: 0.3;
   cursor: not-allowed;
 }
+
 
 /* ===== Mobile ===== */
 @media (max-width: 767px) {
   .list {
     flex-wrap: wrap;
-    padding-bottom: 8px;
+    /* padding-bottom: 8px; */
   }
 
   .item {
@@ -131,7 +137,7 @@
   .list {
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
 
   .item {

@@ -20,13 +20,68 @@ interface RegisterRequest {
   password: string;
   name?: string;
 }
-
-
-export const getUsers = async ():Promise<GetUsersResponse> => {
-const {data} = await instance.get<GetUsersResponse>('/users');
-console.log(data.users)
-return data
+interface GetUsersParams {
+  page?: number;
+  perPage?: number;
 }
+
+export type PopularResponse = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  totalItems: number;
+  stories: ApiStory[];
+};
+
+export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
+  const {data} = await instance.get(`api/stories/popular?page=${page}&perPage=${perPage}`);
+
+  return data;
+}
+
+export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
+  const { data } = await instance.get(`/stories/${storyId}`);
+  return data.data;
+};
+
+export const deleteStory = async (storyId: string) => {
+  const res = await instance.delete(`/stories/${storyId}`);
+  return res.data;
+};
+
+export const addFavorite = async (storyId: string): Promise<User> => {
+  const { data } = await instance.patch('/stories/saved', { storyId });
+  return data.data;
+};
+
+export const removeFavorite = async (storyId: string): Promise<User> => {
+  const { data } = await instance.delete('/stories/saved', {
+    data: { storyId }
+  });
+  return data.data;
+};
+
+export const getUsers = async (
+  { page, perPage }: GetUsersParams
+): Promise<GetUsersResponse> => {
+  const { data } = await instance.get<GetUsersResponse>("/users", {
+    params: {
+      page,
+      perPage,
+    },
+  });
+
+  return data;
+};
+
+interface GetPopularUsersResponse {
+  users: User[];
+}
+
+export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
+  const { data } = await instance.get<GetPopularUsersResponse>("/users/popular-users");
+  return data;
+};
 
 export async function checkSession(): Promise<CheckSessionResponse> {
   const { data } = await instance.post<CheckSessionResponse>("/auth/session");
