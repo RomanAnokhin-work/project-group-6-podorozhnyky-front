@@ -7,9 +7,11 @@ import css from './Header.module.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
 import Container from '../Container/Container';
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Header() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated, user } = useAuthStore();
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const pathname = usePathname();
 
