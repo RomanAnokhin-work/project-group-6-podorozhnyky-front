@@ -3,7 +3,6 @@
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { getUsers } from "@/lib/api/clientApi";
 import TravellersList from "@/components/TravellersList/TravellersList";
-import css from "./Travellers.module.css";
 import { useEffect, useRef, useState } from "react";
 import { User } from "@/types/user";
 
@@ -46,7 +45,8 @@ export default function TravellersClient() {
     enabled: isDesktop !== null, 
     placeholderData: keepPreviousData, 
   });
-
+console.log("isFetching", isFetching);
+console.log(data)
   useEffect(() => {
     if (!data) return;
 
@@ -70,13 +70,16 @@ export default function TravellersClient() {
 
   return (
     <div>
-      <h1 className={css.title}>Мандрівники</h1>
+      <h1 style={{textAlign: 'center', padding: '32px 20px 24px 20px' }}>
+            Мандрівники
+      </h1>
 
       <TravellersList
         users={users}
         onLoadMore={handleLoadMore}
         page={page} 
         totalPages={data?.totalPages}
+        isFetching={isFetching}
       />
     </div>
   );
