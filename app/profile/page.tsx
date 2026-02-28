@@ -1,7 +1,11 @@
+import css from "./ProfilePage.module.css"
 export default function Profile() {
   return (
-    <div >
-    <h1>Profile Page</h1>
-    </div>
+    
+    // <section className={css.container}>
+  
+    <h1>Profile Page123</h1>
+  
+    // </section>
   );
 }

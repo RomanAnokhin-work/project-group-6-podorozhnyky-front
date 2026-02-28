@@ -1,6 +1,32 @@
+"use client";
+
+import Link from "next/link";
+import { useAuthStore } from "@/lib/store/authStore";
+import Container from "../Container/Container";
+import css from "./Join.module.css";
+
 const Join = () => {
-    return (
-    <h2>JoinSection</h2>);
-}
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const buttonLabel = isAuthenticated ? "Збережені" : "Зареєструватися";
+  const buttonHref = isAuthenticated ? "/profile" : "/auth/register";
+
+  return (
+    <section className={css.join} id="join">
+      <Container className={css.container}>
+        <div className={css.content}>
+          <h2 className={css.title}>Приєднуйтесь до нашої спільноти</h2>
+          <p className={css.description}>
+            Долучайтеся до мандрівників, які діляться своїми історіями та
+            надихають на нові пригоди.
+          </p>
+          <Link href={buttonHref} className={css.joinLink}>
+            {buttonLabel}
+          </Link>
+        </div>
+      </Container>
+    </section>
+  );
+};
 
 export default Join;

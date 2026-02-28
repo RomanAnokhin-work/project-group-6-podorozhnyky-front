@@ -1,12 +1,17 @@
-import {User} from "../../types/user";
-import {instance} from "./api";
+import { User } from "../../types/user";
+import { instance } from "./api";
+import { isAxiosError } from "axios";
+import { ApiStory } from "@/types/story";
+
+
+
 
 interface GetUsersResponse {
-    page: number;
-    perPage: number;
-    totalUser: number;
-    totalPages: number;
-    users: User[];
+  page: number;
+  perPage: number;
+  totalUser: number;
+  totalPages: number;
+  users: User[];
 }
 interface CheckSessionResponse {
   success: boolean;
@@ -35,6 +40,21 @@ export type PopularResponse = {
 
 export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
   const {data} = await instance.get(`api/stories/popular?page=${page}&perPage=${perPage}`);
+
+  return data;
+}
+
+export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
+  const { data } = await instance.get(`/stories/${storyId}`);
+  return data.data;
+};
+
+export const deleteStory = async (storyId: string) => {
+  const res = await instance.delete(`/stories/${storyId}`);
+  return res.data;
+};
+
+  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
 
   return data;
 }
@@ -84,7 +104,7 @@ export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
 };
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.post<CheckSessionResponse>("/auth/session");
+  const { data } = await instance.get<CheckSessionResponse>("/auth/session");
   return data;
 }
 
@@ -103,4 +123,7 @@ export async function register(registerData: RegisterRequest) {
   return data;
 }
 
-export type {  LoginRequest, RegisterRequest };
+export async function logout(): Promise<void> {
+  await instance.post("/auth/logout");
+}
+export type { LoginRequest, RegisterRequest };
