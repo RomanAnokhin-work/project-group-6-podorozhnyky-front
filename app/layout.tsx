@@ -37,10 +37,12 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TanStackProvider>
           <AuthProvider>
-              <Header />
-              <AuthNavigation />
-        <main>{children}</main>
-      <Footer />
+            <Header />
+            <AuthNavigation />
+            <main>{children}</main>
+            <Footer />
+          </AuthProvider>
+        </TanStackProvider>
       </body>
     </html>
   );

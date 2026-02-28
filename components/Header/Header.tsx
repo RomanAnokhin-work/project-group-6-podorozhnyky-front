@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { authStore } from "@/lib/store/authStore";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { user, logout } = authStore();
-
+  const { user,  } = useAuthStore();
+const logout = useAuthStore((state) => state.clearIsAuthenticated);
   const isAuth = !!user;
 
   // 🔒 scroll lock
