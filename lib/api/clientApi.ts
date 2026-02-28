@@ -30,6 +30,20 @@ interface GetUsersParams {
   perPage?: number;
 }
 
+export type PopularResponse = {
+  page: number;
+  perPage: number;
+  totalPages: number;
+  totalItems: number;
+  stories: ApiStory[];
+};
+
+export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
+  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
+
+  return data;
+}
+
 export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
   const { data } = await instance.get(`/stories/${storyId}`);
   return data.data;
