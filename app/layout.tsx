@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/Footer";
 import AuthNavigation from "@/components/AuthNavigation/AuthNavigation";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import css from "./Home.module.css"
 
 
 
@@ -38,7 +39,7 @@ export default function RootLayout({
         <TanStackProvider>
           <AuthProvider>
               <Header />
-        <main >{children}</main>
+        <main className={css.container} >{children}</main>
             <Footer />
           </AuthProvider>
         </TanStackProvider>
