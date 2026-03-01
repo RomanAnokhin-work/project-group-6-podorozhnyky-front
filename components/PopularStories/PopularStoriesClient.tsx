@@ -9,9 +9,9 @@ export default function PopularStoriesClient({ stories }: { stories: ApiStory[] 
   return (
     <>
       <ul className={css.list}>
-        {stories.map((story) => (
+        {stories.map((story, index) => (
           <li key={story._id} className={css.item}>
-             <TravellersStoriesItem story={story} /> 
+             <TravellersStoriesItem story={story} isLcpImage={index < 3} /> 
           </li>
         ))}
       </ul>
