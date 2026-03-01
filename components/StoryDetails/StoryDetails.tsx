@@ -100,6 +100,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
       toast.error('Помилка під час видалення');
     }
   };
+  console.log(story)
   return (
     <div className={css.storyDetails}>
       <div className={css.info}>
