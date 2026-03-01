@@ -33,6 +33,7 @@ export type TravellerStory = {
 
 type TravellersStoriesItemProps = {
   story: TravellerStory;
+  isLcpImage?: boolean;
   isAuthenticated?: boolean;
   isSaved?: boolean;
   onNeedAuth?: () => void;
@@ -40,6 +41,7 @@ type TravellersStoriesItemProps = {
 
 export default function TravellersStoriesItem({
   story,
+  isLcpImage = false,
   isAuthenticated = false,
   isSaved = false,
 }: TravellersStoriesItemProps) {
@@ -91,7 +93,15 @@ export default function TravellersStoriesItem({
   return (
     <article className={css.card}>
       <div className={css.imageWrap} style={{ position: "relative" }}>
-        <Image className={css.image} src={story.img} alt={story.title} fill />
+        <Image
+          className={css.image}
+          src={story.img}
+          alt={story.title}
+          fill
+          sizes="(min-width: 1440px) 416px, (min-width: 768px) 340px, 335px"
+          priority={isLcpImage}
+          loading={isLcpImage ? "eager" : "lazy"}
+        />
       </div>
 
       <div className={css.content}>
@@ -109,6 +119,7 @@ export default function TravellersStoriesItem({
                 src={authorAvatarUrl}
                 alt={authorName || "Author avatar"}
                 fill
+                sizes="48px"
               />
             ) : (
               <span className={css.avatarFallback}>

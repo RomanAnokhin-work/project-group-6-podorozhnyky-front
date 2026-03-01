@@ -3,7 +3,6 @@ import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import AuthNavigation from "@/components/AuthNavigation/AuthNavigation";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import css from "./Home.module.css"
@@ -38,9 +37,10 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TanStackProvider>
           <AuthProvider>
-              <Header />
+              {/* <Header />
         <main className={css.container} >{children}</main>
-            <Footer />
+            <Footer /> */}
+            {children}
           </AuthProvider>
         </TanStackProvider>
       </body>

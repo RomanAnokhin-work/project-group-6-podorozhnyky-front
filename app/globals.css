@@ -6,6 +6,7 @@
   --color-royal-blue: #4169e1;
   --color-royal-blue-lightest: #f7f9ff;
   --color-neutral-darkest: #000;
+	--color-neutral-lightest: #f2f2f2;
   --color-white: #fff;
   --opacity-transparent: rgba(255, 255, 255, 0);
   --opacity-neutral-darkest-15: rgba(0, 0, 0, 0.15);
@@ -16,12 +17,13 @@
   --text-modal: var(--color-neutral-darkest);
   --color-scheme-2-border: var(--opacity-neutral-darkest-15);
   --color-scheme-1-text: var(--color-neutral-darkest);
+  --color-scheme-1-foreground: var(--color-neutral-lightest);
+
 }
 
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -118,6 +120,9 @@ img {
 svg {
   width: 100px;
   height: auto;
+}
+main:has(#hero) {
+  margin-top: -72px;
 }
 
 /* .container {

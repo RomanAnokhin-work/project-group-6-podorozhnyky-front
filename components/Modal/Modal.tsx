@@ -4,6 +4,7 @@ import { useEffect, useState, MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout } from '../../lib/api/clientApi';
 import css from './Modal.module.css';
+import { useAuthStore } from '@/lib/store/authStore';
 
 interface ModalProps {
   onClose: () => void;
@@ -37,6 +38,7 @@ export default function Modal({ onClose }: ModalProps) {
     setIsLoading(true);
     try {
       await logout();
+      useAuthStore.getState().clearIsAuthenticated();
       localStorage.removeItem('user');
       onClose();
       router.push('/');
@@ -62,7 +64,7 @@ export default function Modal({ onClose }: ModalProps) {
         >
           {/* СВГ як посилання на спрайт */}
           <svg width="24" height="24" className={css.closeIcon}>
-            <use href="/icons.svg#icon-x-close"></use>
+            <use href="/icons.svg#icon-close"></use>
           </svg>
         </button>
 

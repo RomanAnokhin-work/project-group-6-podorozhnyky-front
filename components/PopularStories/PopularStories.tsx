@@ -35,7 +35,6 @@ const [stories, setStories] = useState<ApiStory[]>([]);
   loadStories();
 }, []);
 
-
   return (
     <Container className={css.container}>
       <section className={css.section}>

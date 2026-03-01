@@ -1,4 +1,5 @@
 .loadMoreBtn {
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,20 +21,18 @@
   background-color: var(--color-royal-blue);
 }
 
-.loadMoreBtn:hover{
-    background-color: #E8EEFF;
-    color: black;
+.loadMoreBtn:hover {
+  background-color: #e8eeff;
+  color: black;
 }
-.loadMoreBtn:active{
-    background: var(--Color-Royal-Blue-Darker, #1A2A5A);
+.loadMoreBtn:active {
+  background: var(--Color-Royal-Blue-Darker, #1a2a5a);
 }
-.loadMoreBtn:focus{
-      border: 2px solid black;
-
+.loadMoreBtn:focus {
+  border: 2px solid black;
 }
 
 @media screen and (min-width: 768px) {
-
   .loadMoreBtn {
     width: auto;
   }

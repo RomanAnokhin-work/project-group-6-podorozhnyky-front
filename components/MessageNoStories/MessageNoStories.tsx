@@ -6,7 +6,7 @@ import css from "./MessageNoStories.module.css";
 export interface MessageNoStoriesProps {
   text: string;
   buttonText: string;
-  buttonRoute: "/stories" | "/stories/create";
+  buttonRoute: "/stories" | "/stories/create" | "/travellers";
 }
 
 const MessageNoStories = ({
