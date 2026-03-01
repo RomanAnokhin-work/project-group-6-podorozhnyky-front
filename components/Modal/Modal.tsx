@@ -4,9 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from '../ConfirmModal/ConfirmModal'; 
 import { logout } from '../../lib/api/clientApi'; 
+import { ReactNode } from 'react';
+
 
 interface ModalProps {
   onClose: () => void;
+  children: ReactNode;
 }
 
 
