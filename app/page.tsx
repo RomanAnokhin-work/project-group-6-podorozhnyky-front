@@ -1,6 +1,5 @@
 "use client";
 import PopularStories from "@/components/PopularStories/PopularStories";
-import css from "./Home.module.css";
 import Hero from "@/components/Hero/Hero";
 import About from "@/components/About/About";
 import Join from "@/components/Join/Join";
