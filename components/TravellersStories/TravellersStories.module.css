@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 375px;
   margin: 0 auto;
-  padding: 100px 20px 64px;
+  padding: 32px 20px 64px;
   box-sizing: border-box;
   background-color: #F7F9FF;
   display: flex;
@@ -126,7 +126,7 @@
 @media (min-width: 768px) {
   .sectionStories {
     max-width: 100%;
-    padding: 120px 32px 80px;
+    padding: 32px 32px 80px;
   }
 
   .storisTitle {
@@ -162,7 +162,7 @@
 @media (min-width: 1280px) {
   .sectionStories {
     max-width: 1440px;
-    padding: 120px 64px 80px;
+    padding: 48px 64px 80px;
   }
 
   .storisTitle {
