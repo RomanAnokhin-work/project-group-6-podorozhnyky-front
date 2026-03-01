@@ -4,7 +4,10 @@ import { instance } from "./api";
 import { ApiStory } from "@/types/story";
 
 
-
+interface LoginResponse {
+  message: string;
+  user: User;
+}
 
 interface GetUsersResponse {
   page: number;
@@ -98,8 +101,8 @@ export async function getMe(): Promise<User> {
   return data;
 }
 
-export async function login(loginData: LoginRequest): Promise<User> {
-  const { data } = await instance.post<User>("/auth/login", loginData);
+export async function login(loginData: LoginRequest): Promise<LoginResponse> {
+  const { data } = await instance.post<LoginResponse>("/auth/login", loginData);
   return data;
 }
 
