@@ -8,7 +8,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
 
 export default function Header() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const pathname = usePathname();
 
