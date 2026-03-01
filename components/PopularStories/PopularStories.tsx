@@ -1,35 +1,51 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Container from "../Container/Container";
 import css from "./PopularStories.module.css";
-import { fetchStories } from "@/lib/api/api";
-import StoryCardStub from "./StoryCardStub";
+import PopularStoriesClient from "./PopularStoriesClient";
+import { fetchPopularStoriesPage } from "@/lib/api/clientApi";
+import type { ApiStory } from "@/types/story";
 
-const ITEMS_IN_LAYOUT = 4;
+const ITEMS_FOR_LAYOUT = 4;
 
-export default async function PopularStories() {
-  const data = await fetchStories(1, 10);
+export default  function PopularStories() {
+const [stories, setStories] = useState<ApiStory[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
- const stories = (data.stories ?? [])
-  .slice()
-  .sort((a, b) => (b.favoriteCount ?? 0) - (a.favoriteCount ?? 0))
-    .slice(0, ITEMS_IN_LAYOUT);
+ useEffect(() => {
+  async function loadStories() {
+    try {
+      setLoading(true);
+      setError(null);
+
+      console.log("fetch popular start");
+      const data = await fetchPopularStoriesPage(1, ITEMS_FOR_LAYOUT);
+      console.log("fetch popular done", data);
+
+      setStories(data?.stories ?? []);
+    } catch (e) {
+      console.log("fetch popular error", e);
+      setError("Не вдалося завантажити історії");
+    } finally {
+      setLoading(false);
+    }
+  }
+  loadStories();
+}, []);
+
   
-  return (
-   <div className={css.container}>
-    <section className={css.section}>
-      <h2 className={css.h2}>Популярні історії</h2>
 
-      <div className={css.list}>
-        {stories.map((story) => (
-          <div key={story._id} className={css.item}>
-            <StoryCardStub story={story} />
-          </div>
-        ))}
-      </div>
-      <div className={css.footer}>
-  <button type="button" className={css.moreBtn}>
-    Переглянути всі
-  </button>
-</div>
-    </section>
-  </div>
+  return (
+    <Container className={css.container}>
+      <section className={css.section}>
+        <h2 className={css.h2}>Популярні історії</h2>
+
+        {loading && <p>Завантаження…</p>}
+        {error && <p>{error}</p>}
+        <PopularStoriesClient stories={stories ?? []} />
+      </section>
+    </Container>
   );
 }

@@ -3,16 +3,23 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import css from './BurgerMenu.module.css';
-import AuthNavigation from '../AuthNavigation/AuthNavigation';
+import { User } from '@/types/user';
+import Image from 'next/image';
 
 interface BurgerMenuProps {
   onClose: () => void;
+  isAuthenticated: boolean;
+  user: User | null;
 }
 
-export default function BurgerMenu({ onClose }: BurgerMenuProps) {
+export default function BurgerMenu({ onClose, isAuthenticated, user }: BurgerMenuProps) {
   const pathname = usePathname();
 
-  const handleNavClick = () => {
+  const handleNavClick = (): void => {
+    onClose();
+  };
+
+  const handleLogout = (): void => {
     onClose();
   };
 
@@ -23,7 +30,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
           <div className={css.logoModal}>
            <Link className={css.logo_link} href="/">
                 <svg className={css.logo_icon} width="23" height="23">
-                <use href="/icons.svg#icon-Company-Logo"/>
+                <use href="/icons.svg#icon-Favicon-1"/>
                 </svg>
                 <p className={css.logo_text}>Подорожники</p>
               </Link>
@@ -35,7 +42,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
             aria-label="Закрити меню"
           >
             <svg className={css.closeIcon} aria-hidden="true">
-              <use href="/icons.svg#icon-close"/>
+              <use href="/icons.svg#icon-close" />
             </svg>
           </button>
         </div>
@@ -69,10 +76,63 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
                 Мандрівники
               </Link>
             </li>
+
+            {isAuthenticated && (
+              <>
+                <li>
+                  <Link
+                    href="/profile"
+                    className={`${css.navigationLink} ${pathname === '/profile' ? css.active : ''}`}
+                    onClick={handleNavClick}
+                  >
+                    Мій Профіль
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    className={css.publishButtonMobile}
+                    onClick={() => {
+                      handleNavClick();
+                      window.location.href = '/stories/create';
+                    }}
+                  >
+                    Опублікувати історію
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
 
-        <AuthNavigation variant="modal" onClose={onClose} />
+        {!isAuthenticated ? (
+          <div className={css.modalAuth}>
+            <Link href="/auth/login" className={css.modalLogin} onClick={handleNavClick}>
+              Вхід
+            </Link>
+            <Link href="/auth/register" className={css.modalRegister} onClick={handleNavClick}>
+              Реєстрація
+            </Link>
+          </div>
+        ) : (
+          <div className={css.userInfo}>
+           <Image
+            src={user?.avatarUrl || "/images/avatar/defaultAvatar.png"}
+            alt="User avatar"
+            width="32"
+            height="32"
+            className={css.avatar}
+          />
+            <span className={css.userName}>
+            {user?.name || "Імʼя користувача"}
+          </span>
+            <button className={css.logoutButton} onClick={handleLogout}>
+              <svg className={css.logoutIcon}>
+                <use href="/icons.svg#icon-logout" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

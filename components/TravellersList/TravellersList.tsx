@@ -1,15 +1,23 @@
 import css from "./TravellersList.module.css";
 import { User } from "@/types/user";
 import TravellersListItem from "../TravellersListItem/TravellersListItem";
+import Button from "../Button/Button";
 
 interface Props {
   users: User[];
   page?: number;
   totalPages?: number;
   onLoadMore?: () => void;
+  isFetching?: boolean;
 }
 
-const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
+const TravellersList = ({
+  users,
+  page = 1,
+  totalPages = 1,
+  onLoadMore,
+  isFetching,
+}: Props) => {
   return (
     <div className={css.travellersListWrapper}>
       {users.length === 0 ? (
@@ -23,10 +31,9 @@ const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
           ))}
         </ul>
       )}
-      {onLoadMore && page && totalPages && page < totalPages && (
-        <button onClick={onLoadMore} className={css.loadMoreBtn}>
-          Показати ще
-        </button>
+
+      {page < totalPages && (
+        <Button onClick={onLoadMore} isFetching={isFetching} />
       )}
     </div>
   );

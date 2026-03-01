@@ -1,0 +1,18 @@
+.footer {
+    padding: 27px 0;
+    margin-top: auto;
+}
+
+.text {
+    font-size: 12px;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+@media screen and (min-width: 768px) {
+    .text {
+        font-size: 16px;
+    }
+}

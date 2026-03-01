@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.21",
-    "axios": "^1.13.5",
+    "axios": "^1.13.6",
+    "clsx": "^2.1.1",
     "cookie": "^1.1.1",
     "formik": "^2.4.9",
     "link": "^2.1.2",
@@ -19,6 +20,7 @@
     "next-router-mock": "^1.0.5",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-hot-toast": "^2.6.0",
     "react-paginate": "^8.3.0",
     "react-router-dom": "^7.13.1",
     "use-debounce": "^10.1.0",

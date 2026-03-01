@@ -1,57 +1,33 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import css from './Header.module.css';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import AuthNavigation from '../AuthNavigation/AuthNavigation';
-import Container from '../Container/Container';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+// import { usePathname } from 'next/navigation';
+import css from "./Header.module.css";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import AuthNavigation from "../AuthNavigation/AuthNavigation";
+import Container from "../Container/Container";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Header() {
+  const { isAuthenticated, user } = useAuthStore();
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   useEffect(() => {
-    if (!isBurgerOpen) return;
-
-    const scrollY = window.scrollY;
-    document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add('bodyLock');
-
-    return () => {
-      document.body.classList.remove('bodyLock');
-      document.body.style.top = '';
-      window.scrollTo(0, scrollY);
-    };
-  }, [isBurgerOpen]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsBurgerOpen(false), 0);
-    return () => clearTimeout(timer);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!isBurgerOpen) return;
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsBurgerOpen(false);
-    };
-
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    document.body.style.overflow = isBurgerOpen ? "hidden" : "";
   }, [isBurgerOpen]);
 
   return (
     <>
       <header className={css.header}>
-
         <Container className={css.container}>
-         
           <Link href="/" className={css.logo_link} aria-label="Home">
             <svg className={css.logo_icon} width="32" height="32">
               <use href="/icons.svg#icon-Favicon-1" />
             </svg>
+            <p className={css.logo_text}>Подорожники</p>
           </Link>
 
           <nav aria-label="Main navigation" className={css.desktopNav}>
@@ -71,26 +47,55 @@ export default function Header() {
                   Мандрівники
                 </Link>
               </li>
+              {isAuthenticated && (
+                <>
+                  <li>
+                    <Link href="/profile" className={css.navigationLink}>
+                      Мій Профіль
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      className={css.publishButton}
+                      onClick={() => (window.location.href = "/stories/create")}
+                    >
+                      Опублікувати історію
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
 
-            <AuthNavigation variant="desktop" />
+            <AuthNavigation
+              variant="desktop"
+              isAuthenticated={isAuthenticated}
+              user={user}
+            />
           </nav>
 
-          <div className={css.tabletActions}>
-            <Link href="/stories/create" className={css.publishButton}>
-              Опублікувати історію
-            </Link>
-            <button
-              type="button"
-              className={css.burgerButton}
-              onClick={() => setIsBurgerOpen(true)}
-              aria-label="Open menu"
-            >
-              <svg className={css.burgerIcon} aria-hidden="true">
-                <use href="/icons.svg#icon-menu" />
-              </svg>
-            </button>
-          </div>
+          {isAuthenticated && (
+            <div className={css.tabletActions}>
+              <button
+                type="button"
+                className={css.publishButton}
+                onClick={() => (window.location.href = '/stories/create')}
+              >
+                Опублікувати історію
+              </button>
+            </div>
+          )}
+
+          <button
+            type="button"
+            className={css.burgerButton}
+            onClick={() => setIsBurgerOpen(true)}
+            aria-label="Open menu"
+          >
+            <svg className={css.burgerIcon} aria-hidden="true">
+              <use href="/icons.svg#icon-menu" />
+            </svg>
+          </button>
 
           <button
             type="button"
@@ -102,11 +107,15 @@ export default function Header() {
               <use href="/icons.svg#icon-menu" />
             </svg>
           </button>
-          </Container>
+        </Container>
       </header>
 
       {isBurgerOpen && (
-        <BurgerMenu onClose={() => setIsBurgerOpen(false)} />
+        <BurgerMenu
+          onClose={() => setIsBurgerOpen(false)}
+          isAuthenticated={isAuthenticated}
+          user={user}
+        />
       )}
     </>
   );

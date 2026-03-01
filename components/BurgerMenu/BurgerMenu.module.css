@@ -14,8 +14,7 @@
 .modal {
   width: 100%;
   max-width: 375px;
-  height: 100%;
-  max-height: 595px;
+  height: auto;
   background: #f7f9ff;
   padding: 16px 20px;
   display: flex;
@@ -38,9 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   padding-bottom: 24px;
-  border-bottom: 1px solid #e0e0e0;
 }
 
 .logoModal {
@@ -51,61 +48,49 @@
   color: #1a1a1a;
   font-weight: 600;
   font-size: 15px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
 }
 
-.logoModal:hover { opacity: 0.8; }
-
-.logoModalIcon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
+.logo_link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #1a1a1a;
 }
-
-.logoModalText { white-space: nowrap; }
+.logo_icon {
+  width: 23px;
+  height: 23px;
+}
 
 .closeButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  padding: 4px;
-  width: 32px;
-  height: 32px;
-  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
-.closeButton:hover {
-  opacity: 0.7;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.closeButton:active {
-  opacity: 0.5;
-  background: rgba(0, 0, 0, 0.15);
-}
 .closeIcon {
   width: 24px;
   height: 24px;
   fill: #000;
-  stroke: #000;
-  stroke-width: 1px;
 }
 
-.modalNav { width: 100%; }
+.modalNav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .navigation {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  width: 100%;
+  gap: 24px;
+  align-items: center;
 }
 
 .navigationLink {
@@ -113,8 +98,6 @@
   color: #1a1a1a;
   font-size: 18px;
   font-weight: 500;
-  padding: 12px 0;
-  cursor: pointer;
   text-align: center;
   transition: color 0.2s ease;
 }
@@ -124,4 +107,116 @@
   justify-content: center;
 }
 .navigationLink:hover,
-.navigationLink.active { color: #4169e1; }
+.navigationLink.active {
+  color: #4169e1;
+}
+
+.modalAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+}
+
+.modalLogin,
+.modalRegister {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: none;
+}
+
+.modalLogin {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 1);
+}
+
+.modalLogin:hover {
+  background: #4169e1;
+  color: #fff;
+}
+
+.modalRegister {
+  background: #4169e1;
+  color: #fff;
+}
+
+.modalRegister:hover {
+  background: #e8eeff;
+  color: #000;
+  border: 1px solid #4169e1;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.logoutIcon {
+  width: 24px;
+  height: 24px;
+  fill: #1a1a1a;
+  transition: fill 0.2s ease;
+}
+
+.logoutButton:hover .logoutIcon {
+  fill: #4169e1;
+}
+
+@media (max-width: 767px) {
+.publishButtonMobile {
+  background: #4169e1;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  border: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.publishButtonMobile:hover {
+  background: #e8eeff;
+  color: #000;
+  border: 1px solid #4169e1;
+}
+}
+
+@media (min-width: 768px) { 
+  .publishButtonMobile { display: none; } 
+}

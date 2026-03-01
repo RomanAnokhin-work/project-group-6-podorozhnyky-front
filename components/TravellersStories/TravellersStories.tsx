@@ -27,13 +27,11 @@ const TravellersStories = ({
           </li>
         ))}
       </ul>
-
       {page < totalPages && onLoadMore && (
-        <button onClick={onLoadMore}>
-          Переглянути всі
-        </button>
+        <button onClick={onLoadMore}>Переглянути всі</button>
       )}
     </div>
+  );
 };
 
 export default TravellersStories;

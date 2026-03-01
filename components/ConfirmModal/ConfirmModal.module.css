@@ -1,0 +1,131 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.4); 
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+.modalContainer {
+  position: relative;
+  width: 100%;
+  max-width: 335px; 
+  background-color: var(--background-modal, #F7F9FF); 
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex-shrink: 0;
+  stroke: var(--color-neutral-darkest, #111111);
+  fill: none;
+  transition: stroke 250ms ease;
+}
+
+.closeButton:hover .closeIcon {
+  stroke: #47d332;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 24px 0; 
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-nunito-sans), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-modal, #111111);
+  margin: 0;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-modal, #111111);
+  margin: 0;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px 32px; 
+}
+
+.cancelButton {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: var(--opacity-neutral-darkest-5, #E0E0E0);
+  color: var(--color-neutral-darkest, #111111);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.confirmButton {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: var(--background-button, #407BFF);
+  color: var(--color-white, #FFFFFF);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* АДАПТИВ (Mobile Adaptive 375px) */
+@media screen and (min-width: 375px) {
+  .modalContainer {
+    max-width: 335px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* АДАПТИВ (Tablet 768px) */
+@media screen and (min-width: 768px) {
+  .modalContainer {
+    max-width: 704px;
+    border-radius: 24px;
+  }
+  .closeButton { top: 24px; right: 24px; }
+  .content { padding: 64px 32px 0; gap: 32px; }
+  .title { font-size: 32px; }
+  .buttonGroup { flex-direction: row; justify-content: center; gap: 24px; padding: 0 32px 64px; }
+  .cancelButton, .confirmButton { width: 200px; }
+}
+
+/* АДАПТИВ (Desktop 1440px) */
+@media screen and (min-width: 1440px) {
+  .modalContainer { max-width: 768px; }
+}
