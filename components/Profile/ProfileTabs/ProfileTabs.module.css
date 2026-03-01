@@ -1,0 +1,57 @@
+.container {
+  /* Обов'язково додаємо px, інакше браузер ігнорує властивість */
+  width: 100%; 
+  max-width: 335px; 
+  height: 48px;
+  margin: 32px 20px 40px 20px;
+}
+
+.tabsWrapper {
+  display: flex;
+  background-color: #EEF4FF; /* Колір з інспектора */
+  padding: 4px; /* Внутрішній відступ з інспектора */
+  border-radius: 12px;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.tab {
+  flex: 1; /* Робимо кнопки однаковими за шириною */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  font-family: var(--font-nunito-sans); /* Твій шрифт із layout */
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.active {
+  background-color: #FFFFFF; /* Білий фон для активної кнопки */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); 
+}
+
+/* --- Tablet (768px) --- */
+@media (min-width: 768px) {
+  .container {
+    max-width: 704px;
+    height: 48px;
+  }
+}
+
+/* --- Desktop (1440px) --- */
+@media (min-width: 1440px) {
+  .container {
+    /* Точні розміри з твого інспектора */
+    width: 422px; 
+    height: 52px; 
+    
+  }
+}
