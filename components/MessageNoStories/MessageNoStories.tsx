@@ -10,9 +10,9 @@ export interface MessageNoStoriesProps {
 }
 
 const MessageNoStories = ({
-  text,
-  buttonText,
-  buttonRoute,
+  text="ddd",
+  buttonText="ffff",
+  buttonRoute="/stories",
 }: MessageNoStoriesProps) => {
   return (
     <div className={css.wrapper} role="status" aria-live="polite">
