@@ -27,6 +27,7 @@ export default function Header() {
             <svg className={css.logo_icon} width="32" height="32">
               <use href="/icons.svg#icon-Favicon-1" />
             </svg>
+            <p className={css.logo_text}>Подорожники</p>
           </Link>
 
           <nav aria-label="Main navigation" className={css.desktopNav}>
@@ -101,6 +102,7 @@ export default function Header() {
         <BurgerMenu
           onClose={() => setIsBurgerOpen(false)}
           isAuthenticated={isAuthenticated}
+          user={user}
         />
       )}
     </>

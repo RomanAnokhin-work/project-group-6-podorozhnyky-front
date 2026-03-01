@@ -57,6 +57,10 @@
   text-decoration: none;
   color: #1a1a1a;
 }
+.logo_icon {
+  width: 23px;
+  height: 23px;
+}
 
 .closeButton {
   display: flex;
