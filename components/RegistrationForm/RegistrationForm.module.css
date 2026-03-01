@@ -1,0 +1,146 @@
+.section {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.tab,
+.tabActive {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #212529;
+  background: none;
+  border: none;
+}
+
+.tabActive {
+  color: #212529;
+  border-bottom: 2px solid #212529;
+}
+
+.tab {
+  color: #6c757d;
+}
+
+.tab:hover {
+  color: #212529;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #212529;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #212529;
+  text-align: center;
+  margin: 0 0 24px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212529;
+}
+
+.input {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  color: #212529;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.input:hover {
+  border-color: #adb5bd;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.input::placeholder {
+  color: #6c757d;
+}
+
+.formGroup:has(.error) .input {
+  border-color: #dc3545;
+}
+
+.error {
+  font-size: 12px;
+  color: #dc3545;
+  margin-top: 2px;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #0b5ed7;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 40px 24px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section {
+    padding: 48px 24px;
+    max-width: 440px;
+  }
+}
