@@ -60,6 +60,10 @@
 }
 
 .navigationLink {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 12px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
   font-size: 17px;
