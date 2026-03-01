@@ -39,7 +39,7 @@
 
 }
 
-@media (min-width: 1440px) {
+@media screen and (min-width: 1440px) {
   .travellersList {
     grid-template-columns: repeat(4, 1fr);
     max-width: 1312px;
