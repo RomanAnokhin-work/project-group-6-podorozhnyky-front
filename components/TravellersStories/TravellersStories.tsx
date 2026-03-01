@@ -2,6 +2,7 @@ import { ApiStory } from "@/types/story";
 import TravellersStoriesItem from "../TravellersStoriesItem/TravellersStoriesItem";
 import Button from "../Button/Button";
 import css from "./TravellersStories.module.css";
+import { getMe } from "@/lib/api/clientApi";
 
 interface Props {
   stories: ApiStory[];
@@ -11,7 +12,7 @@ interface Props {
   isFetching?: boolean;
 }
 
-const TravellersStories = ({
+const TravellersStories = async ({
   stories,
   page = 1,
   totalPages = 1,
@@ -22,12 +23,17 @@ const TravellersStories = ({
     return <p>Немає історій</p>;
   }
 
+  const currentUser = await getMe();
+
   return (
     <div className={css.travellersStoriesWrapper}>
       <ul className={css.travellersStoriesList}>
         {stories.map((story) => (
           <li key={story._id} className={css.travellersStoriesItem}>
-            <TravellersStoriesItem story={story} />
+            <TravellersStoriesItem
+              story={story}
+              isSaved={currentUser?.savedArticles?.includes(story._id)}
+            />
           </li>
         ))}
       </ul>

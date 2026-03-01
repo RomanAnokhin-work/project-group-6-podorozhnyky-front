@@ -15,10 +15,10 @@ type Props = {
 
 export default function TravellerPageByIdClient({ user, articles }: Props) {
   const getPerPage = () => {
-    if (typeof window === "undefined") return 6; // SSR fallback
+    if (typeof window === "undefined") return 6;
 
-    if (window.innerWidth < 1440) return 4; // mobile + tablet
-    return 6; // desktop
+    if (window.innerWidth < 1440) return 4;
+    return 6;
   };
 
   const [perPage, setPerPage] = useState(getPerPage());
