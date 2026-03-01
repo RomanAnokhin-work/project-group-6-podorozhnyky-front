@@ -74,6 +74,18 @@ export default function Header() {
             />
           </nav>
 
+          {isAuthenticated && (
+            <div className={css.tabletActions}>
+              <button
+                type="button"
+                className={css.publishButton}
+                onClick={() => (window.location.href = '/stories/create')}
+              >
+                Опублікувати історію
+              </button>
+            </div>
+          )}
+
           <button
             type="button"
             className={css.burgerButton}
