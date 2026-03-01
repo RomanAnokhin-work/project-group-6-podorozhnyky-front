@@ -1,6 +1,6 @@
 "use client";
 import { createPortal } from "react-dom";
-import { useEffect, type ReactNode } from "react";
+import { useEffect,} from "react";
 import { useRouter } from "next/navigation";
 import css from "./AuthNavModal.module.css";
 

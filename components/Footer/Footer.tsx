@@ -1,6 +1,6 @@
 import css from './Footer.module.css';
 import Link from 'next/link';
-import mainCss from '@/app/Home.module.css';
+import mainCss from '@/app/(main)/Home.module.css';
 
 
 export default function Footer() {

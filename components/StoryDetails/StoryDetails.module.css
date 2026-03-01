@@ -73,7 +73,11 @@
     line-height: 1.5;
     color: var(--text);
 }
-
+.storyDetails {
+    padding-top: 32px;
+    padding-left: 20px;
+    padding-right: 20px;    
+}       
 
 @media screen and (min-width: 768px) {
     .info {
@@ -95,6 +99,10 @@
         height: 469px;
         margin-bottom: 48px;
     }
+    .storyDetails {
+        padding-top: 32px;
+        padding-left: 32px;
+        padding-right: 32px;
 }
 
 /* === DESKTOP 1440px === */
@@ -114,16 +122,20 @@
     .image {
         height: 874px;
     }
-
-    .storyDetails {
+        
+    .storyDetails {padding-top: 32px;
+        padding-left: 64px;
+        padding-right: 64px;
         margin-bottom: 120px;
     }
 
     .content {
+        
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 0;
+       
     }
 
     .article {
@@ -131,4 +143,4 @@
         margin-top: 48px;
         margin-right: 24px;
     }
-    }
+    }}

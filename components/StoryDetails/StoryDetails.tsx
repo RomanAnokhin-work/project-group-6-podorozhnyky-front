@@ -106,14 +106,14 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
         <div className={css.infoDetails}>
           <p className={css.value}>
             <strong className={css.label}>Автор статті:</strong>{' '}
-            {story.ownerId.name}
+            {story.ownerId?.name || 'Завантаження...'}
           </p>
           <p className={css.value}>
             <strong className={css.label}>Опубліковано:</strong> {formattedDate}
           </p>
         </div>
 
-        <p className={css.infoCategory}>{story.category.name}</p>
+        <p className={css.infoCategory}>{story.category?.name || 'Без категорії'}</p>
       </div>
 
       <Image

@@ -19,14 +19,18 @@ interface CategoryType {
   name: string;
 }
 
-const CHUNK_SIZE = 9; 
+const LOAD_MORE_SIZE = 3;
+const MOBILE_DESKTOP_INITIAL_SIZE = 9;
+const TABLET_INITIAL_SIZE = 8;
+const TABLET_CATEGORY_PRIORITY = ["Європа", "Азія", "Пустелі", "Африка"];
 
 const TravellersStories: React.FC = () => {
   // Стан для історій та пагінації
   const [stories, setStories] = useState<StoryType[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
+  const [totalItems, setTotalItems] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isTablet, setIsTablet] = useState<boolean | null>(null);
 
   // СТАНИ ДЛЯ КАТЕГОРІЙ
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -46,10 +50,26 @@ const TravellersStories: React.FC = () => {
     }
   };
 
-  const fetchStories = async (pageNumber: number, category: string) => {
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px) and (max-width: 1439px)");
+    const handleChange = () => setIsTablet(media.matches);
+
+    handleChange();
+    media.addEventListener("change", handleChange);
+    return () => media.removeEventListener("change", handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (isTablet === null) return;
+    setPage(1);
+    setStories([]);
+    setTotalItems(0);
+  }, [isTablet]);
+
+  const fetchStories = async (perPage: number, category: string) => {
     setIsLoading(true);
     try {
-      let url = `${baseUrl}/stories?page=${pageNumber}&perPage=${CHUNK_SIZE}`;
+      let url = `${baseUrl}/stories?page=1&perPage=${perPage}`;
       if (category !== "Всі історії") {
         url += `&category=${category}`;
       }
@@ -59,11 +79,8 @@ const TravellersStories: React.FC = () => {
       
       const data = await response.json();
       
-      setStories((prevStories) => 
-        pageNumber === 1 ? data.stories : [...prevStories, ...data.stories]
-      );
-      
-      setTotalPages(data.totalPages);
+      setStories(data.stories);
+      setTotalItems(data.totalItems ?? data.stories.length);
     } catch (error) {
       console.error("Сталася помилка:", error);
     } finally {
@@ -76,13 +93,15 @@ const TravellersStories: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    fetchStories(page, activeCategory);
-  }, [page, activeCategory]);
+    if (isTablet === null) return;
+
+    const initialSize = isTablet ? TABLET_INITIAL_SIZE : MOBILE_DESKTOP_INITIAL_SIZE;
+    const perPage = initialSize + (page - 1) * LOAD_MORE_SIZE;
+    fetchStories(perPage, activeCategory);
+  }, [page, activeCategory, isTablet]);
 
   const handleLoadMore = () => {
-    if (page < totalPages) {
-      setPage((prev) => prev + 1); 
-    }
+    setPage((prev) => prev + 1);
   };
 
   const handleCategoryClick = (categoryName: string) => {
@@ -90,10 +109,20 @@ const TravellersStories: React.FC = () => {
     
     setActiveCategory(categoryName); 
     setPage(1); 
-    setStories([]); 
+    setStories([]);
+    setTotalItems(0);
   };
 
-  const hasMore = page < totalPages;
+  const hasMore = stories.length < totalItems;
+  const orderedCategories = [...categories].sort((a, b) => {
+    const aIndex = TABLET_CATEGORY_PRIORITY.indexOf(a.name);
+    const bIndex = TABLET_CATEGORY_PRIORITY.indexOf(b.name);
+
+    if (aIndex === -1 && bIndex === -1) return 0;
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
 
   return (
     <section className={css.sectionStories}>
@@ -108,7 +137,7 @@ const TravellersStories: React.FC = () => {
           onChange={(e) => handleCategoryClick(e.target.value)}
         >
           <option value="Всі історії">Всі історії</option>
-          {categories.map((category) => (
+          {orderedCategories.map((category) => (
             <option key={category._id} value={category.name}>
               {category.name}
             </option>
@@ -129,8 +158,8 @@ const TravellersStories: React.FC = () => {
         </li>
         
        
-        {categories.map((category) => (
-          <li key={category._id}>
+        {orderedCategories.map((category, index) => (
+          <li key={category._id} className={index >= 4 ? css.hideOnTablet : ""}>
             <button
               type="button"
               className={`${css.filterButton} ${activeCategory === category.name ? css.filterButtonActive : ''}`}
@@ -144,8 +173,12 @@ const TravellersStories: React.FC = () => {
 
       <div className={css.storiesGrid}>
        
-        {stories.map((story) => (
-          <TravellersStoriesItem key={story._id} story={story} />
+        {stories.map((story, index) => (
+          <TravellersStoriesItem
+            key={story._id}
+            story={story}
+            isLcpImage={index < 3}
+          />
         ))}
       </div>
 

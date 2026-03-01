@@ -10,6 +10,7 @@ interface ConfirmModalProps {
   cancelButtonText: string;
   onConfirm: () => void;
   onCancel: () => void;
+  isLoading?: boolean;
 }
 
 export default function ConfirmModal({
@@ -19,23 +20,20 @@ export default function ConfirmModal({
   cancelButtonText,
   onConfirm,
   onCancel,
+  isLoading = false,
 }: ConfirmModalProps) {
   
- 
   useEffect(() => {
     const scrollY = window.scrollY;
     document.body.style.top = `-${scrollY}px`;
     document.body.classList.add('bodyLock'); 
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onCancel();
-      }
+      if (e.key === 'Escape') onCancel();
     };
 
     window.addEventListener('keydown', handleEscape);
 
-    
     return () => {
       document.body.classList.remove('bodyLock');
       document.body.style.top = '';
@@ -44,29 +42,21 @@ export default function ConfirmModal({
     };
   }, [onCancel]);
 
-  
   const handleBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
-    
-    if (e.target === e.currentTarget) {
-      onCancel();
-    }
+    if (e.target === e.currentTarget) onCancel();
   };
 
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
-      
       <div className={css.modalContainer}>
-        
-        
         <button
           type="button"
           className={css.closeButton}
           onClick={onCancel}
-          aria-label="Закрити модальне вікно"
+          aria-label="Close"
         >
-         
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18M6 6L18 18" stroke="#111111" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg className={css.closeIcon}>
+            <use href="/icons.svg#icon-x-close"></use>
           </svg>
         </button>
 
@@ -75,12 +65,12 @@ export default function ConfirmModal({
           {text && <p className={css.text}>{text}</p>}
         </div>
 
-        
         <div className={css.buttonGroup}>
           <button
             type="button"
             className={css.cancelButton}
-            onClick={onCancel} 
+            onClick={onCancel}
+            disabled={isLoading}
           >
             {cancelButtonText}
           </button>
@@ -88,12 +78,12 @@ export default function ConfirmModal({
           <button
             type="button"
             className={css.confirmButton}
-            onClick={onConfirm} 
+            onClick={onConfirm}
+            disabled={isLoading}
           >
             {confirmButtonText}
           </button>
         </div>
-        
       </div>
     </div>
   );
