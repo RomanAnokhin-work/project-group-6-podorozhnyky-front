@@ -1,4 +1,7 @@
 import type { ApiStory } from "@/types/story";
+import { User } from "@/types/user";
+import { cookies } from "next/headers";
+import { instance } from "./api";
 
 export type PopularResponse = {
   page: number;
@@ -23,4 +26,18 @@ export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<P
   }
 
   return (await res.json()) as PopularResponse;
+}
+
+
+
+
+
+export async function getMe(): Promise<User> {
+  const cookieStore = await cookies();
+  const { data } = await instance.get<User>("/users/me", {
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
+  return data;
 }
