@@ -11,12 +11,16 @@
 }
 
 .storisTitle {
-  margin: 0;
-  text-align: center;
-  font-weight: bold;
-  font-size: 32px;
-  line-height: 110%;
-  letter-spacing: -0.01em;
+  font-family: var(--second-family);
+font-weight: 700;
+font-size: 32px;
+line-height: 110%;
+letter-spacing: -0.01em;
+text-align: center;
+color: var(--color-scheme-1-text);
+margin-bottom: 40px;
+width: 335px;
+height: 35px;
 }
 
 .mobileCategorySelect {
@@ -25,17 +29,16 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  margin-top: 40px;
   margin-bottom: 40px;
 }
 
 .categoryLabel {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: #121417;
-  text-align: left;
-  width: 100%;
+  font-family: var(--font-family);
+font-weight: 400;
+font-size: 16px;
+line-height: 150%;
+color: var(--color-scheme-1-text);
+margin-bottom: 8px;
 }
 
 .categorySelect {
@@ -66,22 +69,24 @@
 }
 
 .filterButton {
-  background: none;
-  border: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  height: 36px;
   font-size: 16px;
   cursor: pointer;
   color: #828282;
-  padding: 4px 8px;
+  padding: 6px 12px;
   transition: color 0.2s ease;
 }
 
 .filterButtonActive {
-  color: #000000;
-  font-weight: bold;
+  color: var(--color-scheme-1-text);
+  background-color: var(--color-scheme-1-foreground);
+  border: 1px solid var(--opacity-transparent);
 }
 
 .storiesGrid {
-  width: 100%;
   margin-bottom: 40px;
   display: grid;
   grid-template-columns: 1fr;
@@ -131,6 +136,11 @@
 
   .storisTitle {
     font-size: 48px;
+    width: 704px;
+    height: 53px;
+    font-size: 48px;
+line-height: 110%;
+margin-bottom: 0;
   }
 
   .mobileCategorySelect {
@@ -141,16 +151,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16px;
     margin-top: 40px;
     margin-bottom: 48px;
     list-style: none;
     padding: 0;
+    width: 704px;
+    height: 36px;
   }
 
   .storiesGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 24px;
   }
 
   .morestories {
@@ -159,7 +170,13 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
+  .hideOnTablet {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
   .sectionStories {
     max-width: 1440px;
     padding: 48px 64px 80px;
@@ -176,4 +193,5 @@
   .storiesGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
 }
