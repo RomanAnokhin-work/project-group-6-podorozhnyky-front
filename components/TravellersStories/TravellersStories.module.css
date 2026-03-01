@@ -1,0 +1,38 @@
+.travellersStoriesWrapper {
+  margin: 40px 0 72px;
+  padding: 0 20px;
+}
+
+.travellersStoriesList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 335px;
+  justify-content: center;
+  justify-items: center;
+
+  margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .travellersStoriesWrapper {
+    padding: 0 32px;
+  }
+
+  .travellersStoriesList {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .travellersStoriesWrapper {
+    padding: 0 64px;
+  }
+
+  .travellersStoriesList {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1312px;
+  }
+}
