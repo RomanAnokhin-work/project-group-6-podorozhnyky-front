@@ -25,10 +25,10 @@ export default function LoginPage() {
         password,
       };
 
-      const res = await login(formValues);
+      const {user} = await login(formValues);
 
-      if (res) {
-        setUser(res);
+      if (user) {
+        setUser(user);
         router.push("/profile");
       } else {
         setError("Invalid email or password");
