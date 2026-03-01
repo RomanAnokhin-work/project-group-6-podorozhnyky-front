@@ -1,10 +1,7 @@
 import { User } from "../../types/user";
 import { instance } from "./api";
-import { isAxiosError } from "axios";
+//import { isAxiosError } from "axios";
 import { ApiStory } from "@/types/story";
-
-
-
 
 interface GetUsersResponse {
   page: number;
@@ -40,21 +37,6 @@ export type PopularResponse = {
 
 export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
   const {data} = await instance.get(`api/stories/popular?page=${page}&perPage=${perPage}`);
-
-  return data;
-}
-
-export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
-  const { data } = await instance.get(`/stories/${storyId}`);
-  return data.data;
-};
-
-export const deleteStory = async (storyId: string) => {
-  const res = await instance.delete(`/stories/${storyId}`);
-  return res.data;
-};
-
-  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
 
   return data;
 }
@@ -127,3 +109,10 @@ export async function logout(): Promise<void> {
   await instance.post("/auth/logout");
 }
 export type { LoginRequest, RegisterRequest };
+
+export type ApiCategory = { _id: string; name: string };
+
+export async function fetchCategories(): Promise<ApiCategory[]> {
+  const { data } = await instance.get("/api/categories");
+  return data;
+}
