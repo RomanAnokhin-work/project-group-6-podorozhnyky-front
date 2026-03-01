@@ -2,12 +2,12 @@ import css from "./TravellersList.module.css";
 import { User } from "@/types/user";
 import TravellersListItem from "../TravellersListItem/TravellersListItem";
 
-type Props = {
+interface Props {
   users: User[];
   page?: number;
   totalPages?: number;
   onLoadMore?: () => void;
-};
+}
 
 const TravellersList = ({ users, page, totalPages, onLoadMore }: Props) => {
   return (
