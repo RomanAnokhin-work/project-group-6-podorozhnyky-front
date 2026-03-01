@@ -35,13 +35,10 @@ const [stories, setStories] = useState<ApiStory[]>([]);
   loadStories();
 }, []);
 
-  
-
   return (
     <Container className={css.container}>
       <section className={css.section}>
         <h2 className={css.h2}>Популярні історії</h2>
-
         {loading && <p>Завантаження…</p>}
         {error && <p>{error}</p>}
         <PopularStoriesClient stories={stories ?? []} />
