@@ -187,7 +187,8 @@
   fill: #4169e1;
 }
 
-.publishButton {
+@media (max-width: 767px) {
+.publishButtonMobile {
   background: #4169e1;
   color: #fff;
   font-size: 16px;
@@ -201,8 +202,13 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.publishButton:hover {
+.publishButtonMobile:hover {
   background: #e8eeff;
   color: #000;
   border: 1px solid #4169e1;
+}
+}
+
+@media (min-width: 768px) { 
+  .publishButtonMobile { display: none; } 
 }

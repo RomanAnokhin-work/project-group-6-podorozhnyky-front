@@ -8,7 +8,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import AuthNavigation from '../AuthNavigation/AuthNavigation';
 
 export default function Header() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const pathname = usePathname();
 
@@ -53,6 +53,18 @@ export default function Header() {
               isAuthenticated={isAuthenticated}
             />
           </nav>
+
+          {isAuthenticated && (
+            <div className={css.tabletActions}>
+              <button
+                type="button"
+                className={css.publishButton}
+                onClick={() => (window.location.href = '/stories/create')}
+              >
+                Опублікувати історію
+              </button>
+            </div>
+          )}
 
           <button
             type="button"

@@ -88,7 +88,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
                 <li>
                   <button
                     type="button"
-                    className={css.publishButton}
+                    className={css.publishButtonMobile}
                     onClick={() => {
                       handleNavClick();
                       window.location.href = '/stories/create';
