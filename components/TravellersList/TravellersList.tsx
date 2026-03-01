@@ -1,22 +1,22 @@
 import css from "./TravellersList.module.css";
-import TravellerInfo from "../TravellerInfo/TravellerInfo";
 import { User } from "@/types/user";
+import TravellersListItem from "../TravellersListItem/TravellersListItem";
 import Button from "../Button/Button";
 
-type Props = {
+interface Props {
   users: User[];
   page?: number;
   totalPages?: number;
   onLoadMore?: () => void;
   isFetching?: boolean;
-};
+}
 
-const TravellersList = ({ 
-  users, 
-  page = 1, 
-  totalPages = 1, 
-  onLoadMore, 
-  isFetching 
+const TravellersList = ({
+  users,
+  page = 1,
+  totalPages = 1,
+  onLoadMore,
+  isFetching,
 }: Props) => {
   return (
     <div className={css.travellersListWrapper}>
@@ -26,7 +26,7 @@ const TravellersList = ({
         <ul className={css.travellersList}>
           {users.map((user) => (
             <li key={user._id} className={css.travellersItem}>
-              <TravellerInfo user={user} />
+              <TravellersListItem user={user} />
             </li>
           ))}
         </ul>
