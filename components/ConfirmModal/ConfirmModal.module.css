@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background-color: rgba(17, 17, 17, 0.4); 
   backdrop-filter: blur(2px);
   display: flex;
@@ -35,6 +35,10 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .closeIcon {
@@ -47,8 +51,10 @@
   transition: stroke 250ms ease;
 }
 
-.closeButton:hover .closeIcon {
+.closeButton:hover .closeIcon,
+.closeButton:focus .closeIcon {
   stroke: #47d332;
+  outline: none;
 }
 
 .content {
@@ -60,7 +66,7 @@
 }
 
 .title {
-  font-family: var(--font-nunito-sans), sans-serif;
+  font-family: var(--font-nunito-sans, sans-serif);
   font-size: 26px;
   font-weight: 700;
   line-height: 1.2;
@@ -87,20 +93,38 @@
   width: 100%;
   padding: 16px;
   border-radius: 12px;
+  border: none;
+  cursor: pointer;
   background-color: var(--opacity-neutral-darkest-5, #E0E0E0);
   color: var(--color-neutral-darkest, #111111);
   font-size: 16px;
   font-weight: 500;
+  transition: opacity 0.25s ease;
+}
+
+.cancelButton:hover,
+.cancelButton:focus {
+  opacity: 0.8;
+  outline: none;
 }
 
 .confirmButton {
   width: 100%;
   padding: 16px;
   border-radius: 12px;
+  border: none;
+  cursor: pointer;
   background-color: var(--background-button, #407BFF);
   color: var(--color-white, #FFFFFF);
   font-size: 16px;
   font-weight: 500;
+  transition: opacity 0.25s ease;
+}
+
+.confirmButton:hover,
+.confirmButton:focus {
+  opacity: 0.9;
+  outline: none;
 }
 
 /* АДАПТИВ (Mobile Adaptive 375px) */
@@ -118,14 +142,32 @@
     max-width: 704px;
     border-radius: 24px;
   }
-  .closeButton { top: 24px; right: 24px; }
-  .content { padding: 64px 32px 0; gap: 32px; }
-  .title { font-size: 32px; }
-  .buttonGroup { flex-direction: row; justify-content: center; gap: 24px; padding: 0 32px 64px; }
-  .cancelButton, .confirmButton { width: 200px; }
+  .closeButton { 
+    top: 24px; 
+    right: 24px; 
+  }
+  .content { 
+    padding: 64px 32px 0; 
+    gap: 32px; 
+  }
+  .title { 
+    font-size: 32px; 
+  }
+  .buttonGroup { 
+    flex-direction: row; 
+    justify-content: center; 
+    gap: 24px; 
+    padding: 0 32px 64px; 
+  }
+  .cancelButton, 
+  .confirmButton { 
+    width: 200px; 
+  }
 }
 
 /* АДАПТИВ (Desktop 1440px) */
 @media screen and (min-width: 1440px) {
-  .modalContainer { max-width: 768px; }
+  .modalContainer { 
+    max-width: 768px; 
+  }
 }
