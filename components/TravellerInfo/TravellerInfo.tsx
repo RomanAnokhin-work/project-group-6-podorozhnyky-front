@@ -1,6 +1,6 @@
 import { User } from "@/types/user";
 import Link from "next/link";
-import styles from "./TravellerInfo.module.css"; // Імпортуємо стилі
+import styles from "./TravellerInfo.module.css"; 
 import Image from "next/image";
 
 interface TravellerInfoResponse {
