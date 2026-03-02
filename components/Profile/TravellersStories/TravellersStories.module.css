@@ -1,48 +1,41 @@
 .container {
   width: 100%;
-  max-width: 1216px;
-  margin: 0 auto;
-  padding: 20px 0 80px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr; /* 375px */
+  grid-template-columns: 1fr; /* 1 колонка для 375px */
   gap: 20px;
   list-style: none;
   padding: 0;
-  margin: 0 0 40px 0;
+  margin: 0;
 }
 
 .loadMore {
   display: block;
-  margin: 0 auto;
+  margin: 40px auto 0;
   padding: 12px 24px;
-  background-color: #4F69D9;
-  color: white;
-  border: none;
+  background: transparent;
+  border: 1px solid #3B82F6;
   border-radius: 8px;
-  font-weight: 500;
+  color: #3B82F6;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-.loadMore:hover {
-  background-color: #3d54b8;
-}
-
-/* Tablet: 768px */
+/* Планшет */
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 340px); /* 2 фіксовані колонки */
+    justify-content: center; /* Центруємо сітку */
+    gap: 32px 24px; /* Відступи між картками */
   }
 }
 
-/* Desktop: 1440px */
+/* Десктоп */
 @media (min-width: 1440px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 48px 24px;
   }
 }

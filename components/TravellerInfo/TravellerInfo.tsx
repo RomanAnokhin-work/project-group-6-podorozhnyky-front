@@ -11,7 +11,6 @@ export default function TravellerInfo({ user }: TravellerInfoResponse) {
   
   return (
     <div className={styles.card}>
-
       <Image src={user.avatarUrl} 
         alt={user.name} 
         className={styles.avatar} 

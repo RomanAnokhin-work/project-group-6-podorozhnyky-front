@@ -1,6 +1,6 @@
 // Додай це в самий кінець файлу TravellersStories.tsx
 import TravellersStoriesItem from '../../TravellersStoriesItem/TravellersStoriesItem';
-// import { MessageNoStories } from '@/components/MessageNoStories/MessageNoStories';
+import  MessageNoStories  from '@/components/MessageNoStories/MessageNoStories';
 import css from './TravellersStories.module.css';
 
 interface Story {
@@ -19,6 +19,23 @@ interface Props {
 }
 
 const TravellersStories = ({ stories, variant }: Props) => {
+
+if (!stories || stories.length === 0) {
+    const isOwn = variant === 'own';
+
+    return (
+      <MessageNoStories 
+        text={isOwn 
+          ? "У вас ще немає створених історій. Поділіться своїми пригодами з іншими!" 
+          : "Ваш список збережених історій поки що порожній."
+        }
+        buttonText={isOwn ? "Опублікувати історію" : "Перейти до історій"}
+        buttonRoute={isOwn ? "/stories/create" : "/stories"}
+      />
+    );
+  }
+
+  
   return (
     <div className={css.container}>
       <ul className={css.grid}>
@@ -33,7 +50,7 @@ const TravellersStories = ({ stories, variant }: Props) => {
         ))}
       </ul>
       
-      {stories.length > 0 && (
+      {stories.length >= 6 && ( 
         <button className={css.loadMore}>Показати ще</button>
       )}
     </div>

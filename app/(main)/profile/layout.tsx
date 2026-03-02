@@ -10,14 +10,11 @@ interface Props {
 export default function ProfileLayout({ children }: Props) {
   return (
     <div className={css.profileContainer}>
-      {/* Серверний компонент, який сам завантажить дані Анатолія */}
       <ProfileInfo />
-      
-      {/* Перемикач вкладок */}
-      <ProfileTabs />
-
+      <div className={css.tabsSection}>
+        <ProfileTabs />
+      </div>
       <main className={css.content}>
-        {/* Сюди потраплятиме контент із saved/page.tsx або own/page.tsx */}
         {children} 
       </main>
     </div>
