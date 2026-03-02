@@ -6,7 +6,7 @@ import { useState } from 'react';
 import {
   addArticleToSaved,
   removeArticleFromSaved,
-} from '@/lib/api/clientApi';;
+} from '@/lib/api/clientApi';
 import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
 import css from './TravellersStoriesItem.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
@@ -61,8 +61,7 @@ export default function TravellersStoriesItem({
   const [loading, setLoading] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const categoryName =
-    (story.category as StoryCategory)?.name || (story.category as string) || '';
+  const categoryName = getCategoryName(story.category);
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
   console.log(`${ownerSource}, ownerSource`)
   const authorName = ownerSource?.name || "";
