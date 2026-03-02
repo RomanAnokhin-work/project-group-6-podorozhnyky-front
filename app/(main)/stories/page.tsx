@@ -1,9 +1,9 @@
-import TravellersStories from "@/components/TravellersStories/TravellersStories";
+import StoriesPageClient from "./StoriesPage.client";
 
 export default function StoriesPage() {
   return (
-    <div>
-      <TravellersStories />
-    </div>
+    <main>
+        <StoriesPageClient />
+    </main>
   );
 }
