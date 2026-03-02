@@ -193,12 +193,11 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  margin-top: 12px;
 }
 
 .logoutIcon {
   width: 24px;
-  height: 24px;
+  height: 50px;
   fill: #1a1a1a;
   transition: fill 0.2s ease;
 }
