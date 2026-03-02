@@ -3,7 +3,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { register, RegisterRequest } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 import Container from "../Container/Container";
@@ -56,11 +56,19 @@ export default function RegistrationForm() {
           err.response &&
           typeof err.response === "object"
         ) {
-          const data = (err as { response: { data?: unknown } }).response.data;
-          if (data && typeof data === "object" && "message" in data) {
-            message = String((data as { message: string }).message);
-          } else if (data && typeof data === "object" && "error" in data) {
-            message = String((data as { error: string }).error);
+          const response = (err as {
+            response: { status?: number; data?: unknown };
+          }).response;
+
+          if (response.status === 400 || response.status === 409) {
+            message = "Цей користувач вже зареєстрований";
+          } else {
+            const data = response.data;
+            if (data && typeof data === "object" && "message" in data) {
+              message = String((data as { message: string }).message);
+            } else if (data && typeof data === "object" && "error" in data) {
+              message = String((data as { error: string }).error);
+            }
           }
         } else if ("message" in err) {
           message = String((err as { message: string }).message);
@@ -73,6 +81,7 @@ export default function RegistrationForm() {
   return (
     <section className={css.section}>
       <Container className={css.container}>
+        <Toaster position="top-right" />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -141,8 +150,9 @@ export default function RegistrationForm() {
               type="submit"
               className={css.submitButton}
               disabled={isSubmitting}
+              aria-busy={isSubmitting}
             >
-              Зареєструватись
+              {isSubmitting ? "Зачекайте" : "Зареєструватись"}
             </button>
           </Form>
         )}
