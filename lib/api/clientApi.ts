@@ -126,6 +126,6 @@ export type { LoginRequest, RegisterRequest };
 export type ApiCategory = { _id: string; name: string };
 
 export async function fetchCategories(): Promise<ApiCategory[]> {
-  const { data } = await instance.get("/api/categories");
+  const { data } = await instance.get("/categories");
   return data;
 }
