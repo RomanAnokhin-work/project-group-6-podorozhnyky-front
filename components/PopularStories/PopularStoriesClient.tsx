@@ -13,9 +13,9 @@ export default function PopularStoriesClient({
   return (
     <>
       <ul className={css.list}>
-        {stories.map((story, index) => (
+        {stories.map((story) => (
           <li key={story._id} className={css.item}>
-            <TravellersStoriesItem story={story} isLcpImage={index < 3} />
+            <TravellersStoriesItem story={story} />
           </li>
         ))}
       </ul>
