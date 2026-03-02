@@ -140,3 +140,14 @@ export async function fetchCategories(): Promise<ApiCategory[]> {
   const { data } = await instance.get("/categories");
   return data;
 }
+export const getMyStories = async (page = 1, perPage = 10) => {
+
+  const { data } = await instance.get(`/stories/own`, {
+    params: {
+      page,
+      perPage
+    }
+  });
+  
+  return data; 
+};

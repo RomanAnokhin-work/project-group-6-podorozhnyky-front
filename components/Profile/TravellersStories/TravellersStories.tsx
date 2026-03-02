@@ -1,7 +1,7 @@
-// Додай це в самий кінець файлу TravellersStories.tsx
 import TravellersStoriesItem from '../../TravellersStoriesItem/TravellersStoriesItem';
 import  MessageNoStories  from '@/components/MessageNoStories/MessageNoStories';
 import css from './TravellersStories.module.css';
+import Button from '@/components/Button/Button';
 
 interface Story {
   _id: string;
@@ -51,7 +51,7 @@ if (!stories || stories.length === 0) {
       </ul>
       
       {stories.length >= 6 && ( 
-        <button className={css.loadMore}>Показати ще</button>
+        <Button />
       )}
     </div>
   );

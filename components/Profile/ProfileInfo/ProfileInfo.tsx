@@ -1,15 +1,34 @@
 "use client";
+
 import Image from "next/image";
 import css from "./ProfileInfo.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
-import { redirect } from "next/navigation";
+import { getMe } from "@/lib/api/clientApi";
+import { useEffect, useState } from "react";
 
 export default function ProfileInfo() {
-  const { isAuthenticated, user } = useAuthStore();
-  console.log(user);
-  if (!isAuthenticated || !user) redirect("/auth/login");
+  const { user, setUser } = useAuthStore();
+  const [loading, setLoading] = useState(!user);
+
+  useEffect(() => {
+    if (!user) {
+      getMe()
+        .then((data) => {
+          setUser(data);
+        })
+        .catch((err) => {
+          console.error("Помилка завантаження профілю:", err);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [user, setUser]);
+
+  if (loading) return <div>Завантаження...</div>;
+  if (!user) return <div>Користувача не знайдено</div>;
+
   const { avatarUrl, description, name } = user;
-  // const user = await getMe();
 
   return (
     <div className={css.profile}>
@@ -17,7 +36,7 @@ export default function ProfileInfo() {
         className={css.avatar}
         width={199}
         height={199}
-        src={avatarUrl || "/images/avatar/defaultAvatar.png"}
+        src={avatarUrl}
         alt={name}
       />
       <div>

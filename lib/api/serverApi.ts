@@ -56,44 +56,30 @@ export async function getMe(): Promise<User> {
 }
 
 
-const getAuthHeaders = async () => {
+export async function getMyStoriesServer(page = 1, perPage = 10) {
   const cookieStore = await cookies();
-  const allCookies = cookieStore.getAll()
-    .map(cookie => `${cookie.name}=${cookie.value}`)
-    .join('; ');
+  
+  const { data } = await instance.get(`/stories/own`, {
+    params: {
+      page,
+      perPage,
+    },
+    headers: {
+      Cookie: cookieStore.toString(),
+    },
+  });
 
-  return { 'Cookie': allCookies };
-};
-export const getMyStories = async () => {
-  try {
-    const user = await getMe();
-    if (!user || !user._id) return [];
+  return data;
+}
 
-    // Використовуємо ID отриманого юзера для запиту його статей
-    const { data } = await instance.get(`/users/${user._id}`);
-    
-    // Повертаємо масив статей (у Анатолія він поки порожній [])
-    return data.articles || []; 
-  } catch (error) {
-    console.error("Error in getMyStories:", error);
-    return [];
-  }
-};
 
-// 2. Отримуємо ЗБЕРЕЖЕНІ історії
 export const getSavedStories = async () => {
   try {
     const user = await getMe();
-    // В Postman ми бачили, що це масив ID рядків
     const savedIds = user.savedArticles || [];
-
     if (savedIds.length === 0) return [];
-
-    // Отримуємо всі доступні сторіз, щоб відфільтрувати їх за ID
     const { data } = await instance.get("/stories");
     const allStories = data.stories || data;
-
-    // Фільтруємо, залишаючи лише ті, що є у списку збережених юзера
     return allStories.filter((story: any) => savedIds.includes(story._id));
   } catch (error) {
     console.error("Error in getSavedStories:", error);
@@ -108,6 +94,3 @@ export async function getTravellerById(id: string): Promise<GetTavellerByIdRespo
   return data;
 }
 
-// export async function name(params:type) {
-
-// }
