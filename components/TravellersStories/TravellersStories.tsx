@@ -4,7 +4,6 @@ import { ApiStory } from "@/types/story";
 import TravellersStoriesItem from "../TravellersStoriesItem/TravellersStoriesItem";
 import Button from "../Button/Button";
 import css from "./TravellersStories.module.css";
-import { User } from "@/types/user";
 import { useAuthStore } from "@/lib/store/authStore";
 
 interface Props {
