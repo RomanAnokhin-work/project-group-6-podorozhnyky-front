@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import css from "./TravellersPageById.module.css";
 import { User } from "@/types/user";
 import { ApiStory } from "@/types/story";
@@ -13,24 +13,22 @@ type Props = {
   articles: ApiStory[];
 };
 
-export default function TravellerPageByIdClient({ user, articles }: Props) {
-  const getPerPage = () => {
-    if (window.innerWidth < 1440) return 4;
-    return 6;
-  };
+const subscribeToResize = (callback: () => void) => {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+};
 
-  const [perPage, setPerPage] = useState(getPerPage());
+const getPerPage = () => (window.innerWidth >= 1440 ? 6 : 4);
+const getServerPerPage = () => 4;
+
+export default function TravellerPageByIdClient({ user, articles }: Props) {
+  const perPage = useSyncExternalStore(
+    subscribeToResize,
+    getPerPage,
+    getServerPerPage,
+  );
   const [page, setPage] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setPerPage(getPerPage());
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const totalPages = Math.ceil(articles.length / perPage);
 
