@@ -41,6 +41,3 @@ export async function fetchStories(
 
   return (await res.json()) as StoriesResponse;
 }
-
-
-

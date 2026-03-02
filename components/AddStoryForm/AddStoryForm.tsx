@@ -86,9 +86,12 @@ useEffect(() => {
           .trim()
           .required("Вкажіть короткий опис")
           .max(DESC_MAX, `Максимум ${DESC_MAX} символів`),
-        article: Yup.string().trim().required("Вкажіть текст історії").max(2500, "Максимум 2500 символів"),
+        article: Yup.string()
+          .trim()
+          .required("Вкажіть текст історії")
+          .max(2500, "Максимум 2500 символів"),
       }),
-    []
+    [],
   );
 
   return (
@@ -108,11 +111,16 @@ useEffect(() => {
             formData.append("article", values.article);
             formData.append("description", values.description);
 
-            const res = await fetch("/api/stories", { method: "POST", body: formData, credentials: "include" });
+            const res = await fetch("/api/stories", {
+              method: "POST",
+              body: formData,
+              credentials: "include",
+            });
             if (!res.ok) throw new Error("Failed");
 
             const json = await res.json();
-            const id = json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
+            const id =
+              json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
 
             // по ТЗ: редирект на /stories/[storyId]
             if (id) router.push(`/stories/${id}`);
@@ -195,7 +203,11 @@ useEffect(() => {
                       disabled={catLoading || !!catError}
                     >
                       <option value="">
-                        {catLoading ? "Завантаження..." : catError ? "Помилка" : "Категорія"}
+                        {catLoading
+                          ? "Завантаження..."
+                          : catError
+                            ? "Помилка"
+                            : "Категорія"}
                       </option>
 
                       {!catLoading &&
@@ -230,7 +242,8 @@ useEffect(() => {
                     maxLength={DESC_MAX}
                   />
                   <div className={css.uploadHint}>
-                    Лишилось символів: {DESC_MAX - (values.description?.length ?? 0)}
+                    Лишилось символів:{" "}
+                    {DESC_MAX - (values.description?.length ?? 0)}
                   </div>
                   <div className={css.error}>
                     <ErrorMessage name="description" />
@@ -256,7 +269,13 @@ useEffect(() => {
                 <button
                   type="submit"
                   className={css.primaryBtn}
-                  disabled={!isValid || !dirty || isSubmitting || catLoading || !!catError}
+                  disabled={
+                    !isValid ||
+                    !dirty ||
+                    isSubmitting ||
+                    catLoading ||
+                    !!catError
+                  }
                 >
                   {isSubmitting ? "Збереження..." : "Зберегти"}
                 </button>
@@ -301,10 +320,11 @@ useEffect(() => {
           </>
         )}
       </Formik>
-       {/* ✅ Модалка ошибки сохранения */}
-        <AuthNavModal
-          isOpen={saveErrorOpen}
-          onClose={() => setSaveErrorOpen(false)}/>
+      {/* ✅ Модалка ошибки сохранения */}
+      <AuthNavModal
+        isOpen={saveErrorOpen}
+        onClose={() => setSaveErrorOpen(false)}
+      />
     </div>
   );
 }

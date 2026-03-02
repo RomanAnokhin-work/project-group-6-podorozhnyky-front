@@ -1,13 +1,14 @@
-import { getMe } from "@/lib/api/serverApi";
+import TravellersStories from "@/components/Profile/TravellersStories/TravellersStories";
+import { getSavedStories } from "@/lib/api/serverApi";
 
-export default async function SavedStory () {
-    const { savedArticles } = await getMe();
+export default async function SavedStoriesPage() {
+  // Отримуємо дані з сервера (ми вже налаштували цей запит раніше)
+  const stories = await getSavedStories();
 
-    
-    return (
-        <ul>{savedArticles.map (( article )=>(
-
-            <li key={article}></li>
-        ))}</ul>
-    );
-};
+  return (
+    <section>
+      {/* Передаємо масив історій та варіант для логіки кнопок */}
+      <TravellersStories stories={stories} variant="saved" />
+    </section>
+  );
+}

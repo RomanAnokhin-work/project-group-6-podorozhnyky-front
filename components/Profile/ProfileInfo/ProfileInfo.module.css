@@ -2,70 +2,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 32px 0px 32px;
-  background-color: #f8fbff; 
-  border-radius: 4px; 
-  max-width: 440px;
-  margin: 0 auto;
   text-align: center;
+  padding: 40px 20px;
+  gap: 24px;
 }
 
 .avatar {
-  border-radius: 50%; 
+  border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 24px;
 }
 
 .name {
-  font-size: 20px;
-  font-weight: 800;
-  color: #000000;
-  margin-bottom: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
 .description {
-  font-family: var(--font-nunito-sans);
   font-size: 16px;
-  line-height: 1.5;
-  color: #333333;
-  max-width: 320px; 
+  color: #494D57;
+  max-width: 600px;
 }
 
 @media (min-width: 768px) {
   .profile {
-    flex-direction: row; 
-    text-align: left;    
-    max-width: 704px;    
-    padding: 40px;
-    gap: 24px;           
-    border: none;        
-    background-color: transparent;
-  }
-
-  .avatar {
-    margin-bottom: 0;    
-
-  }
-
-.name {
-    font-size: 28px;
-    margin-bottom: 0;
-  }
-  
-  .description {
-    font-size: 16px;
-   
-  }
-}
-@media (min-width: 1024px) {
-  .profile {
-    max-width: 1440px; 
-    padding-top: 48px;
-    gap: 24px; 
-  }
-
-
-  .description {
-    max-width: 367px; 
+    flex-direction: row;
+    text-align: left;
+    padding: 60px 0;
   }
 }

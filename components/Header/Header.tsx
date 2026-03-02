@@ -79,7 +79,7 @@ export default function Header() {
               <button
                 type="button"
                 className={css.publishButton}
-                onClick={() => (window.location.href = '/stories/create')}
+                onClick={() => (window.location.href = "/stories/create")}
               >
                 Опублікувати історію
               </button>

@@ -5,13 +5,17 @@ import TravellersStoriesItem from "@/components/TravellersStoriesItem/Travellers
 import css from "./PopularStories.module.css";
 import type { ApiStory } from "@/types/story";
 
-export default function PopularStoriesClient({ stories }: { stories: ApiStory[] }) {
+export default function PopularStoriesClient({
+  stories,
+}: {
+  stories: ApiStory[];
+}) {
   return (
     <>
       <ul className={css.list}>
         {stories.map((story, index) => (
           <li key={story._id} className={css.item}>
-             <TravellersStoriesItem story={story} isLcpImage={index < 3} /> 
+            <TravellersStoriesItem story={story} isLcpImage={index < 3} />
           </li>
         ))}
       </ul>

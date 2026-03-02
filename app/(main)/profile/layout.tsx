@@ -1,19 +1,25 @@
-import ProfileInfo from "@/components/Profile/ProfileInfo/ProfileInfo";
+import { ReactNode } from 'react';
+import ProfileTabs from '@/components/Profile/ProfileTabs/ProfileTabs';
+import ProfileInfo from '@/components/Profile/ProfileInfo/ProfileInfo';
+import css from './ProfilePage.module.css';
 
-type Props = {
-  children: React.ReactNode;
-  switcher: React.ReactNode;
-};
+interface Props {
+  children: ReactNode;
+}
 
-const NotesLayout = ({ children, switcher }: Props) => {
+export default function ProfileLayout({ children }: Props) {
   return (
-    <section>
-      <ProfileInfo/>
-      <div>{switcher}</div>
-      <div>{children}</div>
+    <div className={css.profileContainer}>
+      {/* Серверний компонент, який сам завантажить дані Анатолія */}
+      <ProfileInfo />
       
-    </section>
-  );
-};
+      {/* Перемикач вкладок */}
+      <ProfileTabs />
 
-export default NotesLayout;
+      <main className={css.content}>
+        {/* Сюди потраплятиме контент із saved/page.tsx або own/page.tsx */}
+        {children} 
+      </main>
+    </div>
+  );
+}

@@ -56,20 +56,21 @@ export const deleteStory = async (storyId: string) => {
 };
 
 export const addFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.patch('/stories/saved', { storyId });
+  const { data } = await instance.patch("/stories/saved", { storyId });
   return data.data;
 };
 
 export const removeFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.delete('/stories/saved', {
-    data: { storyId }
+  const { data } = await instance.delete("/stories/saved", {
+    data: { storyId },
   });
   return data.data;
 };
 
-export const getUsers = async (
-  { page, perPage }: GetUsersParams
-): Promise<GetUsersResponse> => {
+export const getUsers = async ({
+  page,
+  perPage,
+}: GetUsersParams): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {
       page,
@@ -85,7 +86,9 @@ interface GetPopularUsersResponse {
 }
 
 export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
-  const { data } = await instance.get<GetPopularUsersResponse>("/users/popular-users");
+  const { data } = await instance.get<GetPopularUsersResponse>(
+    "/users/popular-users",
+  );
   return data;
 };
 
