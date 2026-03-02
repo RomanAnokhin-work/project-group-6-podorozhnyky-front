@@ -22,6 +22,10 @@ interface RegisterRequest {
   password: string;
   name?: string;
 }
+interface LoginResponse {
+  user: User;
+  token: string;
+}
 interface GetUsersParams {
   page?: number;
   perPage?: number;
@@ -36,7 +40,7 @@ export type PopularResponse = {
 };
 
 export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
-  const {data} = await instance.get(`api/stories/popular?page=${page}&perPage=${perPage}`);
+  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
 
   return data;
 }
@@ -113,6 +117,6 @@ export type { LoginRequest, RegisterRequest };
 export type ApiCategory = { _id: string; name: string };
 
 export async function fetchCategories(): Promise<ApiCategory[]> {
-  const { data } = await instance.get("/api/categories");
+  const { data } = await instance.get("/categories");
   return data;
 }

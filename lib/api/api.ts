@@ -1,13 +1,19 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import type { StoriesResponse } from "@/types/story";
 
-
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
-
 export const instance = axios.create({
-  baseURL: baseURL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
   withCredentials: true,
 });
+
+export type ApiError = AxiosError<{ error: string }>;
+
+// const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
+// export const instance = axios.create({
+//   baseURL: baseURL,
+//   withCredentials: true,
+// });
 
 export async function fetchStories(
   page = 1,
