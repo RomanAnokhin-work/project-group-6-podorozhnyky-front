@@ -1,27 +1,27 @@
 "use client";
-
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import css from "./ProfileTabs.module.css";
 
-export const ProfileTabs = () => {
-  const [activeTab, setActiveTab] = useState<"saved" | "my">("saved");
+export default function ProfileTabs() {
+  const pathname = usePathname();
 
   return (
     <div className={css.container}>
       <div className={css.tabsWrapper}>
-        <button
-          onClick={() => setActiveTab("saved")}
-          className={clsx(css.tab, activeTab === "saved" && css.active)}
+        <Link
+          href="/profile/saved"
+          className={clsx(css.tab, pathname === "/profile/saved" && css.active)}
         >
           Збережені історії
-        </button>
-        <button
-          onClick={() => setActiveTab("my")}
-          className={clsx(css.tab, activeTab === "my" && css.active)}
+        </Link>
+        <Link
+          href="/profile/own"
+          className={clsx(css.tab, pathname === "/profile/own" && css.active)}
         >
           Мої історії
-        </button>
+        </Link>
       </div>
     </div>
   );
