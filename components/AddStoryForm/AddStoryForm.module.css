@@ -88,6 +88,7 @@
   background: var(--opacity-neutral-darkest-5);
   cursor: pointer;
 }
+
 .uploadBtn:hover {
   background: var(--opacity-neutral-darkest-10);
 }
@@ -224,6 +225,7 @@
   background: var(--color-royal-blue-lighter);
   color: var(--color-scheme-2-text);
 }
+
 .primaryBtn:active {
   background: var(--color-royal-blue-light);
   color: var(--color-scheme-2-text);

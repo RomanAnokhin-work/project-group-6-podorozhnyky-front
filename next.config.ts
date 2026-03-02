@@ -1,11 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
+ images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "ftp.goit.study",
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**', 
+      },
+      {
+        protocol: 'https',
+        hostname: 'ftp.goit.study', 
+        pathname: '/**',
       },
     ],
   },

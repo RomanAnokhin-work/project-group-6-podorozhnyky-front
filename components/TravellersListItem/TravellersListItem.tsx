@@ -10,12 +10,12 @@ interface Props {
 export default function TravellersListItem({ user }: Props) {
   return (
     <div className={styles.card}>
-      <Image
+         <Image
         src={user.avatarUrl}
         alt={user.name}
         className={styles.avatar}
-        width={100}
-        height={100}
+        width={112}
+        height={112}
       />
       <div className={styles.content}>
         <h2 className={styles.name}>{user.name}</h2>
