@@ -6,8 +6,9 @@ import { useState } from 'react';
 import {
   addArticleToSaved,
   removeArticleFromSaved,
-} from '@/app/api/api';
+} from '@/lib/api/clientApi';
 import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
+import { useAuthStore } from '@/lib/store/authStore';
 import css from './TravellersStoriesItem.module.css';
 
 type StoryOwner = {
@@ -33,25 +34,32 @@ export type TravellerStory = {
 
 type TravellersStoriesItemProps = {
   story: TravellerStory;
-  isLcpImage?: boolean;
   isAuthenticated?: boolean;
   isSaved?: boolean;
   onNeedAuth?: () => void;
 };
 
+const getCategoryName = (category: TravellerStory["category"]) => {
+  if (typeof category === "object" && category !== null) {
+    return category.name ?? "";
+  }
+
+  return "";
+};
+
 export default function TravellersStoriesItem({
   story,
-  isLcpImage = false,
-  isAuthenticated = false,
+  isAuthenticated,
   isSaved = false,
 }: TravellersStoriesItemProps) {
+  const storeIsAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const effectiveIsAuthenticated = isAuthenticated ?? storeIsAuthenticated;
   const [saved, setSaved] = useState(isSaved);
   const [count, setCount] = useState(story.favoriteCount || 0);
   const [loading, setLoading] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const categoryName =
-    (story.category as StoryCategory)?.name || (story.category as string) || '';
+  const categoryName = getCategoryName(story.category);
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
   const authorName = ownerSource?.name || '';
   const authorAvatarUrl = ownerSource?.avatarUrl || '';
@@ -62,7 +70,7 @@ export default function TravellersStoriesItem({
   const handleSaveClick = async () => {
     if (loading) return;
 
-    if (!isAuthenticated) {
+    if (!effectiveIsAuthenticated) {
       openAuthModal();
       return;
     }
@@ -84,7 +92,9 @@ export default function TravellersStoriesItem({
     } catch {
       setSaved(oldSaved);
       setCount(oldCount);
-      openAuthModal();
+      if (!effectiveIsAuthenticated) {
+        openAuthModal();
+      }
     } finally {
       setLoading(false);
     }
@@ -97,10 +107,8 @@ export default function TravellersStoriesItem({
           className={css.image}
           src={story.img}
           alt={story.title}
-          fill
-          sizes="(min-width: 1440px) 416px, (min-width: 768px) 340px, 335px"
-          priority={isLcpImage}
-          loading={isLcpImage ? "eager" : "lazy"}
+          width={416}
+          height={277}
         />
       </div>
 
@@ -118,8 +126,8 @@ export default function TravellersStoriesItem({
                 className={css.avatar}
                 src={authorAvatarUrl}
                 alt={authorName || "Author avatar"}
-                fill
-                sizes="48px"
+                width={48}
+                height={48}
               />
             ) : (
               <span className={css.avatarFallback}>
