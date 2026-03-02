@@ -14,7 +14,6 @@
     letter-spacing: -0.01em;
     color: var(--color-scheme-2-text);
     padding: 32px 0;
-    /* убрали лишний верхний отступ */
 }
 
 /* ===== Layout (FLEX вместо GRID) ===== */
@@ -68,18 +67,18 @@
 }
 
 .coverPlaceholder {
-    width: 92px;
-    height: 92px;
+    width: 25%;
+    height: 25%;
     border-radius: 16px;
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(85, 82, 82, 0.2);
     display: grid;
     place-items: center;
 }
 
 .placeholderIcon {
-    width: 44px;
-    height: 44px;
-    opacity: 0.45;
+    width: auto;
+    height: auto;
+    opacity: 0.5;
 }
 
 .uploadRow {
@@ -101,10 +100,14 @@
     color: var(--color-neutral-darkest);
 
     border: 1px solid var(--color-scheme-2-border);
-    border-radius: 8px;
-    padding: 4px 10px;
-    background: var(--opacity-neutral-darkest-5);
+        border-radius: 8px;
+        padding: 4px 10px;
+        height: 32px;
+        background: var(--opacity-neutral-darkest-5);
     cursor: pointer;
+}
+.uploadBtn:hover {
+    background: var(--opacity-neutral-darkest-10);
 }
 
 .uploadHint {
@@ -171,6 +174,7 @@
 /* ===== Select (arrow) ===== */
 .selectWrapper {
     position: relative;
+    
 }
 
 .select {
@@ -218,77 +222,51 @@
 .secondaryBtn {
     width: 100%;
     height: 36px;
+font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
     border-radius: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
+        padding: 6px 12px;
+   
 }
 
 .primaryBtn {
-    border: 1px solid #2563eb;
-    background: #2563eb;
-    color: #ffffff;
+    border: 1px solid var(--color-royal-blue);
+        border-radius: 8px;
+        padding: 6px 12px;
+        background: var(--color-royal-blue);
+        color: var(--color-white);
 }
 
-.primaryBtn:hover {
-    background: #1d4ed8;
-    border-color: #1d4ed8;
+.primaryBtn:hover,
+.primaryBtn:focus {
+    background: var(--color-royal-blue-lighter);
+    color: var(--color-scheme-2-text) 
 }
+.primaryBtn:active {
+    background: var(--color-royal-blue-light);
+    color: var(--color-scheme-2-text)
+}
+
 
 .primaryBtn:disabled {
-    background: #c7d2f6;
-    border-color: #c7d2f6;
+background: var(--color-royal-blue);
+    opacity: 0.3;
+    color: var(--color-white);
     cursor: not-allowed;
 }
 
 .secondaryBtn {
-    border: 1px solid #d1d5db;
-    background: #ffffff;
-    color: #111827;
+    border: 1px solid var(--color-scheme-2-border);
+    background: var(--opacity-neutral-darkest-5);
+    color: var(--color-neutral-darkest);
 }
 
 .secondaryBtn:hover {
-    background: #f3f4f6;
-}
+    background: var(--opacity-neutral-darkest-10);
+} 
 
-/* ===== Modal ===== */
-.modalOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-}
-
-.modal {
-    width: min(420px, calc(100% - 32px));
-    background: #fff;
-    border-radius: 12px;
-    padding: 16px;
-}
-
-.modalTitle {
-    font-weight: 700;
-    font-size: 18px;
-    margin-bottom: 6px;
-}
-
-.modalText {
-    font-size: 14px;
-    color: #6b7280;
-    margin-bottom: 14px;
-}
-
-.modalBtn {
-    height: 36px;
-    padding: 0 14px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-    background: #fff;
-    cursor: pointer;
-}
 
 /* ===== Tablet ===== */
 @media (min-width: 768px) and (max-width: 1023px) {

@@ -7,6 +7,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { fetchCategories } from "@/lib/api/clientApi";
 import { SelectChevron } from "./SelectChevronIcon";
+import AuthNavModal from "../AuthNavModal/AuthNavModal";
 
 type ApiCategory = { _id: string; name: string };
 
@@ -96,7 +97,7 @@ export default function AddStoryForm() {
             // когда бек будет готов:
              formData.append("description", values.description);
 
-            const res = await fetch("/api/stories", { method: "POST", body: formData });
+            const res = await fetch("/api/stories", { method: "POST", body: formData, credentials: "include" });
             if (!res.ok) throw new Error("Failed");
 
             const json = await res.json();
@@ -128,10 +129,10 @@ export default function AddStoryForm() {
                     ) : (
                       <div className={css.coverPlaceholder} aria-hidden>
                         <svg className={css.placeholderIcon} viewBox="0 0 64 64" fill="none">
-                          <circle cx="26" cy="28" r="4" fill="rgba(0,0,0,0.18)" />
+                          <circle cx="26" cy="28" r="4" fill="rgba(255, 255, 255, 1)" />
                           <path
                             d="M16 46L28 34L36 42L42 36L56 50H16Z"
-                            fill="rgba(0,0,0,0.18)"
+                            fill="rgba(255, 251, 251, 1)"
                           />
                         </svg>
                       </div>
@@ -259,22 +260,13 @@ export default function AddStoryForm() {
                 </button>
               </div>
             </Form>
-
-            {/* ✅ Модалка ошибки сохранения */}
-            {saveErrorOpen && (
-              <div className={css.modalOverlay} role="dialog" aria-modal="true">
-                <div className={css.modal}>
-                  <div className={css.modalTitle}>Помилка збереження</div>
-                  <div className={css.modalText}>Спробуйте ще раз трохи пізніше.</div>
-                  <button className={css.modalBtn} type="button" onClick={() => setSaveErrorOpen(false)}>
-                    Ок
-                  </button>
-                </div>
-              </div>
-            )}
           </>
         )}
       </Formik>
+       {/* ✅ Модалка ошибки сохранения */}
+        <AuthNavModal
+          isOpen={saveErrorOpen}
+          onClose={() => setSaveErrorOpen(false)}/>
     </div>
   );
 }
