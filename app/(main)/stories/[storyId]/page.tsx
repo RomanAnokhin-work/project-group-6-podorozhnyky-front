@@ -1,8 +1,16 @@
 import StoryDetails from '@/components/StoryDetails/StoryDetails';
+import PopularStoriesClient from '@/components/PopularStories/PopularStoriesClient';
+import { fetchPopularStoriesPage } from '@/lib/api/clientApi';
 
 export default async function StoryPage({ params }: { params: { storyId: string } }) {
   const { storyId } = await params;
-  console.log(storyId);
-  
-  return <StoryDetails storyId={storyId} />;
+
+  const { stories } = await fetchPopularStoriesPage();
+
+  return (
+    <>
+      <StoryDetails storyId={storyId} />
+      <PopularStoriesClient stories={stories} />
+    </>
+  );
 }

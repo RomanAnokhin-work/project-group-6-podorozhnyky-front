@@ -16,6 +16,7 @@ import Loader from '../Loader/Loader';
 import FavoriteActions from './FavoriteActions/FavoriteActions';
 import css from './StoryDetails.module.css';
 
+
 const StoryDetails = ({ storyId }: { storyId: string }) => {
   const [story, setStory] = useState<ApiStory | null>(null);
   const [loading, setLoading] = useState(true);
@@ -100,21 +101,20 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
       toast.error('Помилка під час видалення');
     }
   };
-  console.log(story)
   return (
     <div className={css.storyDetails}>
       <div className={css.info}>
         <div className={css.infoDetails}>
           <p className={css.value}>
             <strong className={css.label}>Автор статті:</strong>{' '}
-            {story.ownerId?.name || 'Завантаження...'}
+            {story.ownerId.name}
           </p>
           <p className={css.value}>
             <strong className={css.label}>Опубліковано:</strong> {formattedDate}
           </p>
         </div>
 
-        <p className={css.infoCategory}>{story.category?.name || 'Без категорії'}</p>
+        <p className={css.infoCategory}>{story.category.name}</p>
       </div>
 
       <Image

@@ -18,14 +18,14 @@ const TravellersStories = ({
   onLoadMore,
   isFetching = false,
 }: Props) => {
-  if (stories.length === 0) {
+  if (stories?.length === 0) {
     return <p>Немає історій</p>;
   }
 
   return (
     <div className={css.travellersStoriesWrapper}>
       <ul className={css.travellersStoriesList}>
-        {stories.map((story) => (
+      {stories?.map((story) => (
           <li key={story._id} className={css.travellersStoriesItem}>
             <TravellersStoriesItem story={story} />
           </li>

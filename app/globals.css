@@ -18,7 +18,7 @@
   --color-scheme-2-border: var(--opacity-neutral-darkest-15);
   --color-scheme-1-text: var(--color-neutral-darkest);
   --color-scheme-1-foreground: var(--color-neutral-lightest);
-
+  --color-scheme-1-background: var(--color-royal-blue-lightest);
 }
 
 html,
