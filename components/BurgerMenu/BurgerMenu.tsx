@@ -5,6 +5,11 @@ import { usePathname } from "next/navigation";
 import css from "./BurgerMenu.module.css";
 import { User } from "@/types/user";
 import Image from "next/image";
+import { useState } from "react";
+import { logout } from "@/lib/api/clientApi";
+import { useAuthStore } from "@/lib/store/authStore";
+import { useRouter } from "next-router-mock";
+import Modal from "../Modal/Modal";
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -17,14 +22,28 @@ export default function BurgerMenu({
   isAuthenticated,
   user,
 }: BurgerMenuProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const handleNavClick = (): void => {
     onClose();
   };
 
-  const handleLogout = (): void => {
-    onClose();
+  const handleLogout = async (): Promise<void> => {
+     setIsLoading(true);
+        try {
+          await logout();
+          useAuthStore.getState().clearIsAuthenticated();
+          localStorage.removeItem("user");
+          onClose();
+          router.push("/");
+        } catch (error) {
+          console.error("Помилка при виході:", error);
+        } finally {
+          setIsLoading(false);
+        }
   };
 
   return (
@@ -138,14 +157,24 @@ export default function BurgerMenu({
             <span className={css.userName}>
               {user?.name || "Імʼя користувача"}
             </span>
-            <button className={css.logoutButton} onClick={handleLogout}>
+            <button className={css.logoutButton} onClick={()=> setIsLogoutOpen(true)}>
               <svg className={css.logoutIcon}>
                 <use href="/icons.svg#icon-logout" />
               </svg>
             </button>
           </div>
         )}
+        {isLogoutOpen && (
+                <Modal
+                  onClose={() => {
+                    setIsLogoutOpen(false);
+                  }}
+                >
+                  Ви точно хочете вийти?
+                </Modal>
+              )}
       </div>
+      
     </div>
   );
 }
