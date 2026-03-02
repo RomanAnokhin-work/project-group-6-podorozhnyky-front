@@ -64,6 +64,7 @@ export default function TravellersStoriesItem({
   const categoryName =
     (story.category as StoryCategory)?.name || (story.category as string) || '';
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
+  console.log(`${ownerSource}, ownerSource`)
   const authorName = ownerSource?.name || "";
   const authorAvatarUrl = ownerSource?.avatarUrl || "";
   const formattedDate = new Date(story.date).toLocaleDateString("uk-UA");

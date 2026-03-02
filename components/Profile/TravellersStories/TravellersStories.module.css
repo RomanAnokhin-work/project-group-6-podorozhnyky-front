@@ -4,7 +4,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr; /* 1 колонка для 375px */
+  grid-template-columns: 1fr; 
   gap: 20px;
   list-style: none;
   padding: 0;
@@ -26,16 +26,15 @@
 @media (min-width: 768px) {
   .grid {
     display: grid;
-    grid-template-columns: repeat(2, 340px); /* 2 фіксовані колонки */
-    justify-content: center; /* Центруємо сітку */
-    gap: 32px 24px; /* Відступи між картками */
+    grid-template-columns: repeat(2, 340px); 
+    justify-content: center;
+    gap: 32px 24px; 
   }
 }
 
-/* Десктоп */
 @media (min-width: 1440px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    grid-template-columns: repeat(3, 1fr);
     gap: 48px 24px;
   }
 }
