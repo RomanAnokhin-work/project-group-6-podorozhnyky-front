@@ -47,3 +47,7 @@ export async function PATCH(
     },
   });
 }
+
+export async function GET() {
+
+}

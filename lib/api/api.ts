@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { StoriesResponse } from "@/types/story";
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_URL + "/api";
 
 export const instance = axios.create({
   baseURL: baseURL,
