@@ -5,9 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Image from "next/image";
 import { fetchCategories } from "@/lib/api/clientApi";
 import { SelectChevron } from "./SelectChevronIcon";
 import AuthNavModal from "../AuthNavModal/AuthNavModal";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 
 type ApiCategory = { _id: string; name: string };
 
@@ -32,22 +34,31 @@ export default function AddStoryForm() {
 
   // ✅ модалка ошибки сохранения
   const [saveErrorOpen, setSaveErrorOpen] = useState(false);
+  const [cancelOpen, setCancelOpen] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setCatLoading(true);
-        setCatError(null);
-        const data = await fetchCategories();
-        setCategories(data ?? []);
-      } catch {
-        setCatError("Не вдалося завантажити категорії");
-      } finally {
-        setCatLoading(false);
-      }
-    })();
-  }, []);
+  // 1) Загружаем категории один раз
+useEffect(() => {
+  (async () => {
+    try {
+      setCatLoading(true);
+      setCatError(null);
+      const data = await fetchCategories();
+      setCategories(data ?? []);
+    } catch {
+      setCatError("Не вдалося завантажити категорії");
+    } finally {
+      setCatLoading(false);
+    }
+  })();
+}, []);
 
+// 2) Чистим blob URL при смене/размонтаже
+useEffect(() => {
+  return () => {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);
+  };
+}, [previewUrl]);
+  
   const initialValues: Values = {
     cover: null,
     title: "",
@@ -59,20 +70,17 @@ export default function AddStoryForm() {
   const schema = useMemo(
     () =>
       Yup.object({
-        cover: Yup.mixed<File>()
-          .required("Додайте обкладинку")
-          .test("fileSize", "Файл завеликий (макс 5MB)", (file) =>
-            file ? file.size <= MAX_MB * 1024 * 1024 : false,
-          )
-          .test("fileType", "Тільки JPG/PNG/WebP", (file) =>
-            file
-              ? ["image/jpeg", "image/png", "image/webp"].includes(file.type)
-              : false,
-          ),
-        title: Yup.string()
-          .trim()
-          .required("Вкажіть заголовок")
-          .max(80, "Максимум 80 символів"),
+       cover: Yup.mixed<File>()
+  .nullable()
+  .required("Додайте обкладинку")
+  .test("isFile", "Додайте обкладинку", (v) => v instanceof File)
+  .test("fileSize", "Файл завеликий (макс 5MB)", (file) =>
+    file instanceof File ? file.size <= MAX_MB * 1024 * 1024 : false
+  )
+  .test("fileType", "Тільки JPG/PNG/WebP", (file) =>
+    file instanceof File ? ["image/jpeg", "image/png", "image/webp"].includes(file.type) : false
+  ),
+        title: Yup.string().trim().required("Вкажіть заголовок").max(80, "Максимум 80 символів"),
         category: Yup.string().required("Оберіть категорію"),
         description: Yup.string()
           .trim()
@@ -101,8 +109,6 @@ export default function AddStoryForm() {
             formData.append("title", values.title);
             formData.append("category", values.category);
             formData.append("article", values.article);
-
-            // когда бек будет готов:
             formData.append("description", values.description);
 
             const res = await fetch("/api/stories", {
@@ -127,52 +133,23 @@ export default function AddStoryForm() {
           }
         }}
       >
-        {({
-          isValid,
-          dirty,
-          isSubmitting,
-          setFieldValue,
-          setFieldTouched,
-          values,
-          errors,
-          touched,
-        }) => (
+        {({ resetForm, isValid, dirty, isSubmitting, setFieldValue, validateField,values, errors, touched }) => (
           <>
             <Form className={css.form}>
               <div className={css.left}>
                 {/* Cover */}
                 <div>
                   <div className={css.label}>Обкладинка статті</div>
-
-                  <div className={css.coverBox}>
-                    {previewUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={previewUrl}
-                        alt="cover"
-                        className={css.coverImg}
-                      />
-                    ) : (
-                      <div className={css.coverPlaceholder} aria-hidden>
-                        <svg
-                          className={css.placeholderIcon}
-                          viewBox="0 0 64 64"
-                          fill="none"
-                        >
-                          <circle
-                            cx="26"
-                            cy="28"
-                            r="4"
-                            fill="rgba(255, 255, 255, 1)"
-                          />
-                          <path
-                            d="M16 46L28 34L36 42L42 36L56 50H16Z"
-                            fill="rgba(255, 251, 251, 1)"
-                          />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
+                     <div className={css.coverBox}>
+                      <Image
+                      src={previewUrl ?? "/images/cover-placeholder/cover-placeholder.webp"}
+                      alt="cover"
+                      fill
+                      className={css.coverImg}
+                      unoptimized={!!previewUrl}
+                      priority={!previewUrl}
+                      sizes="(min-width: 1440px) 416px, (min-width: 768px) 340px, 335px"/>
+                     </div>
 
                   <div className={css.uploadRow}>
                     <input
@@ -181,22 +158,24 @@ export default function AddStoryForm() {
                       type="file"
                       accept="image/jpeg,image/png,image/webp"
                       onChange={(e) => {
-                        const file = e.currentTarget.files?.[0] ?? null;
-                        setFieldValue("cover", file);
-                        setFieldTouched("cover", true, true);
+                        const input = e.currentTarget;
+                        const file = input.files?.[0] ?? null;
 
-                        if (previewUrl) URL.revokeObjectURL(previewUrl);
-                        setPreviewUrl(file ? URL.createObjectURL(file) : null);
-                      }}
-                    />
+                        setFieldValue("cover", file);  
+                        validateField("cover");
+
+                        setPreviewUrl((prev) => {
+                           if (prev) URL.revokeObjectURL(prev);
+                           return file ? URL.createObjectURL(file) : null;
+                           }); input.value = "";
+                      }} />
+                    
                     <label htmlFor="cover" className={css.uploadBtn}>
                       Завантажити фото
                     </label>
                   </div>
 
-                  <div className={css.error}>
-                    <ErrorMessage name="cover" />
-                  </div>
+                 {touched.cover && errors.cover ? <div className={css.error}>{errors.cover}</div> : null}
                 </div>
 
                 {/* Title */}
@@ -304,11 +283,39 @@ export default function AddStoryForm() {
                 <button
                   type="button"
                   className={css.secondaryBtn}
-                  onClick={() => router.back()}
-                >
-                  Відмінити
-                </button>
-              </div>
+                  onClick={() => {
+                    if (!dirty && !previewUrl) {
+                      resetForm();
+                      setPreviewUrl(null);
+                      return;
+                    };
+
+                    setCancelOpen(true);
+                  }}>Відмінити</button>
+            {cancelOpen && (
+  <ConfirmModal
+    title="Скасувати створення історії?"
+    text="Усі введені дані та обкладинка буде втрачено."
+    confirmButtonText="Так, скасувати"
+    cancelButtonText="Ні, продовжити"
+    isLoading={isSubmitting}
+    onCancel={() => setCancelOpen(false)}
+    onConfirm={() => {
+      // закрыть модалку
+      setCancelOpen(false);
+
+      // очистить превью + освободить blob
+      setPreviewUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return null;
+      });
+
+      // очистить Formik
+      resetForm();
+    }}
+  />
+)}
+            </div>
             </Form>
           </>
         )}
