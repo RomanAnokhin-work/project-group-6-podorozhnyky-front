@@ -14,8 +14,8 @@ export default function TravellersListItem({ user }: Props) {
         src={user.avatarUrl}
         alt={user.name}
         className={styles.avatar}
-        width={112}
-        height={112}
+        width={100}
+        height={100}
       />
       <div className={styles.content}>
         <h2 className={styles.name}>{user.name}</h2>

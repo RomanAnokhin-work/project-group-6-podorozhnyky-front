@@ -38,6 +38,7 @@ export async function fetchPopularStoriesPage(
 
 export async function getMe(): Promise<User> {
   const cookieStore = await cookies();
+
   const { data } = await instance.get<User>("/users/me", {
     headers: {
       Cookie: cookieStore.toString(),
@@ -46,24 +47,14 @@ export async function getMe(): Promise<User> {
   return data;
 }
 
-interface GetTravellerByIdResponse {
-  user: User;
-  articles: ApiStory[];
+export async function getTravellerById(id: string): Promise<User> {
+  const cookieStore = await cookies();
+  const { data } = await instance.get<User>(`/users/${id}`, {
+    headers: { Cookie: cookieStore.toString() },
+  });
+  return data;
 }
 
-export const getTravellerById = async (
-  id: string,
-): Promise<GetTravellerByIdResponse> => {
-  const cookieStore = await cookies();
+// export async function name(params:type) {
 
-  const { data } = await instance.get<GetTravellerByIdResponse>(
-    `/users/${id}`,
-    {
-      headers: {
-        Cookie: cookieStore.toString(),
-      },
-    },
-  );
-
-  return data;
-};
+// }

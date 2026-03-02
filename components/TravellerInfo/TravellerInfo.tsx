@@ -1,5 +1,6 @@
 import { User } from "@/types/user";
-import css from "./TravellerInfo.module.css"; // Імпортуємо стилі
+import Link from "next/link";
+import css from "./TravellerInfo.module.css";
 import Image from "next/image";
 
 interface Props {

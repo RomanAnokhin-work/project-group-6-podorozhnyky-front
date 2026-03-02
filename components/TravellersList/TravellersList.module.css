@@ -21,8 +21,6 @@
   max-width: 335px;
 }
 
-
-
 @media screen and (min-width: 768px) {
   .travellersList {
     grid-template-columns: repeat(2, 1fr);
@@ -35,8 +33,6 @@
   .travellersListWrapper {
     padding-bottom: 48px;
   }
-
-
 }
 
 @media screen and (min-width: 1440px) {

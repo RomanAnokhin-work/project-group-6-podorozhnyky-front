@@ -6,10 +6,5 @@ import AuthNavModal from "@/components/AuthNavModal/AuthNavModal";
 export default function AuthNavModalWrapper() {
   const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <AuthNavModal
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
-    />
-  );
+  return <AuthNavModal isOpen={isOpen} onClose={() => setIsOpen(false)} />;
 }
