@@ -44,6 +44,8 @@ export async function fetchPopularStoriesPage(
 
 export async function getMe(): Promise<User> {
   const cookieStore = await cookies();
+  console.log(cookieStore);
+  
 
   const { data } = await instance.get<User>("/users/me", {
     headers: {

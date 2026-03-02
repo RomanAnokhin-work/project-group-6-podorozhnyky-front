@@ -6,9 +6,10 @@ import { useState } from 'react';
 import {
   addArticleToSaved,
   removeArticleFromSaved,
-} from '@/app/api/api';
+} from '@/lib/api/clientApi';;
 import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
 import css from './TravellersStoriesItem.module.css';
+import { useAuthStore } from '@/lib/store/authStore';
 
 type StoryOwner = {
   name?: string;
