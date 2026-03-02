@@ -36,6 +36,7 @@ type TravellersStoriesItemProps = {
   isLcpImage?: boolean;
   isAuthenticated?: boolean;
   isSaved?: boolean;
+  isOwnStory?: boolean;
   onNeedAuth?: () => void;
 };
 
@@ -44,6 +45,7 @@ export default function TravellersStoriesItem({
   isLcpImage = false,
   isAuthenticated = false,
   isSaved = false,
+  isOwnStory = false,
 }: TravellersStoriesItemProps) {
   const [saved, setSaved] = useState(isSaved);
   const [count, setCount] = useState(story.favoriteCount || 0);

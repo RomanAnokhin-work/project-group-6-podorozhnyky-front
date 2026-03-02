@@ -19,12 +19,17 @@ interface CategoryType {
   name: string;
 }
 
+interface TravellersStoriesProps {
+  stories?: StoryType[];
+  isOwnStories?: boolean;
+}
+
 const LOAD_MORE_SIZE = 3;
 const MOBILE_DESKTOP_INITIAL_SIZE = 9;
 const TABLET_INITIAL_SIZE = 8;
 const TABLET_CATEGORY_PRIORITY = ["Європа", "Азія", "Пустелі", "Африка"];
 
-const TravellersStories: React.FC = () => {
+const TravellersStories: React.FC<TravellersStoriesProps> = ({ stories: initialStories, isOwnStories = false }:TravellersStoriesProps) => {
   // Стан для історій та пагінації
   const [stories, setStories] = useState<StoryType[]>([]);
   const [page, setPage] = useState<number>(1);

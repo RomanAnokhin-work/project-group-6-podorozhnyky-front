@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 20px 0 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 375px */
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.loadMore {
+  display: block;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background-color: #4F69D9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.loadMore:hover {
+  background-color: #3d54b8;
+}
+
+/* Tablet: 768px */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Desktop: 1440px */
+@media (min-width: 1440px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
