@@ -60,7 +60,6 @@
   overflow: hidden;
   margin-bottom: 8px;
   height: 64px;
-
 }
 
 .text {
@@ -74,7 +73,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 
 .authorBlock {
   display: flex;
@@ -171,29 +169,27 @@
 .viewButton:hover,
 .saveButton:hover {
   background-color: var(--color-royal-blue);
-  color:  #fff;
+  color: #fff;
 }
 
 .viewButton:active,
 .saveButton:active {
-  background-color:  var(--color-royal-blue-darker);
+  background-color: var(--color-royal-blue-darker);
   color: #fff;
 }
 
 .viewButton:disabled,
 .saveButton:disabled {
   background-color: var(--opacity-neutral-darkest-5);
-opacity: 0.3;
-color: var(--color-neutral-darkest);
+  opacity: 0.3;
+  color: var(--color-neutral-darkest);
 }
-
 
 .bookmarkIcon {
   width: 20px;
   height: 20px;
   fill: currentColor;
 }
-
 
 @media (min-width: 768px) {
   .card {
@@ -222,25 +218,24 @@ color: var(--color-neutral-darkest);
 
   .category {
     font-weight: 600;
-font-size: 16px;
+    font-size: 16px;
   }
   .title {
-font-size: 26px;
-height: 78px;
+    font-size: 26px;
+    height: 78px;
   }
   .text {
     font-size: 18px;
-   
-}
-.storyContent {
-  max-width: 373px;
-  width: 373px;
-height: 199px;
-}
-.authorName {
-font-size: 16px;
-}
-.viewButton {
-font-size: 18px;
-}
+  }
+  .storyContent {
+    max-width: 373px;
+    width: 373px;
+    height: 199px;
+  }
+  .authorName {
+    font-size: 16px;
+  }
+  .viewButton {
+    font-size: 18px;
+  }
 }

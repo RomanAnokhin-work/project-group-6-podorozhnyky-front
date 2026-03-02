@@ -5,22 +5,19 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
-import css from "./Home.module.css"
-
-
+import css from "./(main)/Home.module.css";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ['cyrillic'],
+  subsets: ["cyrillic"],
   weight: ["400", "700"],
-})
+});
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
-  subsets: ['cyrillic'],
-  weight: ['400', '600', '700']
-})
-
+  subsets: ["cyrillic"],
+  weight: ["400", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Podorozhnyky App",
@@ -37,7 +34,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${nunitoSans.variable}`}>
         <TanStackProvider>
           <AuthProvider>
-              {/* <Header />
+            {/* <Header />
         <main className={css.container} >{children}</main>
             <Footer /> */}
             {children}

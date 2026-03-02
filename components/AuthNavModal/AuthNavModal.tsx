@@ -1,6 +1,6 @@
 "use client";
 import { createPortal } from "react-dom";
-import { useEffect,} from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import css from "./AuthNavModal.module.css";
 
@@ -57,12 +57,12 @@ function AuthNavModal({ isOpen, onClose }: AuthNavModalProps) {
         </button>
         <div className={css.contentWrapper}>
           <h2 className={css.title}>Помилка під час збереження</h2>
-        <p className={css.text}>
-          Щоб зберегти статтю вам треба увійти, якщо ще немає облікового запису
-          — зареєструйтесь.
-        </p>
+          <p className={css.text}>
+            Щоб зберегти статтю вам треба увійти, якщо ще немає облікового
+            запису — зареєструйтесь.
+          </p>
         </div>
-        
+
         <div className={css.actions}>
           <button className={css.loginBtn} onClick={goToLogin}>
             Увійти

@@ -2,7 +2,11 @@ import StoryDetails from '@/components/StoryDetails/StoryDetails';
 import PopularStoriesClient from '@/components/PopularStories/PopularStoriesClient';
 import { fetchPopularStoriesPage } from '@/lib/api/clientApi';
 
-export default async function StoryPage({ params }: { params: { storyId: string } }) {
+export default async function StoryPage({
+  params,
+}: {
+  params: { storyId: string };
+}) {
   const { storyId } = await params;
 
   const { stories } = await fetchPopularStoriesPage();

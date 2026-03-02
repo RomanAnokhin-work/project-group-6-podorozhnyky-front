@@ -1,13 +1,7 @@
 import { User } from "../../types/user";
 import { instance } from "./api";
-// import { isAxiosError } from "axios";
+//import { isAxiosError } from "axios";
 import { ApiStory } from "@/types/story";
-
-
-interface LoginResponse {
-  message: string;
-  user: User;
-}
 
 interface GetUsersResponse {
   page: number;
@@ -41,8 +35,18 @@ export type PopularResponse = {
   stories: ApiStory[];
 };
 
-export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
-  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
+interface LoginResponse {
+  message: string;
+  user: User;
+}
+
+export async function fetchPopularStoriesPage(
+  page = 1,
+  perPage = 10,
+): Promise<PopularResponse> {
+  const { data } = await instance.get(
+    `/stories/popular?page=${page}&perPage=${perPage}`,
+  );
 
   return data;
 }
@@ -71,9 +75,10 @@ export const removeFavorite = async (storyId: string): Promise<User> => {
   return data.data;
 };
 
-export const getUsers = async (
-  { page, perPage }: GetUsersParams
-): Promise<GetUsersResponse> => {
+export const getUsers = async ({
+  page,
+  perPage,
+}: GetUsersParams): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {
       page,
@@ -89,7 +94,9 @@ interface GetPopularUsersResponse {
 }
 
 export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
-  const { data } = await instance.get<GetPopularUsersResponse>("/users/popular-users");
+  const { data } = await instance.get<GetPopularUsersResponse>(
+    "/users/popular-users",
+  );
   return data;
 };
 
@@ -117,3 +124,10 @@ export async function logout(): Promise<void> {
   await instance.post("/auth/logout");
 }
 export type { LoginRequest, RegisterRequest };
+
+export type ApiCategory = { _id: string; name: string };
+
+export async function fetchCategories(): Promise<ApiCategory[]> {
+  const { data } = await instance.get("/categories");
+  return data;
+}

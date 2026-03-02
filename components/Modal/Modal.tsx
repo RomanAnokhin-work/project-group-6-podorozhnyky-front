@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import { useEffect, useState, MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { logout } from '../../lib/api/clientApi'; 
-import { ReactNode } from 'react';
+import { logout } from '../../lib/api/clientApi';
 import css from './Modal.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
 
@@ -20,19 +19,19 @@ export default function Modal({ onClose }: ModalProps) {
   useEffect(() => {
     const scrollY = window.scrollY;
     document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add('bodyLock');
+    document.body.classList.add("bodyLock");
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
 
-    window.addEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.body.classList.remove('bodyLock');
-      document.body.style.top = '';
+      document.body.classList.remove("bodyLock");
+      document.body.style.top = "";
       window.scrollTo(0, scrollY);
-      window.removeEventListener('keydown', handleEscape);
+      window.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
 
@@ -41,11 +40,11 @@ export default function Modal({ onClose }: ModalProps) {
     try {
       await logout();
       useAuthStore.getState().clearIsAuthenticated();
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
       onClose();
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      console.error('Помилка при виході:', error);
+      console.error("Помилка при виході:", error);
     } finally {
       setIsLoading(false);
     }
