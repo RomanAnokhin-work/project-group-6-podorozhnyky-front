@@ -1,16 +1,12 @@
 import axios from "axios";
-
+import type { StoriesResponse } from "@/types/story";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: baseURL,
   withCredentials: true,
 });
-
-export { instance };
-
-import type { StoriesResponse } from "@/types/story";
 
 export async function fetchStories(
   page = 1,
@@ -38,6 +34,3 @@ export async function fetchStories(
 
   return (await res.json()) as StoriesResponse;
 }
-
-
-

@@ -8,7 +8,7 @@ export default function TravellersClient() {
 
   return (
     <div>
-      <h1 style={{textAlign: 'center', padding: '32px 20px 24px 20px' }}>
+      <h1 style={{ textAlign: "center", padding: "32px 20px 24px 20px" }}>
         Мандрівники
       </h1>
 

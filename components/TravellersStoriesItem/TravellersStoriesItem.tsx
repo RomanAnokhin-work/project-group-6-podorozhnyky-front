@@ -1,14 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import {
-  addArticleToSaved,
-  removeArticleFromSaved,
-} from '@/app/api/api';
-import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
-import css from './TravellersStoriesItem.module.css';
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+import { addArticleToSaved, removeArticleFromSaved } from "@/app/api/api";
+import AuthNavModal from "@/components/AuthNavModal/AuthNavModal";
+import css from "./TravellersStoriesItem.module.css";
 
 type StoryOwner = {
   name?: string;
@@ -53,11 +50,11 @@ export default function TravellersStoriesItem({
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   const categoryName =
-    (story.category as StoryCategory)?.name || (story.category as string) || '';
+    (story.category as StoryCategory)?.name || (story.category as string) || "";
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
-  const authorName = ownerSource?.name || '';
-  const authorAvatarUrl = ownerSource?.avatarUrl || '';
-  const formattedDate = new Date(story.date).toLocaleDateString('uk-UA');
+  const authorName = ownerSource?.name || "";
+  const authorAvatarUrl = ownerSource?.avatarUrl || "";
+  const formattedDate = new Date(story.date).toLocaleDateString("uk-UA");
 
   const openAuthModal = () => setShowAuthModal(true);
 
@@ -161,11 +158,7 @@ export default function TravellersStoriesItem({
             aria-pressed={saved}
             aria-label={saved ? "Видалити зі збережених" : "Додати в збережені"}
           >
-            <svg
-              className={css.bookmarkIcon}
-              aria-hidden="true"
-              
-            >
+            <svg className={css.bookmarkIcon} aria-hidden="true">
               <use href="/icons.svg#icon-bookmark" />
             </svg>
           </button>

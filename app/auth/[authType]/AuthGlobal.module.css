@@ -35,7 +35,9 @@
   width: 156px;
   height: 40px;
 }
-.logo_link:hover { opacity: 0.8; }
+.logo_link:hover {
+  opacity: 0.8;
+}
 
 .logo_icon {
   width: 22px;
