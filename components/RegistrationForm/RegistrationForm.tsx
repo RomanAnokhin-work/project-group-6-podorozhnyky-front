@@ -1,12 +1,12 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import { register, RegisterRequest } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
+import Container from "../Container/Container";
 import css from "./RegistrationForm.module.css";
 
 const validationSchema = Yup.object({
@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
     .email("Введіть коректну email-адресу"),
   password: Yup.string()
     .required("Пароль обов'язковий")
-    .min(6, "Пароль має містити мінімум 6 символів"),
+    .min(8, "Пароль має містити мінімум 8 символів"),
 });
 
 type FormValues = {
@@ -51,7 +51,11 @@ export default function RegistrationForm() {
     } catch (err: unknown) {
       let message = "Сталася помилка. Спробуйте ще раз.";
       if (err && typeof err === "object") {
-        if ("response" in err && err.response && typeof err.response === "object") {
+        if (
+          "response" in err &&
+          err.response &&
+          typeof err.response === "object"
+        ) {
           const data = (err as { response: { data?: unknown } }).response.data;
           if (data && typeof data === "object" && "message" in data) {
             message = String((data as { message: string }).message);
@@ -68,6 +72,7 @@ export default function RegistrationForm() {
 
   return (
     <section className={css.section}>
+      <Container className={css.container}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -87,7 +92,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="name"
               />
-              <ErrorMessage name="name" component="span" className={css.error} />
+              <ErrorMessage
+                name="name"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <div className={css.formGroup}>
@@ -102,7 +111,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="email"
               />
-              <ErrorMessage name="email" component="span" className={css.error} />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <div className={css.formGroup}>
@@ -117,7 +130,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="new-password"
               />
-              <ErrorMessage name="password" component="span" className={css.error} />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <button
@@ -130,6 +147,7 @@ export default function RegistrationForm() {
           </Form>
         )}
       </Formik>
+      </Container>
     </section>
   );
 }

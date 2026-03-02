@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
 import {
   addFavorite,
   deleteStory,
   fetchStoryById,
   removeFavorite,
-} from '@/lib/api/clientApi';
-import { ApiStory } from '@/types/story';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useAuthStore } from '../../lib/store/authStore';
-import Loader from '../Loader/Loader';
-import FavoriteActions from './FavoriteActions/FavoriteActions';
-import css from './StoryDetails.module.css';
+} from "@/lib/api/clientApi";
+import { ApiStory } from "@/types/story";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useAuthStore } from "../../lib/store/authStore";
+import Loader from "../Loader/Loader";
+import FavoriteActions from "./FavoriteActions/FavoriteActions";
+import css from "./StoryDetails.module.css";
 
 const StoryDetails = ({ storyId }: { storyId: string }) => {
   const [story, setStory] = useState<ApiStory | null>(null);
@@ -33,7 +33,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
 
         setStory(data);
       } catch {
-        toast.error('Помилка завантаження історії');
+        toast.error("Помилка завантаження історії");
       } finally {
         setLoading(false);
       }
@@ -43,7 +43,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
 
   const toggleFavorite = async () => {
     if (!isAuthenticated) {
-      router.push('/auth/login');
+      router.push("/auth/login");
       return;
     }
 
@@ -56,12 +56,12 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
         const res = await removeFavorite(storyId);
 
         updatedFavorites = res.savedArticles;
-        toast.success('Історію видалено із збережених');
+        toast.success("Історію видалено із збережених");
       } else {
         const res = await addFavorite(storyId);
 
         updatedFavorites = res.savedArticles;
-        toast.success('Історію збережено!');
+        toast.success("Історію збережено!");
       }
 
       // просто замінюємо популяцію
@@ -70,7 +70,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
         savedArticles: updatedFavorites,
       });
     } catch {
-      toast.error('Сталася помилка');
+      toast.error("Сталася помилка");
     } finally {
       setSaving(false);
     }
@@ -79,25 +79,25 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
   if (loading) return <Loader />;
   if (!story) return <p>Історію не знайдено</p>;
 
-  const formattedDate = new Date(story.date).toLocaleDateString('uk-UA', {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
+  const formattedDate = new Date(story.date).toLocaleDateString("uk-UA", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
   });
   const deleteHandler = async () => {
     try {
       const res = await deleteStory(storyId);
 
       if (res?.message || res?.success) {
-        toast.success('Історію видалено');
-        router.push('/stories');
+        toast.success("Історію видалено");
+        router.push("/stories");
         router.refresh();
         return;
       }
 
-      toast.error('Не вдалося видалити історію');
+      toast.error("Не вдалося видалити історію");
     } catch {
-      toast.error('Помилка під час видалення');
+      toast.error("Помилка під час видалення");
     }
   };
   return (
@@ -105,7 +105,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
       <div className={css.info}>
         <div className={css.infoDetails}>
           <p className={css.value}>
-            <strong className={css.label}>Автор статті:</strong>{' '}
+            <strong className={css.label}>Автор статті:</strong>{" "}
             {story.ownerId.name}
           </p>
           <p className={css.value}>
@@ -118,7 +118,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
 
       <Image
         className={css.image}
-        src={story.img || '/placeholder-image.png'}
+        src={story.img || "/placeholder-image.png"}
         alt={story.title}
         width={1312}
         height={874}

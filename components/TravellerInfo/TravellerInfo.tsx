@@ -1,14 +1,13 @@
 import { User } from "@/types/user";
 import Link from "next/link";
-import styles from "./TravellerInfo.module.css"; 
+import css from "./TravellerInfo.module.css";
 import Image from "next/image";
 
-interface TravellerInfoResponse {
+interface Props {
   user: User;
 }
 
-export default function TravellerInfo({ user }: TravellerInfoResponse) {
-  
+export default function TravellerInfo({ user }: Props) {
   return (
     <div className={styles.card}>
       <Image src={user.avatarUrl} 

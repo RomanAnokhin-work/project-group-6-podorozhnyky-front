@@ -1,197 +1,38 @@
-.sectionStories {
-  width: 100%;
-  max-width: 375px;
-  margin: 0 auto;
-  padding: 32px 20px 64px;
-  box-sizing: border-box;
-  background-color: #F7F9FF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.travellersStoriesWrapper {
+  margin: 40px 0 72px;
+  padding: 0 20px;
 }
 
-.storisTitle {
-  font-family: var(--second-family);
-font-weight: 700;
-font-size: 32px;
-line-height: 110%;
-letter-spacing: -0.01em;
-text-align: center;
-color: var(--color-scheme-1-text);
-margin-bottom: 40px;
-width: 335px;
-height: 35px;
-}
-
-.mobileCategorySelect {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 40px;
-}
-
-.categoryLabel {
-  font-family: var(--font-family);
-font-weight: 400;
-font-size: 16px;
-line-height: 150%;
-color: var(--color-scheme-1-text);
-margin-bottom: 8px;
-}
-
-.categorySelect {
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-  padding: 8px 48px 8px 12px;
-  font-size: 16px;
-  color: #121417;
-  background-color: transparent;
-  border: 1px solid rgba(18, 20, 23, 0.2);
-  border-radius: 8px;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23121417' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 20px;
-}
-
-.categorySelect:focus {
-  border-color: var(--color-royal-blue);
-}
-
-.filtersList {
-  display: none;
-}
-
-.filterButton {
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  height: 36px;
-  font-size: 16px;
-  cursor: pointer;
-  color: #828282;
-  padding: 6px 12px;
-  transition: color 0.2s ease;
-}
-
-.filterButtonActive {
-  color: var(--color-scheme-1-text);
-  background-color: var(--color-scheme-1-foreground);
-  border: 1px solid var(--opacity-transparent);
-}
-
-.storiesGrid {
-  margin-bottom: 40px;
+.travellersStoriesList {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-}
-
-.buttonLoadMore {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.morestories {
   width: 100%;
   max-width: 335px;
-  height: 48px;
-  display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 6px 12px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 150%;
-  color: #FFFFFF;
-  background-color: var(--color-royal-blue);
-  border: 1px solid transparent;
-  border-radius: 8px;
-  box-sizing: border-box;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  justify-items: center;
+
+  margin-bottom: 40px;
 }
 
-.morestories:hover,
-.morestories:focus {
-  background-color: #E8EEFF;
-  color: #000000;
-  border-color: var(--color-royal-blue);
-  outline: none;
-}
-
-@media (min-width: 768px) {
-  .sectionStories {
-    max-width: 100%;
-    padding: 32px 32px 80px;
+@media screen and (min-width: 768px) {
+  .travellersStoriesWrapper {
+    padding: 0 32px;
   }
 
-  .storisTitle {
-    font-size: 48px;
-    width: 704px;
-    height: 53px;
-    font-size: 48px;
-line-height: 110%;
-margin-bottom: 0;
-  }
-
-  .mobileCategorySelect {
-    display: none;
-  }
-
-  .filtersList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 48px;
-    list-style: none;
-    padding: 0;
-    width: 704px;
-    height: 36px;
-  }
-
-  .storiesGrid {
+  .travellersStoriesList {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .morestories {
-    width: fit-content;
-    min-width: 123px;
+    max-width: 704px;
   }
 }
 
-@media (min-width: 768px) {
-  .hideOnTablet {
-    display: none;
-  }
-}
-
-@media (min-width: 1440px) {
-  .sectionStories {
-    max-width: 1440px;
-    padding: 48px 64px 80px;
+@media screen and (min-width: 1440px) {
+  .travellersStoriesWrapper {
+    padding: 0 64px;
   }
 
-  .storisTitle {
-    font-size: 56px;
-  }
-
-  .filterButton {
-    font-size: 18px;
-  }
-  
-  .storiesGrid {
+  .travellersStoriesList {
     grid-template-columns: repeat(3, 1fr);
+    max-width: 1312px;
   }
-
 }
