@@ -64,7 +64,8 @@
 
 @media screen and (min-width: 1440px) {
   .wrapper {
-    padding: 48px 64px 0;
+    margin-top: 48px;
+    padding: 0 64px;
   }
 
   .content {
