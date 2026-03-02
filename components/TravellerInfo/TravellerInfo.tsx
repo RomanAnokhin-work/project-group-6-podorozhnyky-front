@@ -9,18 +9,19 @@ interface Props {
 
 export default function TravellerInfo({ user }: Props) {
   return (
-    <div className={css.wrapper}>
-      <Image
-        src={user.avatarUrl}
-        alt={user.name}
-        className={css.avatar}
-        width={199}
-        height={199}
-      />
+    <div className={styles.card}>
+      <Image src={user.avatarUrl} 
+        alt={user.name} 
+        className={styles.avatar} 
+        width="112"
+        height="112"/>
 
-      <div className={css.content}>
-        <h2 className={css.name}>{user.name}</h2>
-        <p className={css.description}>{user.description}</p>
+      <div className={styles.content}>
+        <h2 className={styles.name}>{user.name}</h2>
+        <p className={styles.description}>{user.description}</p>        
+        <Link href={`/travellers/${user._id}`} className={styles.linkButton}>
+          Переглянути профіль
+        </Link>
       </div>
     </div>
   );
