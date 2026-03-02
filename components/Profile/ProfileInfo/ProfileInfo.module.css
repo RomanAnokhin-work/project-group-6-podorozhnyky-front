@@ -1,0 +1,73 @@
+.card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 335px; /* Ширина контенту на мобілці */
+  margin: 0 auto;
+}
+
+.avatar {
+  width: 120px; /* Для профілю на мобілці зазвичай 120px */
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #1D1E21;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #494D57;
+  max-width: 311px; /* Фіксована ширина тексту */
+  margin-bottom: 24px;
+}
+
+/* ПЛАНШЕТ (768px) */
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row; /* Горизонтальний лейаут */
+    align-items: center;
+    text-align: left;
+    max-width: 704px; /* Чітко за твоїм заміром */
+    height: 199px; /* Фіксована висота як на макеті */
+    gap: 32px; /* Відступ між аватаром і текстом */
+  }
+
+  .avatar {
+    width: 199px; /* Збільшений аватар для планшета */
+    height: 199px;
+    margin-bottom: 0;
+  }
+
+  .content {
+    align-items: flex-start; /* Вирівнювання тексту по лівому краю */
+    flex: 1;
+  }
+
+  .name {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    max-width: 473px;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+}
