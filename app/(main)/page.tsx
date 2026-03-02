@@ -9,11 +9,11 @@ import AuthNavModalWrapper from "@/components/AuthNavModal/AuthNavModalWrapper";
 
 export default function Home() {
   return (
-    <main >
-      <Hero/>
-      <About/>
-      <PopularStories/>
-      <OurTravellers/>
+    <main>
+      <Hero />
+      <About />
+      <PopularStories />
+      <OurTravellers />
       <Join />
       <AuthNavModalWrapper />
     </main>

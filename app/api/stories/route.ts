@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -40,11 +40,13 @@ export async function GET(req: Request) {
   });
 }
 
-
 export async function POST(req: Request) {
   const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
-    return NextResponse.json({ message: "BACKEND_URL is not defined" }, { status: 500 });
+    return NextResponse.json(
+      { message: "BACKEND_URL is not defined" },
+      { status: 500 },
+    );
   }
 
   const formData = await req.formData();

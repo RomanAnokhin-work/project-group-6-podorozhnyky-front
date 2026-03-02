@@ -1,4 +1,4 @@
-import css from './ConfirmDeleteContent.module.css';
+import css from "./ConfirmDeleteContent.module.css";
 
 type Props = {
   onConfirm: () => void;

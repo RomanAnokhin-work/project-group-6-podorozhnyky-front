@@ -8,10 +8,9 @@ type Props = {
 const NotesLayout = ({ children, switcher }: Props) => {
   return (
     <section>
-      <ProfileInfo/>
+      <ProfileInfo />
       <div>{switcher}</div>
       <div>{children}</div>
-      
     </section>
   );
 };

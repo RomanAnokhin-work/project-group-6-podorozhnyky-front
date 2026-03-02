@@ -1,5 +1,4 @@
-import css from './AuthFooter.module.css';
-
+import css from "./AuthFooter.module.css";
 
 export default function AuthFooter() {
   return (

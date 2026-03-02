@@ -3,15 +3,15 @@
   flex-direction: column;
   align-items: center;
   padding: 32px 32px 0px 32px;
-  background-color: #f8fbff; 
-  border-radius: 4px; 
+  background-color: #f8fbff;
+  border-radius: 4px;
   max-width: 440px;
   margin: 0 auto;
   text-align: center;
 }
 
 .avatar {
-  border-radius: 50%; 
+  border-radius: 50%;
   object-fit: cover;
   margin-bottom: 24px;
 }
@@ -28,44 +28,41 @@
   font-size: 16px;
   line-height: 1.5;
   color: #333333;
-  max-width: 320px; 
+  max-width: 320px;
 }
 
 @media (min-width: 768px) {
   .profile {
-    flex-direction: row; 
-    text-align: left;    
-    max-width: 704px;    
+    flex-direction: row;
+    text-align: left;
+    max-width: 704px;
     padding: 40px;
-    gap: 24px;           
-    border: none;        
+    gap: 24px;
+    border: none;
     background-color: transparent;
   }
 
   .avatar {
-    margin-bottom: 0;    
-
+    margin-bottom: 0;
   }
 
-.name {
+  .name {
     font-size: 28px;
     margin-bottom: 0;
   }
-  
+
   .description {
     font-size: 16px;
-   
   }
 }
 @media (min-width: 1024px) {
   .profile {
-    max-width: 1440px; 
+    max-width: 1440px;
     padding: 48px 722px 0px 64px;
-    gap: 24px; 
+    gap: 24px;
   }
 
-
   .description {
-    max-width: 367px; 
+    max-width: 367px;
   }
 }

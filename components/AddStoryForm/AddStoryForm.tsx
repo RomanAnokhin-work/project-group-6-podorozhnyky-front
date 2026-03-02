@@ -62,20 +62,28 @@ export default function AddStoryForm() {
         cover: Yup.mixed<File>()
           .required("Додайте обкладинку")
           .test("fileSize", "Файл завеликий (макс 5MB)", (file) =>
-            file ? file.size <= MAX_MB * 1024 * 1024 : false
+            file ? file.size <= MAX_MB * 1024 * 1024 : false,
           )
           .test("fileType", "Тільки JPG/PNG/WebP", (file) =>
-            file ? ["image/jpeg", "image/png", "image/webp"].includes(file.type) : false
+            file
+              ? ["image/jpeg", "image/png", "image/webp"].includes(file.type)
+              : false,
           ),
-        title: Yup.string().trim().required("Вкажіть заголовок").max(80, "Максимум 80 символів"),
+        title: Yup.string()
+          .trim()
+          .required("Вкажіть заголовок")
+          .max(80, "Максимум 80 символів"),
         category: Yup.string().required("Оберіть категорію"),
         description: Yup.string()
           .trim()
           .required("Вкажіть короткий опис")
           .max(DESC_MAX, `Максимум ${DESC_MAX} символів`),
-        article: Yup.string().trim().required("Вкажіть текст історії").max(2500, "Максимум 2500 символів"),
+        article: Yup.string()
+          .trim()
+          .required("Вкажіть текст історії")
+          .max(2500, "Максимум 2500 символів"),
       }),
-    []
+    [],
   );
 
   return (
@@ -95,13 +103,18 @@ export default function AddStoryForm() {
             formData.append("article", values.article);
 
             // когда бек будет готов:
-             formData.append("description", values.description);
+            formData.append("description", values.description);
 
-            const res = await fetch("/api/stories", { method: "POST", body: formData, credentials: "include" });
+            const res = await fetch("/api/stories", {
+              method: "POST",
+              body: formData,
+              credentials: "include",
+            });
             if (!res.ok) throw new Error("Failed");
 
             const json = await res.json();
-            const id = json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
+            const id =
+              json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
 
             // по ТЗ: редирект на /stories/[storyId]
             if (id) router.push(`/stories/${id}`);
@@ -114,7 +127,16 @@ export default function AddStoryForm() {
           }
         }}
       >
-        {({ isValid, dirty, isSubmitting, setFieldValue, setFieldTouched, values, errors, touched }) => (
+        {({
+          isValid,
+          dirty,
+          isSubmitting,
+          setFieldValue,
+          setFieldTouched,
+          values,
+          errors,
+          touched,
+        }) => (
           <>
             <Form className={css.form}>
               <div className={css.left}>
@@ -125,11 +147,24 @@ export default function AddStoryForm() {
                   <div className={css.coverBox}>
                     {previewUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={previewUrl} alt="cover" className={css.coverImg} />
+                      <img
+                        src={previewUrl}
+                        alt="cover"
+                        className={css.coverImg}
+                      />
                     ) : (
                       <div className={css.coverPlaceholder} aria-hidden>
-                        <svg className={css.placeholderIcon} viewBox="0 0 64 64" fill="none">
-                          <circle cx="26" cy="28" r="4" fill="rgba(255, 255, 255, 1)" />
+                        <svg
+                          className={css.placeholderIcon}
+                          viewBox="0 0 64 64"
+                          fill="none"
+                        >
+                          <circle
+                            cx="26"
+                            cy="28"
+                            r="4"
+                            fill="rgba(255, 255, 255, 1)"
+                          />
                           <path
                             d="M16 46L28 34L36 42L42 36L56 50H16Z"
                             fill="rgba(255, 251, 251, 1)"
@@ -189,7 +224,11 @@ export default function AddStoryForm() {
                       disabled={catLoading || !!catError}
                     >
                       <option value="">
-                        {catLoading ? "Завантаження..." : catError ? "Помилка" : "Категорія"}
+                        {catLoading
+                          ? "Завантаження..."
+                          : catError
+                            ? "Помилка"
+                            : "Категорія"}
                       </option>
 
                       {!catLoading &&
@@ -224,7 +263,8 @@ export default function AddStoryForm() {
                     maxLength={DESC_MAX}
                   />
                   <div className={css.uploadHint}>
-                    Лишилось символів: {DESC_MAX - (values.description?.length ?? 0)}
+                    Лишилось символів:{" "}
+                    {DESC_MAX - (values.description?.length ?? 0)}
                   </div>
                   <div className={css.error}>
                     <ErrorMessage name="description" />
@@ -250,12 +290,22 @@ export default function AddStoryForm() {
                 <button
                   type="submit"
                   className={css.primaryBtn}
-                  disabled={!isValid || !dirty || isSubmitting || catLoading || !!catError}
+                  disabled={
+                    !isValid ||
+                    !dirty ||
+                    isSubmitting ||
+                    catLoading ||
+                    !!catError
+                  }
                 >
                   {isSubmitting ? "Збереження..." : "Зберегти"}
                 </button>
 
-                <button type="button" className={css.secondaryBtn} onClick={() => router.back()}>
+                <button
+                  type="button"
+                  className={css.secondaryBtn}
+                  onClick={() => router.back()}
+                >
                   Відмінити
                 </button>
               </div>
@@ -263,10 +313,11 @@ export default function AddStoryForm() {
           </>
         )}
       </Formik>
-       {/* ✅ Модалка ошибки сохранения */}
-        <AuthNavModal
-          isOpen={saveErrorOpen}
-          onClose={() => setSaveErrorOpen(false)}/>
+      {/* ✅ Модалка ошибки сохранения */}
+      <AuthNavModal
+        isOpen={saveErrorOpen}
+        onClose={() => setSaveErrorOpen(false)}
+      />
     </div>
   );
 }

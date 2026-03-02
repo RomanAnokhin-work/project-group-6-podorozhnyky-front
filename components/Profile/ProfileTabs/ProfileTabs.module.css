@@ -1,14 +1,14 @@
 .container {
   /* Обов'язково додаємо px, інакше браузер ігнорує властивість */
-  width: 100%; 
-  max-width: 335px; 
+  width: 100%;
+  max-width: 335px;
   height: 48px;
   margin: 32px 20px 40px 20px;
 }
 
 .tabsWrapper {
   display: flex;
-  background-color: #EEF4FF; /* Колір з інспектора */
+  background-color: #eef4ff; /* Колір з інспектора */
   padding: 4px; /* Внутрішній відступ з інспектора */
   border-radius: 12px;
   gap: 4px;
@@ -34,8 +34,8 @@
 }
 
 .active {
-  background-color: #FFFFFF; /* Білий фон для активної кнопки */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05); 
+  background-color: #ffffff; /* Білий фон для активної кнопки */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* --- Tablet (768px) --- */
@@ -50,8 +50,7 @@
 @media (min-width: 1440px) {
   .container {
     /* Точні розміри з твого інспектора */
-    width: 422px; 
-    height: 52px; 
-    
+    width: 422px;
+    height: 52px;
   }
 }

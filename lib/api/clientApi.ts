@@ -35,8 +35,18 @@ export type PopularResponse = {
   stories: ApiStory[];
 };
 
-export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
-  const {data} = await instance.get(`api/stories/popular?page=${page}&perPage=${perPage}`);
+interface LoginResponse {
+  message: string;
+  user: User;
+}
+
+export async function fetchPopularStoriesPage(
+  page = 1,
+  perPage = 10,
+): Promise<PopularResponse> {
+  const { data } = await instance.get(
+    `/stories/popular?page=${page}&perPage=${perPage}`,
+  );
 
   return data;
 }
@@ -52,20 +62,21 @@ export const deleteStory = async (storyId: string) => {
 };
 
 export const addFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.patch('/stories/saved', { storyId });
+  const { data } = await instance.patch("/stories/saved", { storyId });
   return data.data;
 };
 
 export const removeFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.delete('/stories/saved', {
-    data: { storyId }
+  const { data } = await instance.delete("/stories/saved", {
+    data: { storyId },
   });
   return data.data;
 };
 
-export const getUsers = async (
-  { page, perPage }: GetUsersParams
-): Promise<GetUsersResponse> => {
+export const getUsers = async ({
+  page,
+  perPage,
+}: GetUsersParams): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {
       page,
@@ -81,7 +92,9 @@ interface GetPopularUsersResponse {
 }
 
 export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
-  const { data } = await instance.get<GetPopularUsersResponse>("/users/popular-users");
+  const { data } = await instance.get<GetPopularUsersResponse>(
+    "/users/popular-users",
+  );
   return data;
 };
 
