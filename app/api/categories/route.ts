@@ -3,7 +3,10 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
-    return NextResponse.json({ message: "BACKEND_URL is not defined" }, { status: 500 });
+    return NextResponse.json(
+      { message: "BACKEND_URL is not defined" },
+      { status: 500 },
+    );
   }
 
   const res = await fetch(`${backendUrl}/categories`, {
@@ -14,6 +17,8 @@ export async function GET() {
   const text = await res.text();
   return new NextResponse(text, {
     status: res.status,
-    headers: { "content-type": res.headers.get("content-type") ?? "application/json" },
+    headers: {
+      "content-type": res.headers.get("content-type") ?? "application/json",
+    },
   });
 }

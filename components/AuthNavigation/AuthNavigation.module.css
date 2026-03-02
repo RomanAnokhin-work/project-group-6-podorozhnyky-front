@@ -37,8 +37,12 @@
   transition: opacity 0.2s ease;
 }
 
-.logoutButton:hover { opacity: 0.8; }
-.logoutButton:active { opacity: 0.6; }
+.logoutButton:hover {
+  opacity: 0.8;
+}
+.logoutButton:active {
+  opacity: 0.6;
+}
 
 .logoutIcon {
   width: 20px;
@@ -59,7 +63,9 @@
   padding: 4px 10px;
   height: 35px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .loginButton {
@@ -101,7 +107,9 @@
   padding: 14px 24px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   text-align: center;
   width: 100%;
   border: none;

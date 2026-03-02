@@ -6,14 +6,20 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
-    return NextResponse.json({ message: "BACKEND_URL is not defined" }, { status: 500 });
+    return NextResponse.json(
+      { message: "BACKEND_URL is not defined" },
+      { status: 500 },
+    );
   }
 
   const cookieStore = await cookies();
-    const accessToken = cookieStore.get("accessToken")?.value;
-    
+  const accessToken = cookieStore.get("accessToken")?.value;
+
   if (!accessToken) {
-    return NextResponse.json({ message: "Missing access token" }, { status: 401 });
+    return NextResponse.json(
+      { message: "Missing access token" },
+      { status: 401 },
+    );
   }
 
   // Забираем форму от клиента (img/title/category/article)

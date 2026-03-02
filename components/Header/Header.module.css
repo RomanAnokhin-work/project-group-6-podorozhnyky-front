@@ -31,7 +31,9 @@
   height: 40px;
 }
 
-.logo_link:hover { opacity: 0.8; }
+.logo_link:hover {
+  opacity: 0.8;
+}
 
 .logo_icon {
   width: 22px;
@@ -81,7 +83,7 @@
   display: none;
   align-items: center;
   gap: 12px;
-  margin-left: auto; 
+  margin-left: auto;
 }
 
 .publishButton {
@@ -100,7 +102,9 @@
   line-height: 1.5;
   color: #000;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   white-space: nowrap;
 }
 
@@ -110,7 +114,7 @@
 }
 
 .publishButton:active {
-  background: #1A2A5A;
+  background: #1a2a5a;
   color: #fff;
 }
 
@@ -135,7 +139,9 @@
   transition: opacity 0.2s ease;
 }
 
-.mobileBurger:hover { opacity: 0.8; }
+.mobileBurger:hover {
+  opacity: 0.8;
+}
 
 .burgerButton {
   display: none;
@@ -152,21 +158,32 @@
   margin-left: 16px;
 }
 
-.burgerButton:hover { opacity: 0.8; }
+.burgerButton:hover {
+  opacity: 0.8;
+}
 
 @media (min-width: 768px) {
   /* .header { max-width: 768px; } */
-  .tabletActions { display: flex; }
-  .burgerButton { display: flex; }
-  .mobileBurger { display: none; }
+  .tabletActions {
+    display: flex;
+  }
+  .burgerButton {
+    display: flex;
+  }
+  .mobileBurger {
+    display: none;
+  }
 
-  .logo_link { font-size: 17px; }
-  .logo_icon { width: 26px; height: 26px; }
+  .logo_link {
+    font-size: 17px;
+  }
+  .logo_icon {
+    width: 26px;
+    height: 26px;
+  }
 }
 
 @media (min-width: 1440px) {
-
-
   .desktopNav {
     display: flex;
     align-items: center;
@@ -181,8 +198,15 @@
 
   .tabletActions,
   .burgerButton,
-  .mobileBurger { display: none; }
+  .mobileBurger {
+    display: none;
+  }
 
-  .logo_link { font-size: 18px; }
-  .logo_icon { width: 28px; height: 28px; }
+  .logo_link {
+    font-size: 18px;
+  }
+  .logo_icon {
+    width: 28px;
+    height: 28px;
+  }
 }

@@ -51,7 +51,11 @@ export default function RegistrationForm() {
     } catch (err: unknown) {
       let message = "Сталася помилка. Спробуйте ще раз.";
       if (err && typeof err === "object") {
-        if ("response" in err && err.response && typeof err.response === "object") {
+        if (
+          "response" in err &&
+          err.response &&
+          typeof err.response === "object"
+        ) {
           const data = (err as { response: { data?: unknown } }).response.data;
           if (data && typeof data === "object" && "message" in data) {
             message = String((data as { message: string }).message);
@@ -87,7 +91,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="name"
               />
-              <ErrorMessage name="name" component="span" className={css.error} />
+              <ErrorMessage
+                name="name"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <div className={css.formGroup}>
@@ -102,7 +110,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="email"
               />
-              <ErrorMessage name="email" component="span" className={css.error} />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <div className={css.formGroup}>
@@ -117,7 +129,11 @@ export default function RegistrationForm() {
                 className={css.input}
                 autoComplete="new-password"
               />
-              <ErrorMessage name="password" component="span" className={css.error} />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={css.error}
+              />
             </div>
 
             <button

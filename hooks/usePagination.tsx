@@ -36,7 +36,10 @@ export function usePagination() {
 
   const query = useQuery({
     queryKey: ["travellers", backendPage, perPage, isDesktop],
-    queryFn: () => import("@/lib/api/clientApi").then(m => m.getUsers({ page: backendPage, perPage })),
+    queryFn: () =>
+      import("@/lib/api/clientApi").then((m) =>
+        m.getUsers({ page: backendPage, perPage }),
+      ),
     enabled: isDesktop !== null,
     placeholderData: keepPreviousData,
   });

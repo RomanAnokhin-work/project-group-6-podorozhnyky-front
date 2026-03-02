@@ -9,31 +9,31 @@ import type { ApiStory } from "@/types/story";
 
 const ITEMS_FOR_LAYOUT = 4;
 
-export default  function PopularStories() {
-const [stories, setStories] = useState<ApiStory[]>([]);
+export default function PopularStories() {
+  const [stories, setStories] = useState<ApiStory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
- useEffect(() => {
-  async function loadStories() {
-    try {
-      setLoading(true);
-      setError(null);
+  useEffect(() => {
+    async function loadStories() {
+      try {
+        setLoading(true);
+        setError(null);
 
-      console.log("fetch popular start");
-      const data = await fetchPopularStoriesPage(1, ITEMS_FOR_LAYOUT);
-      console.log("fetch popular done", data);
+        console.log("fetch popular start");
+        const data = await fetchPopularStoriesPage(1, ITEMS_FOR_LAYOUT);
+        console.log("fetch popular done", data);
 
-      setStories(data?.stories ?? []);
-    } catch (e) {
-      console.log("fetch popular error", e);
-      setError("Не вдалося завантажити історії");
-    } finally {
-      setLoading(false);
+        setStories(data?.stories ?? []);
+      } catch (e) {
+        console.log("fetch popular error", e);
+        setError("Не вдалося завантажити історії");
+      } finally {
+        setLoading(false);
+      }
     }
-  }
-  loadStories();
-}, []);
+    loadStories();
+  }, []);
 
   return (
     <Container className={css.container}>
