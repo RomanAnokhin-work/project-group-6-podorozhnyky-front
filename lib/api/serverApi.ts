@@ -10,6 +10,11 @@ export type PopularResponse = {
   totalItems: number;
   stories: ApiStory[];
 };
+
+interface GetTavellerByIdResponse {
+  user: User;
+  articles: ApiStory[];
+}
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function fetchPopularStoriesPage(
@@ -93,9 +98,9 @@ export const getSavedStories = async () => {
     return [];
   }
 };
-export async function getTravellerById(id: string): Promise<User> {
+export async function getTravellerById(id: string): Promise<GetTavellerByIdResponse> {
   const cookieStore = await cookies();
-  const { data } = await instance.get<User>(`/users/${id}`, {
+  const { data } = await instance.get<GetTavellerByIdResponse>(`/users/${id}`, {
     headers: { Cookie: cookieStore.toString() },
   });
   return data;
