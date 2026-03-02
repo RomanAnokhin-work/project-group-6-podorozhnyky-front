@@ -5,7 +5,7 @@ export const runtime = "nodejs";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { storyId: string } },
+  { params }: { params: Promise<{ storyId: string }> },
 ) {
   const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
@@ -26,8 +26,9 @@ export async function PATCH(
   }
 
   const formData = await req.formData();
+  const { storyId } = await params;
 
-  const res = await fetch(`${backendUrl}/stories/${params.storyId}`, {
+  const res = await fetch(`${backendUrl}/stories/${storyId}`, {
     method: "PATCH",
     body: formData,
     headers: {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import ConfirmDeleteContent from "../../ConfirmDeleteContent/ConfirmDeleteContent";
 import Modal from "../../Modal/Modal";
 import css from "./FavoriteActions.module.css";

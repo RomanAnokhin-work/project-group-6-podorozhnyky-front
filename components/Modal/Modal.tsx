@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState, MouseEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { logout } from '../../lib/api/clientApi';
-import css from './Modal.module.css';
-import { useAuthStore } from '@/lib/store/authStore';
+import { useEffect, useState, MouseEvent, ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { logout } from "../../lib/api/clientApi";
+import css from "./Modal.module.css";
+import { useAuthStore } from "@/lib/store/authStore";
 
 interface ModalProps {
+  children: ReactNode;
   onClose: () => void;
   children: ReactNode;
 }

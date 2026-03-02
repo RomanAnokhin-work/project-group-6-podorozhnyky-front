@@ -5,7 +5,7 @@ import { fetchPopularStoriesPage } from '@/lib/api/clientApi';
 export default async function StoryPage({
   params,
 }: {
-  params: { storyId: string };
+  params: Promise<{ storyId: string }>;
 }) {
   const { storyId } = await params;
 

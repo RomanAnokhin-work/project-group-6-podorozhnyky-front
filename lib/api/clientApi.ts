@@ -75,10 +75,21 @@ export const removeFavorite = async (storyId: string): Promise<User> => {
   return data.data;
 };
 
-export const getUsers = async ({
-  page,
-  perPage,
-}: GetUsersParams): Promise<GetUsersResponse> => {
+export const addArticleToSaved = async (articleId: string) => {
+  const { data } = await instance.patch('/me/saved-articles', { articleId });
+  return data;
+};
+
+export const removeArticleFromSaved = async (articleId: string) => {
+  const { data } = await instance.delete('/me/saved-articles', {
+    data: { articleId },
+  });
+  return data;
+};
+
+export const getUsers = async (
+  { page, perPage }: GetUsersParams
+): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {
       page,
