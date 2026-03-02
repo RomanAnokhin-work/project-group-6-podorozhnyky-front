@@ -29,7 +29,10 @@ export default function AddStoryForm({ initialValues, onSubmit }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+if (!title.trim()) {
+  alert("Введіть назву");
+  return;
+}
     onSubmit({
       title,
       content,
@@ -60,7 +63,12 @@ export default function AddStoryForm({ initialValues, onSubmit }: Props) {
       {/*  Відображення зображення */}
       {image && (
         <div>
-          <img src={image} alt="Story preview" width={300} />
+         <img
+  src={image}
+  alt="Story preview"
+  width={300}
+  onError={(e) => (e.currentTarget.src = "/placeholder.png")}
+/>
         </div>
       )}
 

@@ -84,12 +84,12 @@ interface GetPopularUsersResponse {
 }
 
 export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
-  const { data } = await instance.get<GetPopularUsersResponse>("/users/popular-users");
+  const { data } = await instance.get<GetPopularUsersResponse>(`/users/popular-users`);
   return data;
 };
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.get<CheckSessionResponse>("/auth/session");
+  const { data } = await instance.get<CheckSessionResponse>(`/auth/session`);
   return data;
 }
 

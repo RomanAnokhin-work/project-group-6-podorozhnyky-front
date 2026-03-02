@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+const baseURL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 const instance = axios.create({
   baseURL: baseURL,
@@ -17,9 +17,8 @@ export async function fetchStories(
   perPage = 10,
   category?: string,
 ): Promise<StoriesResponse> {
-  const backendUrl = process.env.BACKEND_URL;
-  if (!backendUrl) throw new Error("BACKEND_URL is not defined in .env.local");
-
+ const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+ if (!backendUrl) throw new Error("API URL is not defined");
   const qs = new URLSearchParams({
     page: String(page),
     perPage: String(perPage),
