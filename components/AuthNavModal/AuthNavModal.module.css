@@ -1,160 +1,184 @@
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  overflow: hidden;
-}
-
 .backdrop {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4); 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(17, 17, 17, 0.4); 
   backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 3000;
-  padding: 20px; 
 }
 
-.modal {
+.modalContainer {
   position: relative;
-  background: var(--background-modal);
-  border-radius: 24px;
-  padding: 64px 20px 40px;
-  width: 100%; 
+  width: 100%;
   max-width: 335px; 
+  background-color: var(--background-modal, #F7F9FF); 
+  border-radius: 20px;
+  padding: 0;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box; 
+  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.closeBtn {
+/* --- Кнопка закрытия и фикс для крестика --- */
+.closeButton {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.25s ease;
+  z-index: 10;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 250ms ease; 
 }
 
 .closeIcon {
   width: 32px;
   height: 32px;
-  stroke: var(--color-neutral-darkest);
+  display: block;
+  flex-shrink: 0;
+  stroke: var(--color-neutral-darkest, #111111); 
   fill: none;
+  transition: stroke 250ms ease; 
 }
 
-.contentWrapper {
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: var(--opacity-neutral-darkest-5, #E0E0E0); 
+  outline: none;
+}
+
+
+.closeButton:hover .closeIcon,
+.closeButton:focus .closeIcon {
+  stroke: var(--color-neutral-darkest, #111111); 
+}
+
+/* --- Контент --- */
+.content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 16px;
+  padding: 48px 24px 0; 
   margin-bottom: 32px;
 }
 
 .title {
-  font-family: var(--second-family);
-  font-weight: 700;
+  font-family: var(--font-nunito-sans, sans-serif);
   font-size: 26px;
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--color-neutral-darkest);
+  color: var(--text-modal, #111111);
+  margin: 0;
 }
 
 .text {
-  font-family: var(--font-family);
-  font-weight: 400;
   font-size: 16px;
-  line-height: 1.5;
-  color: var(--text-modal);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-modal, #111111);
+  margin: 0;
 }
 
-.actions {
+/* --- Кнопки действий --- */
+.buttonGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  padding: 0 24px 32px; 
 }
 
-.loginBtn,
-.registerBtn {
-  width: 100%; 
-  height: 48px;
+.cancelButton {
+  width: 100%;
+  padding: 16px;
   border-radius: 12px;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
+  border: none;
   cursor: pointer;
-  transition: all 0.25s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: var(--opacity-neutral-darkest-5, #E0E0E0);
+  color: var(--color-neutral-darkest, #111111);
+  font-size: 16px;
+  font-weight: 500;
+  transition: opacity 0.25s ease;
 }
 
-.loginBtn {
-  border: 1px solid var(--color-scheme-2-border);
-  background: var(--opacity-neutral-darkest-5);
-  color: var(--color-neutral-darkest);
+.cancelButton:hover,
+.cancelButton:focus {
+  opacity: 0.8;
+  outline: none;
 }
 
-.registerBtn {
-  border: 1px solid var(--color-royal-blue);
-  background: var(--color-royal-blue);
-  color: var(--color-white);
+.confirmButton {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--background-button, #407BFF);
+  color: var(--color-white, #FFFFFF);
+  font-size: 16px;
+  font-weight: 500;
+  transition: opacity 0.25s ease;
 }
 
-.loginBtn:hover {
-  background: var(--color-royal-blue);
-  color: var(--color-white);
-  border-color: transparent;
+.confirmButton:hover,
+.confirmButton:focus {
+  opacity: 0.9;
+  outline: none;
 }
 
-.registerBtn:hover {
-  background: var(--color-royal-blue-lighter);
-  color: var(--color-neutral-darkest);
+/* АДАПТИВ (Mobile Adaptive 375px) */
+@media screen and (min-width: 375px) {
+  .modalContainer {
+    max-width: 335px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-/* --- ТАБЛЕТКА (від 768px) --- */
+/* АДАПТИВ (Tablet 768px) */
 @media screen and (min-width: 768px) {
-  .modal {
+  .modalContainer {
     max-width: 704px;
-    padding: 64px 32px;
+    border-radius: 24px;
   }
-
-  .actions {
-    flex-direction: row;
-    justify-content: center;
-    gap: 24px;
+  .closeButton { 
+    top: 24px; 
+    right: 24px; 
   }
-
-  .loginBtn,
-  .registerBtn {
-    width: 200px;
+  .content { 
+    padding: 64px 32px 0; 
+    gap: 32px; 
+  }
+  .title { 
+    font-size: 32px; 
+  }
+  .buttonGroup { 
+    flex-direction: row; 
+    justify-content: center; 
+    gap: 24px; 
+    padding: 0 32px 64px; 
+  }
+  .cancelButton, 
+  .confirmButton { 
+    width: 200px; 
   }
 }
 
-/* --- ДЕСКТОП (від 1440px) --- */
+/* АДАПТИВ (Desktop 1440px) */
 @media screen and (min-width: 1440px) {
-  .modal {
-    max-width: 768px;
-    padding: 80px 64px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .text {
-    font-size: 18px;
+  .modalContainer { 
+    max-width: 768px; 
   }
 }
