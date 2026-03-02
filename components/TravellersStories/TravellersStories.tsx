@@ -1,7 +1,10 @@
+"use client";
+
 import { ApiStory } from "@/types/story";
 import TravellersStoriesItem from "../TravellersStoriesItem/TravellersStoriesItem";
 import Button from "../Button/Button";
 import css from "./TravellersStories.module.css";
+import { useAuthStore } from "@/lib/store/authStore";
 
 interface Props {
   stories: ApiStory[];
@@ -18,7 +21,9 @@ const TravellersStories = ({
   onLoadMore,
   isFetching = false,
 }: Props) => {
-  if (stories.length === 0) {
+  const { isAuthenticated, user } = useAuthStore();
+
+  if (!stories) {
     return <p>Немає історій</p>;
   }
 
@@ -27,7 +32,11 @@ const TravellersStories = ({
       <ul className={css.travellersStoriesList}>
         {stories.map((story) => (
           <li key={story._id} className={css.travellersStoriesItem}>
-            <TravellersStoriesItem story={story} />
+            <TravellersStoriesItem
+              story={story}
+              isAuthenticated={isAuthenticated}
+              isSaved={user?.savedArticles?.includes(story._id) ?? false}
+            />
           </li>
         ))}
       </ul>
