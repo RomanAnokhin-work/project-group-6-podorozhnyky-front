@@ -77,7 +77,7 @@
   .saveSection {
     max-width: 418px;
     flex-shrink: 0;
-    margin-top: 48px;
+    /* margin-top: 48px; */
   }
   .saveTitle {
     font-size: 26px;

@@ -14,6 +14,8 @@ import toast from "react-hot-toast";
 import { useAuthStore } from "../../lib/store/authStore";
 import Loader from "../Loader/Loader";
 import FavoriteActions from "./FavoriteActions/FavoriteActions";
+import Container from "../Container/Container";
+import PopularStories from "../PopularStories/PopularStories";
 import css from "./StoryDetails.module.css";
 
 const StoryDetails = ({ storyId }: { storyId: string }) => {
@@ -101,43 +103,53 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
     }
   };
   return (
-    <div className={css.storyDetails}>
-      <div className={css.info}>
-        <div className={css.infoDetails}>
-          <p className={css.value}>
-            <strong className={css.label}>Автор статті:</strong>{" "}
-            {story.ownerId.name}
-          </p>
-          <p className={css.value}>
-            <strong className={css.label}>Опубліковано:</strong> {formattedDate}
-          </p>
+    <section className={css.storyDetails}>
+      <Container className={css.container}>
+        <div className={css.info}>
+          <div className={css.block_title}>
+            <h2 className={css.title}>{story.title}</h2>
+          </div>
+          <div className={css.infoDetails}>
+            <div className={css.info_text}>
+              <p className={css.value}>
+                <strong className={css.label}>Автор статті </strong>{" "}
+                {story.ownerId.name}
+              </p>
+              <p className={css.value}>
+                <strong className={css.label}>Опубліковано </strong>{" "}
+                {formattedDate}
+              </p>
+            </div>
+            <div className={css.block_category}>
+              <p className={css.infoCategory}>{story.category.name}</p>
+            </div>
+          </div>
         </div>
 
-        <p className={css.infoCategory}>{story.category.name}</p>
-      </div>
-
-      <Image
-        className={css.image}
-        src={story.img || "/placeholder-image.png"}
-        alt={story.title}
-        width={1312}
-        height={874}
-      />
-
-      <div className={css.content}>
-        <p className={css.article}>{story.article}</p>
-
-        <FavoriteActions
-          storyId={storyId}
-          isAuthenticated={isAuthenticated}
-          isFavorite={isFavorite}
-          saving={saving}
-          onToggle={toggleFavorite}
-          isOwner={user?._id === story.ownerId._id}
-          onDelete={deleteHandler}
+        <Image
+          className={css.image}
+          src={story.img || "/placeholder-image.png"}
+          alt={story.title}
+          width={1312}
+          height={874}
         />
-      </div>
-    </div>
+
+        <div className={css.content}>
+          <p className={css.article}>{story.article}</p>
+
+          <FavoriteActions
+            storyId={storyId}
+            isAuthenticated={isAuthenticated}
+            isFavorite={isFavorite}
+            saving={saving}
+            onToggle={toggleFavorite}
+            isOwner={user?._id === story.ownerId._id}
+            onDelete={deleteHandler}
+          />
+        </div>
+        <PopularStories />
+      </Container>
+    </section>
   );
 };
 
