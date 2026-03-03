@@ -190,6 +190,12 @@
   height: 20px;
   fill: currentColor;
 }
+.editIcon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  margin: 22px 15px 15px 15px;
+}
 
 @media (min-width: 768px) {
   .card {

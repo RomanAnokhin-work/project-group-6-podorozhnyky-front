@@ -31,17 +31,17 @@ export default function ProfileInfo() {
   const { avatarUrl, description, name } = user;
 
   return (
-    <div className={css.profile}>
+    <div className={css.wrapper}>
       <Image
+        src={user.avatarUrl}
+        alt={user.name}
         className={css.avatar}
         width={199}
         height={199}
-        src={avatarUrl}
-        alt={name}
       />
-      <div>
-        <h1 className={css.name}>{name}</h1>
-        <p className={css.description}>{description}</p>
+      <div className={css.content}>
+        <h2 className={css.name}>{user.name}</h2>
+        <p className={css.description}>{user.description}</p>
       </div>
     </div>
   );

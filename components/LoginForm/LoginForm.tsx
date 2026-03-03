@@ -84,7 +84,7 @@ function LoginForm() {
               <Field
                 className={css.input}
                 id={`${fieldId}-email`}
-                type="email"
+                // type="email"
                 name="email"
                 placeholder="hello@podorozhnyky.ua"
               />

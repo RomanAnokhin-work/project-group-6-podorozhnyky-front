@@ -41,10 +41,15 @@
 }
 
 @media (min-width: 768px) {
+  /* .content{
+    flex-direction: row;
+  } */
 .wrapper {
     width: 704px; 
-    margin: 32px auto;
-    padding: 64px 32px;
+    /* margin: 32px auto;
+    padding: 64px 32px; */
+      margin: 0;
+
   }
 
   .text {
