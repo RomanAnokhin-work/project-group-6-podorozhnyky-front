@@ -2,9 +2,20 @@
 
 import TravellersList from "@/components/TravellersList/TravellersList";
 import { usePagination } from "@/hooks/usePagination";
+import { getUsers } from "@/lib/api/clientApi";
+import { User } from "@/types/user";
 
 export default function TravellersClient() {
-  const { users, page, totalPages, handleLoadMore } = usePagination();
+  const { data: users, handleLoadMore, totalPages, page} = usePagination<User>({
+  queryKey: "travellers",
+  initialSizeDesktop: 12,
+  initialSizeMobile: 8,
+  loadMoreSize: 4,
+  fetchFn: async ({ page, perPage }) => {
+    const res = await getUsers({ page, perPage });
+    return { items: res.users, totalPages: res.totalPages, page: res.page };
+  },
+});
 
   return (
     <div>

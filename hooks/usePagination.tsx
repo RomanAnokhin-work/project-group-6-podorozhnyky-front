@@ -2,13 +2,28 @@
 
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
-import { User } from "@/types/user";
 
-const LOAD_MORE_SIZE = 4;
+interface PaginationConfig<T> {
+  queryKey: string;
+  fetchFn: (params: { page: number; perPage: number }) => Promise<{
+    items: T[]; 
+    totalPages: number;
+    page: number;
+  }>;
+  initialSizeDesktop: number;
+  initialSizeMobile: number;
+  loadMoreSize: number;
+}
 
-export function usePagination() {
+export function usePagination<T>({
+  queryKey,
+  fetchFn,
+  initialSizeDesktop,
+  initialSizeMobile,
+  loadMoreSize,
+}: PaginationConfig<T>) {
   const [page, setPage] = useState(1);
-  const [users, setUsers] = useState<User[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
 
   const lastAppendedBackendPageRef = useRef<number | null>(null);
@@ -16,7 +31,6 @@ export function usePagination() {
   useEffect(() => {
     const media = window.matchMedia("(min-width: 1440px)");
     const handleChange = () => setIsDesktop(media.matches);
-
     handleChange();
     media.addEventListener("change", handleChange);
     return () => media.removeEventListener("change", handleChange);
@@ -25,21 +39,18 @@ export function usePagination() {
   useEffect(() => {
     if (isDesktop === null) return;
     setPage(1);
-    setUsers([]);
+    setData([]);
     lastAppendedBackendPageRef.current = null;
-  }, [isDesktop]);
+  }, [isDesktop, queryKey]);
 
-  const initialSize = isDesktop ? 12 : 8;
-  const perPage = page === 1 ? initialSize : LOAD_MORE_SIZE;
-  const initialPagesCovered = initialSize / LOAD_MORE_SIZE;
-  const backendPage = page === 1 ? 1 : initialPagesCovered + (page - 1);
+  const initialSize = isDesktop ? initialSizeDesktop : initialSizeMobile;
+  const perPage = page === 1 ? initialSize : loadMoreSize;
+  
+  const backendPage = page === 1 ? 1 : (initialSize / loadMoreSize) + (page - 1);
 
   const query = useQuery({
-    queryKey: ["travellers", backendPage, perPage, isDesktop],
-    queryFn: () =>
-      import("@/lib/api/clientApi").then((m) =>
-        m.getUsers({ page: backendPage, perPage }),
-      ),
+    queryKey: [queryKey, backendPage, perPage, isDesktop],
+    queryFn: () => fetchFn({ page: backendPage, perPage }),
     enabled: isDesktop !== null,
     placeholderData: keepPreviousData,
   });
@@ -52,20 +63,20 @@ export function usePagination() {
     lastAppendedBackendPageRef.current = backendPage;
 
     if (page === 1) {
-      setUsers(query.data.users);
+      setData(query.data.items);
     } else {
-      setUsers((prev) => [...prev, ...query.data.users]);
+      setData((prev) => [...prev, ...query.data.items]);
     }
   }, [query.data, page, backendPage]);
 
   const handleLoadMore = () => {
     if (!query.data || query.isFetching) return;
-    if (query.data.page >= query.data.totalPages) return;
+    if (backendPage >= query.data.totalPages) return;
     setPage((p) => p + 1);
   };
 
   return {
-    users,
+    data,
     page,
     totalPages: query.data?.totalPages,
     isFetching: query.isFetching,
