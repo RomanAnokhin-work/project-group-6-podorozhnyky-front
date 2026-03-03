@@ -138,9 +138,12 @@ export type { LoginRequest, RegisterRequest };
 
 export type ApiCategory = { _id: string; name: string };
 
-export async function fetchCategories(): Promise<ApiCategory[]> {
-  const { data } = await instance.get("/categories");
-  return data;
+export async function fetchCategories() {
+  const res = await instance.get("/categories");
+  console.log("AXIOS categories url:", res.config.baseURL, res.config.url);
+  console.log("AXIOS categories status:", res.status);
+  console.log("AXIOS categories data:", res.data);
+  return res.data;
 }
 export const getMyStories = async (page = 1, perPage = 10) => {
 

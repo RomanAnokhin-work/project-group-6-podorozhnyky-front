@@ -249,7 +249,7 @@
 }
 
 /* ===== Tablet ===== */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) {
   .container {
     padding: 72px 32px 64px;
   }
@@ -265,7 +265,7 @@
 }
 
 /* ===== Desktop ===== */
-@media (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .container {
     padding: 72px 64px 64px;
   }

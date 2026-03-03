@@ -15,9 +15,10 @@
 
 /* ===== Cards list ===== */
 .list {
-  display: flex;
+  display: grid;
   gap: 24px;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr;
+  /* ✅ mobile: 1 колонка */
 }
 
 /* Card wrapper */
@@ -26,10 +27,7 @@
   background: var(--color-scheme-2-foreground);
   border: 0 solid var(--color-scheme-1-border);
 }
-/* по умолчанию (mobile + desktop) — показываем 3 */
-.item:nth-child(4) {
-  display: none;
-}
+
 /* ===== Footer / Load more ===== */
 .footer {
   display: none;
@@ -82,20 +80,20 @@
 }
 
 /* ===== Mobile ===== */
-@media (max-width: 767px) {
-  .list {
-    flex-wrap: wrap;
-    /* padding-bottom: 8px; */
+@media screen and (min-width: 375px) {
+
+  /* mobile: показываем только 3 */
+  .item:nth-child(n + 4) {
+    display: none;
   }
 
   .item {
-    flex: 0 0 100%;
     height: 575px;
   }
 }
 
 /* ===== Tablet ===== */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media screen and (min-width: 768px) {
   .section {
     padding: 64px 32px;
   }
@@ -105,15 +103,12 @@
   }
 
   .list {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+    /* ✅ 2 в ряд => 4 шт = 2x2 */
   }
 
   .item {
-    flex: 0 0 calc(50% - 12px);
     height: 578px;
-  }
-  /* Tablet — показываем 4 */
-  .item:nth-child(4) {
     display: block;
   }
 
@@ -125,7 +120,7 @@
 }
 
 /* ===== Desktop ===== */
-@media (min-width: 1024px) {
+@media screen and (min-width: 1440px) {
   .section {
     padding: 72px 64px;
   }
@@ -135,18 +130,21 @@
   }
 
   .list {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* margin-bottom: 40px; */
+    grid-template-columns: repeat(3, 1fr);
+    /* ✅ 3 в ряд */
   }
 
   .item {
-    flex: 0 0 calc((100% - 48px) / 3);
     height: 677px;
+  }
+
+  .item:nth-child(n + 4) {
+    display: none;
   }
 
   .footer {
     display: flex;
     justify-content: center;
   }
+
 }
