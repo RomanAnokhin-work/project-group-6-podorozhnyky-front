@@ -1,7 +1,23 @@
-export default function StoriesIdEditPage() {
-  return (
-    <div>
-      <h1>Stories Edit Page</h1>
-    </div>
+
+
+
+import AddStoryForm from "@/components/AddStoryForm/AddStoryForm";
+import Container from "@/components/Container/Container";
+import css from "@/components/AddStoryForm/AddStoryForm.module.css";
+import AddEditForm from "@/components/AddEditForm/AddEditForm";
+
+export default async function EditStoryPage({
+  params,
+}: {
+  params: Promise<{ storyId: string }>;
+}) {
+  const { storyId } = await params;
+  console.log(storyId);
+
+ return (
+    <Container className={css.container}>
+      <h1 className={css.title}>Редагувати історію</h1>
+      <AddEditForm storyId={storyId} />
+    </Container>
   );
 }
