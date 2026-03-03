@@ -2,7 +2,7 @@
 
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { useId, useState } from "react";
+import { useId } from "react";
 import css from "./LoginForm.module.css";
 import { useRouter } from "next/navigation";
 import { getMe, login, LoginRequest } from "@/lib/api/clientApi";
@@ -35,7 +35,6 @@ const LoginFormSchema = Yup.object().shape({
 function LoginForm() {
   const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
-  const [error, setError] = useState<string>("");
   const fieldId = useId();
 
   const { mutate, isPending } = useMutation({
@@ -106,6 +105,7 @@ function LoginForm() {
                   className={css.input}
                   id={`${fieldId}-password`}
                   name="password"
+                  type="password"
                   placeholder="********"
                 />
               </div>
@@ -119,9 +119,9 @@ function LoginForm() {
             <button
               type="submit"
               className={css.submitButton}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isPending}
             >
-              Увійти
+              {isPending ? "Завантаження..." : "Увійти"}
             </button>
           </Form>
         );
