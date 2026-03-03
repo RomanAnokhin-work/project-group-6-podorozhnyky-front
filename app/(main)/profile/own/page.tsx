@@ -1,13 +1,14 @@
-import TravellersStories from "@/components/Profile/TravellersStories/TravellersStories";
-import { getMyStoriesServer } from "@/lib/api/serverApi";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import ProfileStoriesClient from "../ProfileStories.client";
 
 export default async function OwnStoriesPage() {
-  const {stories} = await getMyStoriesServer();
-  
-console.log(stories)
+  const queryClient = new QueryClient();
+
   return (
-    <section>
-      <TravellersStories stories={stories} variant="own" />
-    </section>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <section>
+        <ProfileStoriesClient variant="own" />
+      </section>
+    </HydrationBoundary>
   );
 }

@@ -17,9 +17,21 @@ interface Story {
 interface Props {
   stories: ApiStory[];
   variant: 'saved' | 'own';
+  onLoadMore: ()=>void,
+  page: number;
+  totalPages:number;
+  isFetching:boolean
+
 }
 
-const TravellersStories = ({ stories, variant }: Props) => {
+const TravellersStories = ({ 
+  stories, 
+  variant, 
+  onLoadMore, 
+  page, 
+  totalPages = 0, 
+  isFetching 
+}: Props) => {
 
 if (!stories || stories.length === 0) {
     const isOwn = variant === 'own';
@@ -37,7 +49,7 @@ if (!stories || stories.length === 0) {
   }
 
   
-  return (
+ return (
     <div className={css.container}>
       <ul className={css.grid}>
         {stories.map((story) => (
@@ -51,8 +63,15 @@ if (!stories || stories.length === 0) {
         ))}
       </ul>
       
-      {stories.length >= 6 && ( 
-        <Button />
+      {/* Кнопка показується тільки якщо є ще сторінки для завантаження */}
+      {page < totalPages && ( 
+        <div className={css.buttonWrapper}> {/* Додайте обгортку для центрування, якщо треба */}
+          <Button 
+            onClick={onLoadMore}
+            isFetching={isFetching}
+          />
+
+        </div>
       )}
     </div>
   );
