@@ -6,9 +6,7 @@ export default async function OwnStoriesPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section>
         <ProfileStoriesClient variant="own" />
-      </section>
     </HydrationBoundary>
   );
 }
