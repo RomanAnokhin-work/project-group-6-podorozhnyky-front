@@ -110,7 +110,7 @@ export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
 };
 
 export async function checkSession(): Promise<CheckSessionResponse> {
-  const { data } = await instance.get<CheckSessionResponse>("/auth/session");
+  const { data } = await instance.post<CheckSessionResponse>("/auth/session");
   console.log(data);
   
   return data;
