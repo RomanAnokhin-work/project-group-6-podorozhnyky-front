@@ -5,16 +5,16 @@ import { logErrorResponse } from "../../../_utils/utils";
 import { isAxiosError } from "axios";
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ storyId: string }>;
 };
 
 export async function PATCH(request: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
-    const { id } = await params;
+    const { storyId } = await params;
     const body = await request.json();
 
-    const res = await api.patch(`/stories/${id}`, body, {
+    const res = await api.patch(`/stories/${storyId}`, body, {
       headers: {
         Cookie: cookieStore.toString(),
       },
