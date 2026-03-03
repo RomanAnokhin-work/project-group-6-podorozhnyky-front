@@ -42,12 +42,13 @@
 }
 
 .logo_text {
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1.1;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17.94px;
+  line-height: 110%;
   letter-spacing: -0.01em;
-  color: #fff;
-  white-space: nowrap;
+  color: #ffffff;
 }
 
 .desktopNav {
