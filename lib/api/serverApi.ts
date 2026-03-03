@@ -42,7 +42,7 @@ export async function fetchPopularStoriesPage(
   return (await res.json()) as PopularResponse;
 }
 
-export async function getMe(): Promise<User> {
+export async function getServerMe(): Promise<User> {
   const cookieStore = await cookies();
   console.log(cookieStore);
   
@@ -58,6 +58,8 @@ export async function getMe(): Promise<User> {
 
 export async function getMyStoriesServer(page = 1, perPage = 10) {
   const cookieStore = await cookies();
+  console.log(cookieStore);
+  
   
   const { data } = await instance.get(`/stories/own`, {
     params: {
@@ -75,7 +77,7 @@ export async function getMyStoriesServer(page = 1, perPage = 10) {
 
 export const getSavedStories = async () => {
   try {
-    const user = await getMe();
+    const user = await getServerMe();
     const savedIds = user.savedArticles || [];
     if (savedIds.length === 0) return [];
     const { data } = await instance.get("/stories");
