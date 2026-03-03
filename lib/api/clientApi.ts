@@ -74,12 +74,12 @@ export const removeFavorite = async (storyId: string): Promise<User> => {
 };
 
 export const addArticleToSaved = async (articleId: string) => {
-  const { data } = await instance.patch('/me/saved-articles', { articleId });
+  const { data } = await instance.patch('/stories/saved', { articleId });
   return data;
 };
 
 export const removeArticleFromSaved = async (articleId: string) => {
-  const { data } = await instance.delete('/me/saved-articles', {
+  const { data } = await instance.delete('/stories/saved', {
     data: { articleId },
   });
   return data;
@@ -111,6 +111,8 @@ export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
 
 export async function checkSession(): Promise<CheckSessionResponse> {
   const { data } = await instance.get<CheckSessionResponse>("/auth/session");
+  console.log(data);
+  
   return data;
 }
 
@@ -150,4 +152,18 @@ export const getMyStories = async (page = 1, perPage = 10) => {
   });
   
   return data; 
+};
+
+export const getSavedStories = async () => {
+  try {
+    const user = await getMe();
+    const savedIds = user.savedArticles || [];
+    if (savedIds.length === 0) return [];
+    const { data } = await instance.get("/stories");
+    const allStories = data.stories || data;
+    return allStories.filter((story: any) => savedIds.includes(story._id));
+  } catch (error) {
+    console.error("Error in getSavedStories:", error);
+    return [];
+  }
 };

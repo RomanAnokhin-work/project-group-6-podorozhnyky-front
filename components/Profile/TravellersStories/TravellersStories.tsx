@@ -2,6 +2,7 @@ import TravellersStoriesItem from '../../TravellersStoriesItem/TravellersStories
 import  MessageNoStories  from '@/components/MessageNoStories/MessageNoStories';
 import css from './TravellersStories.module.css';
 import Button from '@/components/Button/Button';
+import { ApiStory } from '@/types/story';
 
 interface Story {
   _id: string;
@@ -14,7 +15,7 @@ interface Story {
 }
 
 interface Props {
-  stories: Story[];
+  stories: ApiStory[];
   variant: 'saved' | 'own';
 }
 
