@@ -7,24 +7,30 @@ import type { ApiStory } from "@/types/story";
 
 export default function PopularStoriesClient({
   stories,
+  mobileLimit = 3,
+  showMoreButton = true,
 }: {
   stories: ApiStory[];
+  mobileLimit?: number;
+  showMoreButton?: boolean;
 }) {
   return (
     <>
       <ul className={css.list}>
-        {stories.map((story) => (
+        {stories.slice(0, mobileLimit).map((story) => (
           <li key={story._id} className={css.item}>
             <TravellersStoriesItem story={story} />
           </li>
         ))}
       </ul>
 
-      <div className={css.footer}>
-        <Link href="/stories" className={css.moreBtn}>
-          Переглянути всі
-        </Link>
-      </div>
+      {showMoreButton && (
+        <div className={css.footer}>
+          <Link href="/stories" className={css.moreBtn}>
+            Переглянути всі
+          </Link>
+        </div>
+      )}
     </>
   );
 }
