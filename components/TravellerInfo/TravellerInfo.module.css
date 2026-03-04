@@ -40,6 +40,7 @@
   font-size: 16px;
   line-height: 150%;
   text-align: center;
+  color: var(--color-dark-text);
 }
 
 @media screen and (min-width: 768px) {

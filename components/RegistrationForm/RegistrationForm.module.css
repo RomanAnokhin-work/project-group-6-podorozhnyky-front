@@ -21,9 +21,9 @@
 .input {
   padding: 8px 8px;
   font-size: 16px;
-  border: 1px solid var(--opacity-neutral-darkest-15);
+  border: 1px solid var(--color-footer-border-inscription);
   border-radius: 6px;
-  color: var(--color-neutral-darkest);
+  color: var(--color-dark-text);
   background: var(--opacity-transparent);
   transition: border-color 0.2s ease;
   font-family: var(--font-nunito-sans), sans-serif;
@@ -39,7 +39,7 @@
 }
 
 .input::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--color-input-placeholder);
 }
 
 .formGroup:has(.error) .input {

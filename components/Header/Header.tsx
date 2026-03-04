@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import css from "./Header.module.css";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import AuthNavigation from "../AuthNavigation/AuthNavigation";
 import Container from "../Container/Container";
 import { useAuthStore } from "@/lib/store/authStore";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 export default function Header() {
   const { isAuthenticated, user } = useAuthStore();
@@ -28,13 +29,20 @@ export default function Header() {
             <svg className={css.logo_icon} width="32" height="32">
               <use href="/icons.svg#icon-Favicon-1" />
             </svg>
-            <p className={`${css.logo_text} ${
-    isHomePage ? css.logo_white : css.logo_dark
-  }`}>Подорожники</p>
+            <p
+              className={`${css.logo_text} ${
+                isHomePage ? css.logo_white : css.logo_dark
+              }`}
+            >
+              Подорожники
+            </p>
           </Link>
 
           <nav aria-label="Main navigation" className={css.desktopNav}>
             <ul className={css.navigation}>
+              <li>
+                <ThemeSwitcher />
+              </li>
               <li>
                 <Link href="/" className={css.navigationLink}>
                   Головна

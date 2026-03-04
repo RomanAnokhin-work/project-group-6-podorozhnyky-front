@@ -50,7 +50,7 @@
     
 }
 .logo_white {
-color: var(--color-white);
+color: var(--color-white-text);
 }
 .logo_dark {
 color: var(--color-scheme-1-text);

@@ -18,6 +18,45 @@
   --color-scheme-2-border: var(--opacity-neutral-darkest-15);
   --color-scheme-1-text: var(--color-neutral-darkest);
   --color-scheme-1-foreground: var(--color-neutral-lightest);
+  --color-white-text: #fff;
+  --color-dark-text: #000;
+  --color-btn-background-active: #7a96ea;
+  --color-neutral-darkest-active: #000;
+  --color-stories-background: #e8eeff;
+  --color-btn-background-populr: #d4dced;
+  --color-btn-background-populr-hover: #4169e1;
+  --color-royal-blue-darker: #1a2a5a;
+  --color-footer-border-inscription: rgba(0, 0, 0, 0.15);
+  --color-input-placeholder: rgba(0, 0, 0, 0.6);
+}
+
+body[data-theme="dark"] {
+  --background: #010101; /* мейн - популярные истории */
+  --color-neutral-darkest: #f9fafb; /* мейн - about */
+  --color-neutral-lightest: #010101;
+  --background-footer: #010101;
+  --background-button: #4169e1;
+  --background-modal: #010101;
+  --text-modal: #e5e7eb;
+  --color-scheme-2-border: rgba(148, 163, 184, 0.4);
+  --color-scheme-1-text: #f9fafb;
+  --color-scheme-1-foreground: #010101;
+  /*  */
+  --color-royal-blue-lightest: #010101;
+  --color-royal-blue: #fff;
+  --color-white: #000;
+  --color-royal-blue-lighter: #7f7f7f;
+  --color-scheme-1-text: #fff;
+  --color-btn-background-active: #4c4c4c;
+  --color-neutral-darkest-active: #fff;
+  --color-dark-text: #fff;
+  --color-stories-background: #000; 
+  --color-btn-background-populr: rgba(255, 255, 255, 0.1);
+  --color-btn-background-populr-hover: #e8eeff;
+  --color-royal-blue-darker: #7a96ea;
+  --color-scheme-2-text: #fff;
+  --color-footer-border-inscription: #fff;
+  --color-input-placeholder: #7f7f7f;
 }
 
 html,

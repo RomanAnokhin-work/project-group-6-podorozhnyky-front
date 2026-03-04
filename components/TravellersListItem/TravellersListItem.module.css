@@ -1,6 +1,6 @@
 .card {
   width: 335px;
-  background-color: #f0f4ff;
+  background-color: var(--color-stories-background);
   border-radius: 24px;
   padding: 24px;
   display: flex;
@@ -29,7 +29,7 @@
 .name {
   font-size: 18px;
   font-weight: 600;
-  color: #000000;
+  color: var(--color-dark-text);
   margin: 0 0 16px 0;
   text-align: start;
 }
@@ -38,7 +38,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
-  color: #333333;
+  color: var(--color-dark-text);
   margin: 0 0 16px 0;
   text-align: start;
   width: 287;

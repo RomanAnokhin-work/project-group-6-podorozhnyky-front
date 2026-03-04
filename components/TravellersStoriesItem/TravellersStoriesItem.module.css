@@ -4,7 +4,7 @@
   min-height: 575px;
   border-radius: 16px;
   overflow: hidden;
-  background: #e8eeff;
+  background: var(--color-stories-background);
   color: #0f0f12;
   display: flex;
   flex-direction: column;
@@ -45,6 +45,7 @@
   line-height: 1.3;
   margin-bottom: 8px;
   font-size: 12px;
+  color: var(--color-dark-text);
 }
 
 .title {
@@ -52,7 +53,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 150%;
-  color: var(--color-scheme-1-text);
+  color: var(--color-dark-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -66,7 +67,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 150%;
-  color: var(--color-scheme-1-text);
+  color: var(--color-dark-text);
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -119,6 +120,7 @@
   gap: 8px;
   font-size: 16px;
   line-height: 150%;
+  color: var(--color-dark-text);
 }
 
 .dot {
@@ -140,7 +142,7 @@
 .viewButton {
   width: 100%;
   height: 48px;
-  background-color: #d4dced;
+  background-color: var(--color-btn-background-populr);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,19 +165,19 @@
   padding: 6px;
   width: 48px;
   height: 48px;
-  background-color: #d4dced;
+  background-color: var(--color-btn-background-populr);
 }
 
 .viewButton:hover,
 .saveButton:hover {
-  background-color: var(--color-royal-blue);
-  color: #fff;
+  background-color: var(--color-btn-background-populr-hover);
+  color: var(--color-white);
 }
 
 .viewButton:active,
 .saveButton:active {
   background-color: var(--color-royal-blue-darker);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .viewButton:disabled,
@@ -188,12 +190,12 @@
 .bookmarkIcon {
   width: 20px;
   height: 20px;
-  fill: currentColor;
+  fill: var(--color-dark-text);
 }
 .editIcon {
   width: 22px;
   height: 22px;
-  fill: currentColor;
+  fill: var(--color-dark-text);
   margin: 22px 15px 15px 15px;
 }
 

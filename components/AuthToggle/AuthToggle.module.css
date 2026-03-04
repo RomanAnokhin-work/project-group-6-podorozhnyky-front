@@ -13,7 +13,7 @@
   font-family: var(--font-nunito-sans);
   font-size: 18px;
   font-weight: 600;
-  color: #000000;
+  color: var(--color-dark-text);
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
@@ -26,9 +26,9 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #00000026;
+  background-color: var(--color-dark-text);
 }
 
 .tab:hover:not(.active) {
-  color: #00000026;
+  color: var(--color-dark-text);
 }
