@@ -81,12 +81,6 @@
 
 /* ===== Mobile ===== */
 @media screen and (min-width: 375px) {
-
-  /* mobile: показываем только 3 */
-  .item:nth-child(n + 4) {
-    display: none;
-  }
-
   .item {
     height: 575px;
   }
@@ -136,10 +130,6 @@
 
   .item {
     height: 677px;
-  }
-
-  .item:nth-child(n + 4) {
-    display: none;
   }
 
   .footer {
