@@ -23,8 +23,12 @@ export default function ConfirmModal({
   isLoading = false,
 }: ConfirmModalProps) {
   useEffect(() => {
+   
     const scrollY = window.scrollY;
+    
+
     document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     document.body.classList.add("bodyLock");
 
     const handleEscape = (e: KeyboardEvent) => {
@@ -34,8 +38,10 @@ export default function ConfirmModal({
     window.addEventListener("keydown", handleEscape);
 
     return () => {
+
       document.body.classList.remove("bodyLock");
       document.body.style.top = "";
+      document.body.style.width = "";
       window.scrollTo(0, scrollY);
       window.removeEventListener("keydown", handleEscape);
     };
