@@ -39,6 +39,27 @@ interface LoginResponse {
   message: string;
   user: User;
 }
+interface CreateStoryData {
+  cover: File;
+  title: string;
+  category: string;
+  description: string;
+  article: string;
+}
+
+
+export const createStory = async (storyData: CreateStoryData) => {
+  const formData = new FormData();
+  formData.append("img", storyData.cover);
+  formData.append("title", storyData.title);
+  formData.append("category", storyData.category);
+  formData.append("description", storyData.description);
+  formData.append("article", storyData.article);
+
+  const { data } = await instance.post("/stories", formData);
+  
+  return data;
+};
 
 export async function fetchPopularStoriesPage(
   page = 1,
