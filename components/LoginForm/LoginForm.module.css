@@ -105,6 +105,21 @@
   cursor: pointer;
 }
 
+.forgotLink {
+  position: absolute;
+  right: 12px;
+  top: 55px;
+  transform: translateY(-12px);
+  font-size: 14px;
+  color: var(--accent);
+  text-decoration: none;
+  transition: scale 0.2s ease;
+}
+.forgotLink:hover,
+.forgotLink:focus {
+  scale: 1.05;
+}
+
 .submitButton:disabled {
   opacity: 0.7;
   cursor: not-allowed;
@@ -114,6 +129,13 @@
   .label {
     font-size: 18px;
   }
+    .forgotLink {
+      position: absolute;
+      right: 14px;
+      top: 60px;
+  
+      font-size: 16px;
+    }
 
   .btn {
     font-size: 18px;
