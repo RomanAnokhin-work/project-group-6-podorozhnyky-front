@@ -52,7 +52,7 @@ export default function FavoriteActions({
           <div className={css.buttonsRow}>
             <button
               className={css.saveButton}
-              onClick={() => router.push(`/stories/saved/${storyId}/edit`)}
+              onClick={() => router.push(`/stories/${storyId}/edit`)}
             >
               Редагувати
             </button>

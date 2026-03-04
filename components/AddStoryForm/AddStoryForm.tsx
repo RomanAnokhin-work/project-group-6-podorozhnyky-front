@@ -6,10 +6,11 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
-import { fetchCategories } from "@/lib/api/clientApi";
+import { createStory, fetchCategories } from "@/lib/api/clientApi";
 import { SelectChevron } from "./SelectChevronIcon";
 import AuthNavModal from "../AuthNavModal/AuthNavModal";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import { instance } from "@/lib/api/api";
 
 type ApiCategory = { _id: string; name: string };
 
@@ -104,34 +105,26 @@ useEffect(() => {
           try {
             setSaveErrorOpen(false);
 
-            const formData = new FormData();
-            formData.append("img", values.cover as File);
-            formData.append("title", values.title);
-            formData.append("category", values.category);
-            formData.append("article", values.article);
-            formData.append("description", values.description);
-
-            const res = await fetch("/api/stories", {
-              method: "POST",
-              body: formData,
-              credentials: "include",
+          const data = await createStory({
+              cover: values.cover as File,
+              title: values.title,
+              category: values.category,
+              description: values.description,
+              article: values.article,
             });
-            if (!res.ok) throw new Error("Failed");
-
-            const json = await res.json();
-            const id =
-              json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
-
-            // по ТЗ: редирект на /stories/[storyId]
-            if (id) router.push(`/stories/${id}`);
-            else router.push("/stories");
-          } catch {
-            // ✅ по ТЗ: модалка "Помилка збереження"
-            setSaveErrorOpen(true);
-          } finally {
-            setSubmitting(false);
-          }
-        }}
+            const id = data?.story?._id ?? data?.story?.id ?? data?._id ?? data?.id;
+            if (id) {
+              router.push(`/stories/${id}`);
+            } else {
+              router.push("/stories");
+            }
+            } catch (error) {
+              console.error("Помилка при збереженні історії:", error);
+              setSaveErrorOpen(true);
+            } finally {
+              setSubmitting(false);
+            }
+}}
       >
         {({ resetForm, isValid, dirty, isSubmitting, setFieldValue, validateField,values, errors, touched }) => (
           <>
