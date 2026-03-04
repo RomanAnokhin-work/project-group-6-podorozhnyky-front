@@ -1,0 +1,27 @@
+.h2 {
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--color-neutral-darkest);
+
+  margin-top: 32px;
+  padding: 0 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .h2 {
+    font-size: 44px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .h2 {
+    font-size: 52px;
+
+    margin-top: 48px;
+    padding: 0 64px;
+  }
+}

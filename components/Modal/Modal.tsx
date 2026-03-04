@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState, MouseEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import { logout } from '../../lib/api/clientApi';
-import css from './Modal.module.css';
+import { useEffect, useState, MouseEvent } from "react";
+import { useRouter } from "next/navigation";
+import { logout } from "../../lib/api/clientApi";
+import css from "./Modal.module.css";
+import { useAuthStore } from "@/lib/store/authStore";
 
 interface ModalProps {
   onClose: () => void;
@@ -17,19 +18,19 @@ export default function Modal({ onClose }: ModalProps) {
   useEffect(() => {
     const scrollY = window.scrollY;
     document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add('bodyLock');
+    document.body.classList.add("bodyLock");
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
 
-    window.addEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.body.classList.remove('bodyLock');
-      document.body.style.top = '';
+      document.body.classList.remove("bodyLock");
+      document.body.style.top = "";
       window.scrollTo(0, scrollY);
-      window.removeEventListener('keydown', handleEscape);
+      window.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
 
@@ -37,11 +38,12 @@ export default function Modal({ onClose }: ModalProps) {
     setIsLoading(true);
     try {
       await logout();
-      localStorage.removeItem('user');
+      useAuthStore.getState().clearIsAuthenticated();
+      localStorage.removeItem("user");
       onClose();
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      console.error('Помилка при виході:', error);
+      console.error("Помилка при виході:", error);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +64,7 @@ export default function Modal({ onClose }: ModalProps) {
         >
           {/* СВГ як посилання на спрайт */}
           <svg width="24" height="24" className={css.closeIcon}>
-            <use href="/icons.svg#icon-x-close"></use>
+            <use href="/icons.svg#icon-close"></use>
           </svg>
         </button>
 

@@ -1,43 +1,27 @@
 import { User } from "@/types/user";
 import Link from "next/link";
-import styles from "./TravellerInfo.module.css"; // Імпортуємо стилі
+import css from "./TravellerInfo.module.css";
 import Image from "next/image";
 
-interface TravellerInfoResponse {
+interface Props {
   user: User;
 }
 
-export default function TravellerInfo({ user }: TravellerInfoResponse) {
-  
+export default function TravellerInfo({ user }: Props) {
   return (
-    <div className={styles.card}>
-
+    <div className={css.card}>
       <Image src={user.avatarUrl} 
         alt={user.name} 
-        className={styles.avatar} 
+        className={css.avatar} 
         width="112"
         height="112"/>
 
-      {/* <Image src="https://ftp.goit.study/img/harmoniq/users/6881563901add19ee16fcff5.webp" 
-        alt="Дмитро Романенко"
-        className={styles.avatar} 
-        width="112"
-        height="112"/> */}
-
-      <div className={styles.content}>
-        <h2 className={styles.name}>{user.name}</h2>
-        {/* <h2 className={styles.name}>Дмитро Романенко</h2> */}
-        <p className={styles.description}>{user.description}</p>
-        {/* <p className={styles.description}>
-          Привіт! Я Дмитро. Люблю знаходити приховані перлини у кожній поїздці та ділитися ними. Світ повний дивовижних відкриттів!
-        </p> */}
-        
-        <Link href={`/travellers/${user._id}`} className={styles.linkButton}>
+      <div className={css.content}>
+        <h2 className={css.name}>{user.name}</h2>
+        <p className={css.description}>{user.description}</p>        
+        <Link href={`/travellers/${user._id}`} className={css.linkButton}>
           Переглянути профіль
         </Link>
-        {/* <Link href={`/travellers`} className={styles.linkButton}>
-          Переглянути профіль
-        </Link> */}
       </div>
     </div>
   );

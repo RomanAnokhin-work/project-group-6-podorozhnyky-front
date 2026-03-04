@@ -1,7 +1,6 @@
-import css from './Footer.module.css';
-import Link from 'next/link';
-import mainCss from '@/app/Home.module.css';
-
+import css from "./Footer.module.css";
+import Link from "next/link";
+import mainCss from "@/app/(main)/Home.module.css";
 
 export default function Footer() {
   return (
@@ -12,7 +11,7 @@ export default function Footer() {
             <div className={css.logo}>
               <Link className={css.logo_link} href="/">
                 <svg className={css.logo_icon} width="23" height="23">
-                <use href="/icons.svg#icon-Favicon"/>
+                  <use href="/icons.svg#icon-Favicon" />
                 </svg>
                 <p className={css.logo_text}>Подорожники</p>
               </Link>
@@ -25,10 +24,10 @@ export default function Footer() {
                     className={css.links_icon}
                     target="_blank"
                     href="https://www.facebook.com/"
-                    aria-label='Go to Facebook'
+                    aria-label="Go to Facebook"
                   >
                     <svg className={css.footer_icon} width="32" height="32">
-                    <use href="/icons.svg#icon-Facebook" />
+                      <use href="/icons.svg#icon-Facebook" />
                     </svg>
                   </Link>
                 </li>
@@ -37,7 +36,7 @@ export default function Footer() {
                     className={css.links_icon}
                     target="_blank"
                     href="https://www.instagram.com/"
-                    aria-label='Go to Instagram'
+                    aria-label="Go to Instagram"
                   >
                     <svg className={css.footer_icon} width="32" height="32">
                       <use href="/icons.svg#icon-Instagram" />
@@ -49,7 +48,7 @@ export default function Footer() {
                     className={css.links_icon}
                     target="_blank"
                     href="https://x.com/"
-                    aria-label='Go to Twitter'
+                    aria-label="Go to Twitter"
                   >
                     <svg className={css.footer_icon} width="32" height="32">
                       <use href="/icons.svg#icon-X" />
@@ -61,7 +60,7 @@ export default function Footer() {
                     className={css.links_icon}
                     target="_blank"
                     href="https://www.youtube.com/"
-                    aria-label='Go to YouTube'
+                    aria-label="Go to YouTube"
                   >
                     <svg className={css.footer_icon} width="32" height="32">
                       <use href="/icons.svg#icon-Youtube" />
@@ -99,5 +98,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

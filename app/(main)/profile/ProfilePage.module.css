@@ -1,0 +1,35 @@
+.profileContainer {
+  /* Мобільна версія (фіксована) */
+  width: 375px; 
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+  box-sizing: border-box; /* Щоб падінги не роздували ширину */
+}
+
+.content {
+  margin-top: 32px;
+}
+
+/* Планшет (фіксована ширина від точки перелому) */
+@media (min-width: 768px) {
+  .profileContainer {
+    width: 768px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центруємо весь блок контенту */
+    margin-top: 32px;
+  }
+}
+
+/* Десктоп (фіксована ширина від точки перелому) */
+@media (min-width: 1440px) {
+  .profileContainer {
+    width: 1440px;
+    padding: 80px 100px;
+  }
+}

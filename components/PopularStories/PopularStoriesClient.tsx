@@ -5,16 +5,20 @@ import TravellersStoriesItem from "@/components/TravellersStoriesItem/Travellers
 import css from "./PopularStories.module.css";
 import type { ApiStory } from "@/types/story";
 
-export default function PopularStoriesClient({ stories }: { stories: ApiStory[] }) {
+export default function PopularStoriesClient({
+  stories,
+}: {
+  stories: ApiStory[];
+}) {
   return (
     <>
-      <div className={css.list}>
-        {stories.map((story) => (
-          <div key={story._id} className={css.item}>
-            <TravellersStoriesItem story={story} />
-          </div>
+      <ul className={css.list}>
+        {stories.map((story, index) => (
+          <li key={story._id} className={css.item}>
+            <TravellersStoriesItem story={story} isLcpImage={index < 3} />
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div className={css.footer}>
         <Link href="/stories" className={css.moreBtn}>

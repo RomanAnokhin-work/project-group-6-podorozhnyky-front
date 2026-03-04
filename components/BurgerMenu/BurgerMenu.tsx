@@ -1,15 +1,22 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import css from './BurgerMenu.module.css';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import css from "./BurgerMenu.module.css";
+import { User } from "@/types/user";
+import Image from "next/image";
 
 interface BurgerMenuProps {
   onClose: () => void;
   isAuthenticated: boolean;
+  user: User | null;
 }
 
-export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps) {
+export default function BurgerMenu({
+  onClose,
+  isAuthenticated,
+  user,
+}: BurgerMenuProps) {
   const pathname = usePathname();
 
   const handleNavClick = (): void => {
@@ -25,12 +32,12 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
       <div className={css.modal} onClick={(e) => e.stopPropagation()}>
         <div className={css.modalHeader}>
           <div className={css.logoModal}>
-           <Link className={css.logo_link} href="/">
-                <svg className={css.logo_icon} width="23" height="23">
-                <use href="/icons.svg#icon-Company-Logo"/>
-                </svg>
-                <p className={css.logo_text}>Подорожники</p>
-              </Link>
+            <Link className={css.logo_link} href="/">
+              <svg className={css.logo_icon} width="23" height="23">
+                <use href="/icons.svg#icon-Favicon-1" />
+              </svg>
+              <p className={css.logo_text}>Подорожники</p>
+            </Link>
           </div>
           <button
             type="button"
@@ -49,16 +56,16 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
             <li className={css.navigationItem}>
               <Link
                 href="/"
-                className={`${css.navigationLink} ${pathname === '/' ? css.active : ''}`}
+                className={`${css.navigationLink} ${pathname === "/" ? css.active : ""}`}
                 onClick={handleNavClick}
               >
                 Головна
               </Link>
             </li>
-            <li className={css.navigationItem}            >
+            <li className={css.navigationItem}>
               <Link
                 href="/stories"
-                className={`${css.navigationLink} ${pathname === '/stories' ? css.active : ''}`}
+                className={`${css.navigationLink} ${pathname === "/stories" ? css.active : ""}`}
                 onClick={handleNavClick}
               >
                 Історії
@@ -67,7 +74,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
             <li className={css.navigationItem}>
               <Link
                 href="/travellers"
-                className={`${css.navigationLink} ${pathname === '/travellers' ? css.active : ''}`}
+                className={`${css.navigationLink} ${pathname === "/travellers" ? css.active : ""}`}
                 onClick={handleNavClick}
               >
                 Мандрівники
@@ -79,7 +86,7 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
                 <li>
                   <Link
                     href="/profile"
-                    className={`${css.navigationLink} ${pathname === '/profile' ? css.active : ''}`}
+                    className={`${css.navigationLink} ${pathname === "/profile" ? css.active : ""}`}
                     onClick={handleNavClick}
                   >
                     Мій Профіль
@@ -88,10 +95,10 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
                 <li>
                   <button
                     type="button"
-                    className={css.publishButton}
+                    className={css.publishButtonMobile}
                     onClick={() => {
                       handleNavClick();
-                      window.location.href = '/stories/create';
+                      window.location.href = "/stories/create";
                     }}
                   >
                     Опублікувати історію
@@ -104,17 +111,33 @@ export default function BurgerMenu({ onClose, isAuthenticated }: BurgerMenuProps
 
         {!isAuthenticated ? (
           <div className={css.modalAuth}>
-            <Link href="/auth/login" className={css.modalLogin} onClick={handleNavClick}>
+            <Link
+              href="/auth/login"
+              className={css.modalLogin}
+              onClick={handleNavClick}
+            >
               Вхід
             </Link>
-            <Link href="/auth/register" className={css.modalRegister} onClick={handleNavClick}>
+            <Link
+              href="/auth/register"
+              className={css.modalRegister}
+              onClick={handleNavClick}
+            >
               Реєстрація
             </Link>
           </div>
         ) : (
           <div className={css.userInfo}>
-            <img src="/avatar.jpg" alt="User avatar" className={css.avatar} />
-            <span className={css.userName}>Ім’я користувача</span>
+            <Image
+              src={user?.avatarUrl || "/images/avatar/defaultAvatar.png"}
+              alt="User avatar"
+              width="32"
+              height="32"
+              className={css.avatar}
+            />
+            <span className={css.userName}>
+              {user?.name || "Імʼя користувача"}
+            </span>
             <button className={css.logoutButton} onClick={handleLogout}>
               <svg className={css.logoutIcon}>
                 <use href="/icons.svg#icon-logout" />

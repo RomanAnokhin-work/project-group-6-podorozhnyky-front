@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, MouseEvent } from 'react';
-import css from './ConfirmModal.module.css';
+import { useEffect, MouseEvent } from "react";
+import css from "./ConfirmModal.module.css";
 
 interface ConfirmModalProps {
   title: string;
@@ -22,23 +22,22 @@ export default function ConfirmModal({
   onCancel,
   isLoading = false,
 }: ConfirmModalProps) {
-  
   useEffect(() => {
     const scrollY = window.scrollY;
     document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add('bodyLock'); 
+    document.body.classList.add("bodyLock");
 
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onCancel();
+      if (e.key === "Escape") onCancel();
     };
 
-    window.addEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.body.classList.remove('bodyLock');
-      document.body.style.top = '';
+      document.body.classList.remove("bodyLock");
+      document.body.style.top = "";
       window.scrollTo(0, scrollY);
-      window.removeEventListener('keydown', handleEscape);
+      window.removeEventListener("keydown", handleEscape);
     };
   }, [onCancel]);
 
@@ -74,7 +73,7 @@ export default function ConfirmModal({
           >
             {cancelButtonText}
           </button>
-          
+
           <button
             type="button"
             className={css.confirmButton}
