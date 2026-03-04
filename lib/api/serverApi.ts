@@ -15,6 +15,8 @@ interface GetTavellerByIdResponse {
   user: User;
   articles: ApiStory[];
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function fetchPopularStoriesPage(
   page = 1,

@@ -63,7 +63,7 @@ export default function TravellersStoriesItem({
 
   const categoryName = getCategoryName(story.category);
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
-  // console.log(`${ownerSource.avatarUrl}, ownerSource`)
+  console.log(`${ownerSource}, ownerSource`)
   const authorName = ownerSource?.name || "";
   const authorAvatarUrl = ownerSource?.avatarUrl || "";
   const formattedDate = new Date(story.date).toLocaleDateString("uk-UA");
@@ -170,14 +170,10 @@ export default function TravellersStoriesItem({
             aria-pressed={saved}
             aria-label={saved ? "Видалити зі збережених" : "Додати в збережені"}
           >
-
-            {isOwnStory ? <Link href={`/stories/${story._id}/edit`}><svg className={css.editIcon} aria-hidden="true">
-              <use href="/icons.svg#icon-edit" />
-            </svg></Link> : <svg className={css.bookmarkIcon} aria-hidden="true">
+            <svg className={css.bookmarkIcon} aria-hidden="true">
               <use href="/icons.svg#icon-bookmark" />
-            </svg>}
+            </svg>
           </button>
-            
         </div>
 
         <AuthNavModal

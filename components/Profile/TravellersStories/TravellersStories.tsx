@@ -48,7 +48,7 @@ if (!stories || stories.length === 0) {
     );
   }
 
-console.log('page:', page, 'totalPages:', totalPages, 'isFetching:', isFetching);
+  
  return (
     <div className={css.container}>
       <ul className={css.grid}>
@@ -64,7 +64,7 @@ console.log('page:', page, 'totalPages:', totalPages, 'isFetching:', isFetching)
       </ul>
       
       {/* Кнопка показується тільки якщо є ще сторінки для завантаження */}
-      {page < (totalPages===2 ? totalPages : totalPages - 1) && ( 
+      {page < totalPages && ( 
         <div className={css.buttonWrapper}> {/* Додайте обгортку для центрування, якщо треба */}
           <Button 
             onClick={onLoadMore}

@@ -36,6 +36,30 @@ export default function AddStoryForm() {
   const [saveErrorOpen, setSaveErrorOpen] = useState(false);
   const [cancelOpen, setCancelOpen] = useState(false);
 
+  async function ensureSession(): Promise<boolean> {
+  try {
+    const res = await fetch("/api/auth/session", {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+    });
+
+    // ожидаем { success: boolean }
+    const json = (await res.json().catch(() => null)) as { success?: boolean } | null;
+    return Boolean(json?.success);
+  } catch {
+    return false;
+  }
+  }
+
+  useEffect(() => {
+  (async () => {
+    const ok = await ensureSession();
+    if (!ok) setSaveErrorOpen(true); // покажет модалку логина
+  })();
+  }, []);
+  
+
   // 1) Загружаем категории один раз
 useEffect(() => {
   (async () => {
@@ -101,37 +125,48 @@ useEffect(() => {
         validationSchema={schema}
         validateOnMount
         onSubmit={async (values, { setSubmitting }) => {
-          try {
-            setSaveErrorOpen(false);
+  try {
+    setSaveErrorOpen(false);
 
-            const formData = new FormData();
-            formData.append("img", values.cover as File);
-            formData.append("title", values.title);
-            formData.append("category", values.category);
-            formData.append("article", values.article);
-            formData.append("description", values.description);
+    // ✅ обновляем/проверяем сессию перед созданием
+    const ok = await ensureSession();
+    if (!ok) {
+      setSaveErrorOpen(true);
+      return;
+    }
 
-            const res = await fetch("/api/stories", {
-              method: "POST",
-              body: formData,
-              credentials: "include",
-            });
-            if (!res.ok) throw new Error("Failed");
+    const formData = new FormData();
+    formData.append("img", values.cover as File);
+    formData.append("title", values.title);
+    formData.append("category", values.category);
+    formData.append("article", values.article);
+    formData.append("description", values.description);
 
-            const json = await res.json();
-            const id =
-              json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
+    const res = await fetch("/api/stories", {
+      method: "POST",
+      body: formData,
+      credentials: "include",
+    });
 
-            // по ТЗ: редирект на /stories/[storyId]
-            if (id) router.push(`/stories/${id}`);
-            else router.push("/stories");
-          } catch {
-            // ✅ по ТЗ: модалка "Помилка збереження"
-            setSaveErrorOpen(true);
-          } finally {
-            setSubmitting(false);
-          }
-        }}
+    if (res.status === 401 || res.status === 403) {
+      // ✅ если токен всё равно невалидный — показываем модалку
+      setSaveErrorOpen(true);
+      return;
+    }
+
+    if (!res.ok) throw new Error("Failed");
+
+    const json = await res.json();
+    const id = json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
+
+    if (id) router.push(`/stories/${id}`);
+    else router.push("/stories");
+  } catch {
+    setSaveErrorOpen(true);
+  } finally {
+    setSubmitting(false);
+  }
+}}
       >
         {({ resetForm, isValid, dirty, isSubmitting, setFieldValue, validateField,values, errors, touched }) => (
           <>

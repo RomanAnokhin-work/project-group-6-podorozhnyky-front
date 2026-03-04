@@ -22,6 +22,10 @@ interface RegisterRequest {
   password: string;
   name?: string;
 }
+interface LoginResponse {
+  user: User;
+  token: string;
+}
 interface GetUsersParams {
   page?: number;
   perPage?: number;
@@ -35,18 +39,8 @@ export type PopularResponse = {
   stories: ApiStory[];
 };
 
-interface LoginResponse {
-  message: string;
-  user: User;
-}
-
-export async function fetchPopularStoriesPage(
-  page = 1,
-  perPage = 10,
-): Promise<PopularResponse> {
-  const { data } = await instance.get(
-    `/stories/popular?page=${page}&perPage=${perPage}`,
-  );
+export async function fetchPopularStoriesPage(page = 1, perPage = 10): Promise<PopularResponse> {
+  const {data} = await instance.get(`/stories/popular?page=${page}&perPage=${perPage}`);
 
   return data;
 }
@@ -140,11 +134,9 @@ export type ApiCategory = { _id: string; name: string };
 
 export async function fetchCategories() {
   const res = await instance.get("/categories");
-  console.log("AXIOS categories url:", res.config.baseURL, res.config.url);
-  console.log("AXIOS categories status:", res.status);
-  console.log("AXIOS categories data:", res.data);
   return res.data;
 }
+
 export const getMyStories = async (page = 1, perPage = 10) => {
 
   const { data } = await instance.get(`/stories/own`, {
@@ -164,6 +156,7 @@ export const getSavedStories = async () => {
     if (savedIds.length === 0) return [];
     const { data } = await instance.get("/stories");
     const allStories = data.stories || data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return allStories.filter((story: any) => savedIds.includes(story._id));
   } catch (error) {
     console.error("Error in getSavedStories:", error);

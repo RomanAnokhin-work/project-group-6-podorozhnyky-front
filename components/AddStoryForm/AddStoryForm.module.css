@@ -50,16 +50,16 @@
 
 /* ===== Cover ===== */
 .coverBox {
-  position: relative;
-  width: 100%;
-  height: 260px;
-  /* поставь нужную */
-  overflow: hidden;
-  border-radius: 16px;
+    position: relative;
+    width: 100%;
+    height: 260px;
+    /* поставь нужную */
+    overflow: hidden;
+    border-radius: 16px;
 }
 
 .coverImg {
-  object-fit: cover;
+    object-fit: cover;
 }
 
 

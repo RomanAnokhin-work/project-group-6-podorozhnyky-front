@@ -81,12 +81,6 @@
 
 /* ===== Mobile ===== */
 @media screen and (min-width: 375px) {
-
-  /* mobile: показываем только 3 */
-  .item:nth-child(n + 4) {
-    display: none;
-  }
-
   .item {
     height: 575px;
   }
@@ -102,10 +96,10 @@
     font-size: 44px;
   }
 
-  .list {
-    grid-template-columns: repeat(2, 1fr);
-    /* ✅ 2 в ряд => 4 шт = 2x2 */
-  }
+     .list {
+       grid-template-columns: repeat(2, 1fr);
+       /* ✅ 2 в ряд => 4 шт = 2x2 */
+     }
 
   .item {
     height: 578px;
@@ -129,22 +123,17 @@
     font-size: 52px;
   }
 
-  .list {
-    grid-template-columns: repeat(3, 1fr);
-    /* ✅ 3 в ряд */
-  }
+        .list {
+          grid-template-columns: repeat(3, 1fr);
+          /* ✅ 3 в ряд */
+        }
 
   .item {
     height: 677px;
   }
-
-  .item:nth-child(n + 4) {
-    display: none;
-  }
-
   .footer {
     display: flex;
     justify-content: center;
   }
-
+   
 }
