@@ -38,13 +38,13 @@
   font-size: 32px;
   line-height: 1.1;
   margin-bottom: 24px;
-  color: var(--color-white);
+  color: var(--color-white-text);
 }
 
 .description {
   font-size: 16px;
   font-weight: 400;
-  color: var(--color-white);
+  color: var(--color-white-text);
   font-family: var(--font-nunito-sans), sans-serif;
   line-height: 1.5;
   margin-bottom: 32px;
@@ -76,8 +76,8 @@
 }
 
 .joinLink:active {
-  background-color: #7a96ea;
-  color: var(--color-neutral-darkest);
+  background-color: var(--color-btn-background-active);
+  color: var(--color-neutral-darkest-active);
 }
 
 @media (min-width: 768px) {

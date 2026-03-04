@@ -24,6 +24,7 @@
   width: 48px;
   height: 48px;
   margin-bottom: 8px;
+  fill: var(--color-dark-text);
 }
 .about_content_title {
   font-family: var(--font-inter), sans-serif;
