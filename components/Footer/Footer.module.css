@@ -3,7 +3,7 @@
   background-color: var(--background-footer);
   text-align: center;
   min-width: 335px;
-  margin-top: auto;
+  margin-top: 0;
 }
 
 .logo {

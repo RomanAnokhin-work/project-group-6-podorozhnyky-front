@@ -1,11 +1,15 @@
 import css from "./Footer.module.css";
 import Link from "next/link";
 import mainCss from "@/app/(main)/Home.module.css";
-
+import Container from "../Container/Container";
+  
+  
 export default function Footer() {
   return (
-    <footer className={css.footer}>
-      <div className={mainCss.container}>
+ 
+      <footer className={css.footer}>
+      <Container className={css.container}>
+      
         <div className={css.wrap}>
           <div className={css.content}>
             <div className={css.logo}>
@@ -94,7 +98,9 @@ export default function Footer() {
         <div className={css.inscription}>
           <p className={css.text}>© 2025 Подорожники. Усі права захищені.</p>
         </div>
-      </div>
-    </footer>
+       
+        </Container>
+      </footer>
+    
   );
 }
