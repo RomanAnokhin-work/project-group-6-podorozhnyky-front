@@ -181,7 +181,7 @@ export const getMyStories = async (page = 1, perPage = 10) => {
 };
 
 export async function updateEmail(newEmail: string) {
-  const res = await instance.post("/auth/send-change-email", { newEmail });
+  const res = await instance.post("/auth/request-reset-email", { newEmail });
   return res.data;
 }
 
