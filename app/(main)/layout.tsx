@@ -21,11 +21,13 @@ export default function RootLayout({
       <AuthProvider>
         <ThemeProvider>
         {pathname === "/edit" ? <EditProfilePage/> : (
-          <>
-          <Header />
-        {children}
-        <Footer />
-      </>
+          <div className="mainLayout">
+            <Header />
+            <div className="mainContent">
+              {children}
+            </div>
+            <Footer />
+          </div>
       )}
         </ThemeProvider>
       </AuthProvider>
