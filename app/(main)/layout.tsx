@@ -6,6 +6,7 @@ import Header from "@/components/Header/Header";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import EditProfilePage from "./edit/page";
 import { usePathname } from "next/navigation";
+import { ThemeProvider } from "@/contexts/themeContext";
 
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <TanStackProvider>
       <AuthProvider>
+        <ThemeProvider>
         {pathname === "/edit" ? <EditProfilePage/> : (
           <>
           <Header />
@@ -25,7 +27,7 @@ export default function RootLayout({
         <Footer />
       </>
       )}
-        
+        </ThemeProvider>
       </AuthProvider>
     </TanStackProvider>
   );

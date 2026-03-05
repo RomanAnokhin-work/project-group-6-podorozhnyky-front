@@ -54,7 +54,7 @@ export default function ProfileInfo() {
         <h2 className={css.name}>{name}</h2>
         <p className={css.description}>{description}</p>
         <Link href="/edit">
-          <Button >Редагувати профіль</Button>
+          <Button buttonType="button">Редагувати профіль</Button>
         </Link>
     
       </div>

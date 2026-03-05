@@ -66,7 +66,8 @@ console.log('page:', page, 'totalPages:', totalPages, 'isFetching:', isFetching)
       {/* Кнопка показується тільки якщо є ще сторінки для завантаження */}
       {page < (totalPages===2 ? totalPages : totalPages - 1) && ( 
         <div className={css.buttonWrapper}> {/* Додайте обгортку для центрування, якщо треба */}
-          <Button 
+         <Button
+          buttonType="button" 
             onClick={onLoadMore}
             isFetching={isFetching}
           />
