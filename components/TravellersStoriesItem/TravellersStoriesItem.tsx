@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   addArticleToSaved,
   removeArticleFromSaved,
@@ -10,6 +10,7 @@ import {
 import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
 import css from './TravellersStoriesItem.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
+import { useQueryClient } from "@tanstack/react-query";
 
 type StoryOwner = {
   name?: string;
@@ -54,6 +55,8 @@ export default function TravellersStoriesItem({
   isSaved = false,
   isOwnStory = false,
 }: TravellersStoriesItemProps) {
+  const { user, setUser } = useAuthStore.getState();
+  const queryClient = useQueryClient();
   const storeIsAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const effectiveIsAuthenticated = isAuthenticated ?? storeIsAuthenticated;
   const [saved, setSaved] = useState(isSaved);
@@ -61,12 +64,18 @@ export default function TravellersStoriesItem({
   const [loading, setLoading] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  useEffect(() => {
+    setSaved(isSaved)
+  },[isSaved])
+
   const categoryName = getCategoryName(story.category);
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
   // console.log(`${ownerSource.avatarUrl}, ownerSource`)
   const authorName = ownerSource?.name || "";
   const authorAvatarUrl = ownerSource?.avatarUrl || "";
   const formattedDate = new Date(story.date).toLocaleDateString("uk-UA");
+  const saveButtonClassName = saved ? `${css.saveButton} ${css.saveButtonSaved}` : css.saveButton;
+  const bookmarkIconClassName = saved ? `${css.bookmarkIcon} ${css.bookmarkIconSaved}` : css.bookmarkIcon
 
   const openAuthModal = () => setShowAuthModal(true);
 
@@ -89,9 +98,22 @@ export default function TravellersStoriesItem({
     try {
       if (nextSaved) {
         await addArticleToSaved(story._id);
+        if (!user) return;
+
+setUser({
+  ...user,
+  savedArticles: [...user.savedArticles, story._id],
+});
       } else {
         await removeArticleFromSaved(story._id);
+       if (!user) return;
+
+setUser({
+  ...user,
+  savedArticles: user.savedArticles.filter(id => id !== story._id),
+});
       }
+      
     } catch {
       setSaved(oldSaved);
       setCount(oldCount);
@@ -163,7 +185,7 @@ export default function TravellersStoriesItem({
           </Link>
 
           <button
-            className={css.saveButton}
+            className={saveButtonClassName}
             type="button"
             onClick={handleSaveClick}
             disabled={loading}
@@ -173,7 +195,7 @@ export default function TravellersStoriesItem({
 
             {isOwnStory ? <Link href={`/stories/${story._id}/edit`}><svg className={css.editIcon} aria-hidden="true">
               <use href="/icons.svg#icon-edit" />
-            </svg></Link> : <svg className={css.bookmarkIcon} aria-hidden="true">
+            </svg></Link> : <svg className={bookmarkIconClassName} aria-hidden="true">
               <use href="/icons.svg#icon-bookmark" />
             </svg>}
           </button>
