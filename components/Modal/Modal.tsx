@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState, MouseEvent, ReactNode } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { logout } from "../../lib/api/clientApi";
 import css from "./Modal.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 
 interface ModalProps {
-  children: ReactNode;
   onClose: () => void;
 }
 
@@ -15,11 +14,11 @@ export default function Modal({ onClose }: ModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  // Перевірка чи модалка відкрита (блокування скролу)
   useEffect(() => {
-    const scrollY = window.scrollY;
-    document.body.style.top = `-${scrollY}px`;
-    document.body.classList.add("bodyLock");
+   
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+
+    document.body.style.overflow = "hidden";
 
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -28,9 +27,8 @@ export default function Modal({ onClose }: ModalProps) {
     window.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.body.classList.remove("bodyLock");
-      document.body.style.top = "";
-      window.scrollTo(0, scrollY);
+    
+      document.body.style.overflow = originalStyle;
       window.removeEventListener("keydown", handleEscape);
     };
   }, [onClose]);
@@ -63,8 +61,7 @@ export default function Modal({ onClose }: ModalProps) {
           onClick={onClose}
           aria-label="Close modal"
         >
-          {/* СВГ як посилання на спрайт */}
-          <svg width="24" height="24" className={css.closeIcon}>
+          <svg className={css.closeIcon}>
             <use href="/icons.svg#icon-close"></use>
           </svg>
         </button>
