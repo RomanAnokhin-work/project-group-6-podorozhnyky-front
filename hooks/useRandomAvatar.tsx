@@ -1,5 +1,7 @@
-export function useRandomAvatar(userId: string, userName: string) {
     const backgroundColors = ["f4b41a", "e7e7e7", "a78bfa", "bbf7d0"];
+
+
+export function useRandomAvatar(userId: string, userName: string) {
     
     const seedString = userId || userName || "default";
     

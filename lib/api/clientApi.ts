@@ -191,3 +191,12 @@ export const getSavedStories = async () => {
     return [];
   }
 };
+
+export const updateCurrentUser = async (formData: FormData) => {
+  const { data } = await instance.patch("/users/me", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return data;
+};

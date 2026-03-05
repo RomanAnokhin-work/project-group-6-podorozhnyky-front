@@ -29,6 +29,7 @@ export default function AuthNavigation({
     return (
       <div className={variant === "desktop" ? css.desktopAuth : css.modalAuth}>
         <div className={css.userInfo}>
+          <Link href="/edit">
           <Image
             src={user?.avatarUrl || "/images/avatar/defaultAvatar.png"}
             alt="User avatar"
@@ -36,9 +37,12 @@ export default function AuthNavigation({
             height="32"
             className={css.avatar}
           />
+          </Link>
+          <Link href="/edit">
           <span className={css.userName}>
             {user?.name || "Імʼя користувача"}
           </span>
+          </Link>
         </div>
         <button
           type="button"

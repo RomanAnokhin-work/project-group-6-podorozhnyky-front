@@ -6,7 +6,7 @@ import { getUsers } from "@/lib/api/clientApi";
 import { User } from "@/types/user";
 
 export default function TravellersClient() {
-  const { data: users, handleLoadMore, totalPages, page} = usePagination<User>({
+  const { data: users, handleLoadMore, totalPages, page, isFetching } = usePagination<User>({
   queryKey: "travellers",
   initialSizeDesktop: 12,
   initialSizeMobile: 8,
@@ -28,6 +28,7 @@ export default function TravellersClient() {
         onLoadMore={handleLoadMore}
         page={page}
         totalPages={totalPages}
+        isFetching={isFetching}
       />
     </div>
   );
