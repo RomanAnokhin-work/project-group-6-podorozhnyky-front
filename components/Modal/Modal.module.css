@@ -10,6 +10,9 @@
   justify-content: center;
   align-items: center;
   z-index: 3000;
+  /* Блокуємо скрол на рівні бекдропу */
+  overflow: hidden;
+  touch-action: none;
 }
 
 .modalContainer {
@@ -22,9 +25,13 @@
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: all 0.3s ease;
+  /* Повністю прибираємо вихід контенту та скрол */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
+/* --- Кнопка закриття --- */
 .closeButton {
   position: absolute;
   top: 16px;
@@ -35,11 +42,16 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.25s ease;
 }
 
 .closeIcon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   display: block;
   flex-shrink: 0;
   stroke: var(--color-neutral-darkest, #111111);
@@ -47,16 +59,24 @@
   transition: stroke 250ms ease;
 }
 
-.closeButton:hover .closeIcon {
-  stroke: #47d332;
+.closeButton:hover .closeIcon,
+.closeButton:focus .closeIcon {
+  stroke: var(--color-royal-blue, #407bff) !important;
 }
 
+.closeButton:hover {
+  transform: scale(1.1);
+}
+
+/* --- Контент (без скролу) --- */
 .content {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 48px 24px 0;
   margin-bottom: 32px;
+  overflow: hidden;
+  /* Скрол заборонено */
 }
 
 .title {
@@ -76,6 +96,7 @@
   margin: 0;
 }
 
+/* --- Кнопки --- */
 .buttonGroup {
   display: flex;
   flex-direction: column;
@@ -83,45 +104,46 @@
   padding: 0 24px 32px;
 }
 
-.cancelButton {
+.cancelButton,
+.confirmButton {
   width: 100%;
-  padding: 16px;
+  height: 48px;
   border-radius: 12px;
-  background-color: var(--opacity-neutral-darkest-5, #e0e0e0);
-  color: var(--color-neutral-darkest, #111111);
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.cancelButton {
+  border: 1px solid var(--color-scheme-2-border, #ccc);
+  background-color: var(--opacity-neutral-darkest-5, #e0e0e0);
+  color: var(--color-neutral-darkest, #111111);
+}
+
+.cancelButton:hover {
+  background-color: var(--color-royal-blue, #407bff) !important;
+  color: #fff !important;
 }
 
 .confirmButton {
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
   background-color: var(--background-button, #407bff);
-  color: var(--color-white, #ffffff);
-  font-size: 16px;
-  font-weight: 500;
+  color: #fff;
 }
 
-/* АДАПТИВ (Mobile Adaptive 375px) */
-@media screen and (min-width: 375px) {
-  .modalContainer {
-    max-width: 335px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.confirmButton:hover {
+  background-color: #5d91ff !important;
 }
 
-/* АДАПТИВ (Tablet 768px) */
+/* --- Адаптив --- */
 @media screen and (min-width: 768px) {
   .modalContainer {
     max-width: 704px;
     border-radius: 24px;
-  }
-
-  .closeButton {
-    top: 24px;
-    right: 24px;
   }
 
   .content {
@@ -143,12 +165,5 @@
   .cancelButton,
   .confirmButton {
     width: 200px;
-  }
-}
-
-/* АДАПТИВ (Desktop 1440px) */
-@media screen and (min-width: 1440px) {
-  .modalContainer {
-    max-width: 768px;
   }
 }
