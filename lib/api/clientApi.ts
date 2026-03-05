@@ -73,7 +73,9 @@ export async function fetchPopularStoriesPage(
 }
 
 export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
-  const { data } = await instance.get(`/stories/${storyId}`);
+
+ const { data } = await instance.get(`/stories/${storyId}`);
+
   return data.data;
 };
 
@@ -83,13 +85,13 @@ export const deleteStory = async (storyId: string) => {
 };
 
 export const addFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.patch("/stories/saved", { storyId });
+  const { data } = await instance.patch(`/stories/saved`, { storyId });
   return data.data;
 };
 
 export const removeFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.delete("/stories/saved", {
-    data: { storyId },
+  const { data } = await instance.delete(`/stories/saved`, {
+    data: { storyId }
   });
   return data.data;
 };
@@ -177,6 +179,27 @@ export const getMyStories = async (page = 1, perPage = 10) => {
   
   return data; 
 };
+
+export async function updateEmail(newEmail: string) {
+  const res = await instance.post("/auth/request-reset-email", { newEmail });
+  return res.data;
+}
+
+export const updateProfile = async (formData: FormData): Promise<User> => {
+  const { data } = await instance.patch("/users/current", formData);
+
+  return data.data;
+};
+export interface SendResetEmailCredentials {
+  email: string;
+}
+
+export const sendResetEmail = async (
+  credentials: SendResetEmailCredentials,
+): Promise<void> => {
+  await instance.post("/auth/send-reset-email", credentials);
+};
+
 
 export const getSavedStories = async () => {
   try {

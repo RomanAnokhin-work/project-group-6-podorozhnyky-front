@@ -1,8 +1,9 @@
 .saveSection {
+    padding: 32px 20px;
+    background:var(--color-neutral-lightest);
+    border-radius: 24px;
+    width: 100%;
   padding: 32px 20px;
-  background: var(--background-footer);
-  border-radius: 24px;
-  width: 100%;
 }
 .buttonsRow {
   display: flex;
@@ -34,7 +35,7 @@
   text-align: left;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--text);
+  color: var(--color-dark-text);
   margin-bottom: 16px;
 }
 
@@ -44,7 +45,7 @@
   line-height: 1.5;
   text-align: left;
   font-weight: 400;
-  color: var(--text);
+  color: var(--color-dark-text);
   margin-bottom: 16px;
 }
 
@@ -77,7 +78,7 @@
   .saveSection {
     max-width: 418px;
     flex-shrink: 0;
-    margin-top: 48px;
+
   }
   .saveTitle {
     font-size: 26px;

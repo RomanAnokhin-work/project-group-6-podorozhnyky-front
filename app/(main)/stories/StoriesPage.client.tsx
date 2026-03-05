@@ -33,6 +33,11 @@ const STORY_FILTERS = [
   { label: "Азія", value: "Азія" },
   { label: "Пустелі", value: "Пустелі" },
   { label: "Африка", value: "Африка" },
+  { label: "Балкани", value: "Балкани" },
+  { label: "Гори", value: "Гори" },
+  { label: "Америка", value: "Америка" },
+  { label: "Океанія", value: "Океанія" },
+  {label:"Кавказ",value:"Кавказ"}
 ];
 
 const getInitialCount = () => {

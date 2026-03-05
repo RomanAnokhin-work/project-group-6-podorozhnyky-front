@@ -10,6 +10,7 @@ import { logout } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next-router-mock";
 import Modal from "../Modal/Modal";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 interface BurgerMenuProps {
   onClose: () => void;
@@ -32,18 +33,18 @@ export default function BurgerMenu({
   };
 
   const handleLogout = async (): Promise<void> => {
-     setIsLoading(true);
-        try {
-          await logout();
-          useAuthStore.getState().clearIsAuthenticated();
-          localStorage.removeItem("user");
-          onClose();
-          router.push("/");
-        } catch (error) {
-          console.error("Помилка при виході:", error);
-        } finally {
-          setIsLoading(false);
-        }
+    setIsLoading(true);
+    try {
+      await logout();
+      useAuthStore.getState().clearIsAuthenticated();
+      localStorage.removeItem("user");
+      onClose();
+      router.push("/");
+    } catch (error) {
+      console.error("Помилка при виході:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -72,6 +73,9 @@ export default function BurgerMenu({
 
         <nav className={css.modalNav}>
           <ul className={css.navigation}>
+            <li>
+              <ThemeSwitcher />
+            </li>
             <li className={css.navigationItem}>
               <Link
                 href="/"
@@ -169,16 +173,15 @@ export default function BurgerMenu({
           </div>
         )}
         {isLogoutOpen && (
-                <Modal
-                  onClose={() => {
-                    setIsLogoutOpen(false);
-                  }}
-                >
-                  Ви точно хочете вийти?
-                </Modal>
-              )}
+          <Modal
+            onClose={() => {
+              setIsLogoutOpen(false);
+            }}
+          >
+            Ви точно хочете вийти?
+          </Modal>
+        )}
       </div>
-      
     </div>
   );
 }

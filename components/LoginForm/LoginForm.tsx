@@ -10,7 +10,7 @@ import { useAuthStore } from "@/lib/store/authStore";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
-
+import Link from "next/link";
 interface LoginFormValues {
   email: string;
   password: string;
@@ -109,6 +109,9 @@ function LoginForm() {
                   placeholder="********"
                 />
               </div>
+               <Link href="/auth/send-reset-email" className={css.forgotLink}>
+               Забули пароль?
+               </Link>
 
               <ErrorMessage
                 className={css.error}

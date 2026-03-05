@@ -115,10 +115,10 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
-  color: var(--color-neutral-dark);
+  color: var(--color-dark-text);
 
   outline: none;
-  border: 1px solid var(--opacity-neutral-darkest-15);
+  border: 1px solid var(--color-footer-border-inscription);
   border-radius: 8px;
   padding: 8px 12px;
 
@@ -168,7 +168,9 @@
   padding-right: 52px;
   /* место под 24x24 + отступ */
 }
-
+.select option {
+  background: var(--color-white);
+}
 .chevronBtn {
   position: absolute;
   right: 12px;
@@ -187,6 +189,7 @@
   display: grid;
   place-items: center;
   pointer-events: none;
+  color: var(--color-dark-text);
 }
 
 .chevronBtn svg {

@@ -1,6 +1,7 @@
 .section {
   padding: 64px 20px;
   background: var(--color-scheme-2-background);
+ 
 }
 
 .h2 {
@@ -9,7 +10,7 @@
   font-size: 28px;
   line-height: 120%;
   letter-spacing: -0.01em;
-  color: var(--color-scheme-1-text);
+  color: var(--color-dark-text);
   margin: 0 0 24px;
 }
 
@@ -68,7 +69,7 @@
 
 /* active */
 .moreBtn:active {
-  background: var(--color-royal-blue-light);
+  background: var(--color-btn-background-active);
   color: var(--color-scheme-2-text);
 }
 
@@ -81,12 +82,6 @@
 
 /* ===== Mobile ===== */
 @media screen and (min-width: 375px) {
-
-  /* mobile: показываем только 3 */
-  .item:nth-child(n + 4) {
-    display: none;
-  }
-
   .item {
     height: 575px;
   }
@@ -132,14 +127,11 @@
   .list {
     grid-template-columns: repeat(3, 1fr);
     /* ✅ 3 в ряд */
+    
   }
 
   .item {
     height: 677px;
-  }
-
-  .item:nth-child(n + 4) {
-    display: none;
   }
 
   .footer {
