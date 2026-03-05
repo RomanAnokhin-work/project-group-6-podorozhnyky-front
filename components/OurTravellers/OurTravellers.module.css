@@ -38,7 +38,7 @@
     cursor: pointer;
   }
   .btn:active {
-    background-color: #7a96ea;
+    background-color: var(--color-btn-background-active);
     color: var(--color-neutral-darkest);
   }
   .title {

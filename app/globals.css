@@ -28,6 +28,7 @@
   --color-royal-blue-darker: #1a2a5a;
   --color-footer-border-inscription: rgba(0, 0, 0, 0.15);
   --color-input-placeholder: rgba(0, 0, 0, 0.6);
+  --color-background-tabsWrapper: #eef4ff;
 }
 
 body[data-theme="dark"] {
@@ -57,6 +58,7 @@ body[data-theme="dark"] {
   --color-scheme-2-text: #fff;
   --color-footer-border-inscription: #fff;
   --color-input-placeholder: #7f7f7f;
+  --color-background-tabsWrapper: #7f7f7f;
 }
 
 html,

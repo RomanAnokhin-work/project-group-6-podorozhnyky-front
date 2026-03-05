@@ -21,15 +21,14 @@
   background-color: var(--color-royal-blue);
 }
 
-.loadMoreBtn:hover {
-  background-color: #e8eeff;
-  color: black;
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: var(--color-royal-blue-lighter);
+  color: var(--color-scheme-1-text);
 }
 .loadMoreBtn:active {
-  background: var(--Color-Royal-Blue-Darker, #1a2a5a);
-}
-.loadMoreBtn:focus {
-  border: 2px solid black;
+  background: var(--color-btn-background-active);
+  color: var(--color-neutral-darkest-active);
 }
 
 @media screen and (min-width: 768px) {
