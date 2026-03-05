@@ -6,6 +6,9 @@ import ConfirmDeleteContent from "../../ConfirmDeleteContent/ConfirmDeleteConten
 import Modal from "../../Modal/Modal";
 import css from "./FavoriteActions.module.css";
 
+
+
+
 type Props = {
   storyId: string;
   isAuthenticated: boolean;

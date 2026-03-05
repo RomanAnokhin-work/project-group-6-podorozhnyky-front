@@ -30,7 +30,7 @@ const TravellersStories = ({
   return (
     <div className={css.travellersStoriesWrapper}>
       <ul className={css.travellersStoriesList}>
-        {stories.map((story) => (
+      {stories?.map((story) => (
           <li key={story._id} className={css.travellersStoriesItem}>
             <TravellersStoriesItem
               story={story}

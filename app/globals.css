@@ -90,16 +90,40 @@ body {
   max-width: 375px;
 }
 
+.storyPageWrapper [class*="PopularStories-module"][class*="section"] {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  margin-left: 0px !important;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 768px;
   }
+
+  .storyPageWrapper [class*="PopularStories-module"][class*="section"] {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      margin-left: 0px !important;
+    }
+
 }
 
 @media screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
   }
+
+  .storyPageWrapper [class*="PopularStories-module"][class*="section"] {
+      padding-left: 0px !important;
+      padding-right: 64px !important;
+      margin-left: 0px !important ;
+   }
+   .storyPageWrapper [class*="PopularStories-module"][class*="list"]{
+gap: 32px !important;
+
+}
+
 }
 
 h1,
@@ -163,28 +187,3 @@ main:has(#hero) {
   margin-top: -72px;
 }
 
-/* .container {
-  width: 100%;
-  margin: 0 auto;
-  max-width: 375px;
-  background-color: red;
- 
-}
-
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    background-color: blue;
- 
-  }
-}
-
-
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-    background-color: green;
-
-  }
-} */
