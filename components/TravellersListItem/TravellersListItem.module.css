@@ -59,19 +59,24 @@
   align-items: center;
   width: 100%;
   height: 48px;
-  background-color: #dfe4f2;
-  border: 1px solid #c8cedc;
+  background-color: var(--color-btn-background-populr);
+  border: 1px solid var(--color-scheme-2-border);
   border-radius: 12px;
   font-size: 16px;
   font-weight: 500;
-  color: #000000;
+  color: var(--color-neutral-darkest);
   text-decoration: none;
   transition: background-color 0.2s ease;
   /* margin-top: auto; */
 }
 
 .linkButton:hover {
-  background: var(--Color-Royal-Blue, #4169e1);
+  background: var(--color-btn-background-populr-hover);
+  color: var(--color-white);
+}
+.linkButton:active {
+  background-color: var(--color-royal-blue-darker);
+  color: var(--color-white);
 }
 
 @media (min-width: 768px) {

@@ -29,6 +29,8 @@
   --color-footer-border-inscription: rgba(0, 0, 0, 0.15);
   --color-input-placeholder: rgba(0, 0, 0, 0.6);
   --color-background-tabsWrapper: #eef4ff;
+  --background-footer-nev: #e8eeff;
+  --color-scheme-1-foreground-active: #f2f2f2;
 }
 
 body[data-theme="dark"] {
@@ -56,9 +58,11 @@ body[data-theme="dark"] {
   --color-btn-background-populr-hover: #e8eeff;
   --color-royal-blue-darker: #7a96ea;
   --color-scheme-2-text: #fff;
-  --color-footer-border-inscription: #fff;
+  --color-footer-border-inscription: #7f7f7f;
   --color-input-placeholder: #7f7f7f;
   --color-background-tabsWrapper: #7f7f7f;
+  --background-footer-nev: #4c4c4c;
+  --color-scheme-1-foreground-active: #4c4c4c;
 }
 
 html,

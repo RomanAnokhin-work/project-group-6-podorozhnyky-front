@@ -138,7 +138,7 @@ margin-bottom: 40px;
 }
 
 .filterButtonActive {
-  background: var(--color-scheme-1-foreground);
+  background: var(--color-scheme-1-foreground-active);
 }
 
 .status {
@@ -186,7 +186,7 @@ margin-bottom: 40px;
   }
 
   .filterButton:active {
-    background: var(--color-scheme-1-foreground);
+    background: var(--color-scheme-1-foreground-active);
   }
 }
 
