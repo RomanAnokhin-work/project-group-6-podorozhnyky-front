@@ -166,6 +166,7 @@
   width: 48px;
   height: 48px;
   background-color: var(--color-btn-background-populr);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .viewButton:hover,
@@ -174,10 +175,29 @@
   color: var(--color-white);
 }
 
+.saveButton:hover .bookmarkIcon {
+  fill: var(--color-white);
+}
+
 .viewButton:active,
 .saveButton:active {
   background-color: var(--color-royal-blue-darker);
   color: var(--color-white);
+}
+
+.saveButton:active .bookmarkIcon {
+  fill: var(--color-white);
+}
+
+.saveButtonSaved,
+.saveButtonSaved:hover,
+.saveButtonSaved:active {
+  background-color: var(--color-royal-blue-darker);
+  color: var(--color-white);
+}
+
+.bookmarkIconSaved {
+  fill: var(--color-white)
 }
 
 .viewButton:disabled,
