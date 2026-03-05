@@ -11,5 +11,5 @@ export interface SendResetEmailCredentials {
 export const sendResetEmail = async (
   credentials: SendResetEmailCredentials,
 ): Promise<void> => {
-  await api.post("/auth/send-reset-email", credentials);
+  await api.post("/auth/request-reset-email", credentials);
 };
