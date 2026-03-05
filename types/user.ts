@@ -4,5 +4,6 @@ export interface User {
   avatarUrl: string;
   articlesAmount: number;
   description: string;
+  email: string;
   savedArticles: string[];
 }

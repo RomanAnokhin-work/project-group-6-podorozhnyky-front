@@ -180,6 +180,27 @@ export const getMyStories = async (page = 1, perPage = 10) => {
   return data; 
 };
 
+export async function updateEmail(newEmail: string) {
+  const res = await instance.post("/auth/send-change-email", { newEmail });
+  return res.data;
+}
+
+export const updateProfile = async (formData: FormData): Promise<User> => {
+  const { data } = await instance.patch("/users/current", formData);
+
+  return data.data;
+};
+export interface SendResetEmailCredentials {
+  email: string;
+}
+
+export const sendResetEmail = async (
+  credentials: SendResetEmailCredentials,
+): Promise<void> => {
+  await instance.post("/auth/send-reset-email", credentials);
+};
+
+
 export const getSavedStories = async () => {
   try {
     const user = await getMe();
