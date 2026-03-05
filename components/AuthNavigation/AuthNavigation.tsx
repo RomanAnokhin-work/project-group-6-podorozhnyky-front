@@ -55,6 +55,7 @@ export default function AuthNavigation({
               setIsLogoutOpen(false);
             }}
           >
+            Ви точно хочете вийти?
           </Modal>
         )}
       </div>
