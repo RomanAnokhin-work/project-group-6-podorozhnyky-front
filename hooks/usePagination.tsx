@@ -53,6 +53,8 @@ export function usePagination<T>({
     queryFn: () => fetchFn({ page: backendPage, perPage }),
     enabled: isDesktop !== null,
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5,
   });
 
   useEffect(() => {

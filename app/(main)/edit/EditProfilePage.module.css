@@ -1,0 +1,222 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.header {
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 20px 23px;
+  flex-shrink: 0;
+  border-bottom: 2px solid #eee; 
+}
+
+.main {
+  flex-grow: 1; 
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.logo_link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 156px;
+  height: 40px;
+}
+.logo_link:hover {
+  opacity: 0.8;
+}
+
+.logo_icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.logo_text {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 110%;
+  letter-spacing: -0.01em;
+  color: #000000;
+}
+
+.footer {
+  padding: 27px 0;
+  text-align: center;
+  flex-shrink: 0; 
+  border-top: 2px solid #eee; 
+}
+
+.text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+
+/*       */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Секція аватара: коло + кнопка поруч */
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #E0E0E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Щоб картинка не виходила за межі кола */
+  flex-shrink: 0;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderIcon {
+  color: #4e4e4e;
+  width: 50px;
+  height: 50px;
+}
+
+.uploadButton {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #F3F3F3;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background: var(--Opacity-Neutral-Darkest-5, #0000000D);
+
+}
+
+.uploadButton:hover {
+  background-color: #E8EEFF;
+  border: 1px solid var(--Color-Royal-Blue, #4169E1)
+}
+
+.textarea {
+  width: 100%;
+  height: 120px;
+  padding: 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 12px;
+  resize: none;
+  font-family: inherit;
+}
+
+.charCount {
+  font-size: 12px;
+  color: #6B7280; /* Сірий колір за замовчуванням */
+  margin-top: 4px;
+  transition: color 0.2s ease;
+}
+
+/* Клас, який додасться автоматично */
+.charCount.error {
+  color: #E53E3E; /* Яскраво-червоний колір */
+  font-weight: 500;
+}
+
+.textarea {
+  /* Ваші існуючі стилі */
+  width: 100%;
+  height: 120px;
+  padding: 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 12px;
+  resize: none;
+}
+
+.textarea:focus:invalid {
+  border-color: #E53E3E;
+}
+.submitBtn {
+  width: 100%;
+  padding: 16px;
+  background-color: #CCD7F5; 
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+.submitBtn.active {
+  background-color: #4169E1; 
+  opacity: 1;
+  cursor: pointer;
+}
+.submitBtn.active:hover {
+  background-color: #3152B1; 
+  box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
+}
+.submitBtn:disabled {
+  filter: grayscale(0.5);
+}
+
+@media (min-width: 768px) {
+
+
+  .header {
+    max-width: 704px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .footer {
+    padding: 24px 0;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .header {
+    max-width: 1312px;
+  }
+}

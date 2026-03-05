@@ -18,6 +18,7 @@ const TravellersList = ({
   onLoadMore,
   isFetching,
 }: Props) => {
+  console.log(`${isFetching} - isFetching in TravellersList`);
   return (
     <div className={css.travellersListWrapper}>
       {users.length === 0 ? (

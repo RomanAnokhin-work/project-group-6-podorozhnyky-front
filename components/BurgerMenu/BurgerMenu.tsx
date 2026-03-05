@@ -150,7 +150,8 @@ export default function BurgerMenu({
             </Link>
           </div>
         ) : (
-          <div className={css.userInfo}>
+          <div className={css.userInfo}>  
+          <Link href="/edit">
             <Image
               src={user?.avatarUrl || "/images/avatar/defaultAvatar.png"}
               alt="User avatar"
@@ -158,13 +159,13 @@ export default function BurgerMenu({
               height="32"
               className={css.avatar}
             />
+            </Link>
+            <Link href="/edit">
             <span className={css.userName}>
               {user?.name || "Імʼя користувача"}
             </span>
-            <button
-              className={css.logoutButton}
-              onClick={() => setIsLogoutOpen(true)}
-            >
+            </Link>
+            <button className={css.logoutButton} onClick={()=> setIsLogoutOpen(true)}>
               <svg className={css.logoutIcon}>
                 <use href="/icons.svg#icon-logout" />
               </svg>
