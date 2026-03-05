@@ -11,7 +11,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 1.35;
-  color: #1a1a1a;
+  color: var(--color-dark-text);
   margin-bottom: 32px;
 }
 
@@ -20,8 +20,9 @@
   justify-content: center;
   min-height: 48px;
   padding: 12px 24px;
-  background-color: var(--background-button);
-  color: #fff;
+  background-color: var(--color-royal-blue);
+  color: var(--color-white);
+  border: 1px solid currentColor;
   font-weight: 500;
   font-size: 16px;
   border-radius: 8px;
@@ -30,12 +31,17 @@
     background-color 0.2s ease,
     opacity 0.2s ease;
 }
+.button:active {
+  background-color: var(--color-btn-background-active);
+  color: var(--color-neutral-darkest-active);
+}
 
 @media (hover: hover) and (pointer: fine) {
-  .button:hover {
-    border: 1px solid var(--background-button);
-    background-color: var(--background-footer);
-    color: #000000;
+  .button:hover,
+  .button:focus {
+    border: 1px solid currentColor;
+    background-color: var(--color-royal-blue-lighter);
+    color: var(--color-scheme-1-text);
     cursor: pointer;
   }
 }
@@ -44,12 +50,11 @@
   /* .content{
     flex-direction: row;
   } */
-.wrapper {
-    width: 704px; 
+  .wrapper {
+    width: 704px;
     /* margin: 32px auto;
     padding: 64px 32px; */
-      margin: 0;
-
+    margin: 0;
   }
 
   .text {

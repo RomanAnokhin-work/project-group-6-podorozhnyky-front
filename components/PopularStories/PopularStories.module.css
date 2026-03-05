@@ -69,7 +69,7 @@
 
 /* active */
 .moreBtn:active {
-  background: var(--color-royal-blue-light);
+  background: var(--color-btn-background-active);
   color: var(--color-scheme-2-text);
 }
 
