@@ -73,7 +73,9 @@ export async function fetchPopularStoriesPage(
 }
 
 export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
-  const { data } = await instance.get(`/stories/${storyId}`);
+
+ const { data } = await instance.get(`/stories/${storyId}`);
+
   return data.data;
 };
 
@@ -83,13 +85,13 @@ export const deleteStory = async (storyId: string) => {
 };
 
 export const addFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.patch("/stories/saved", { storyId });
+  const { data } = await instance.patch(`/stories/saved`, { storyId });
   return data.data;
 };
 
 export const removeFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.delete("/stories/saved", {
-    data: { storyId },
+  const { data } = await instance.delete(`/stories/saved`, {
+    data: { storyId }
   });
   return data.data;
 };

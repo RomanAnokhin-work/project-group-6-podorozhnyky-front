@@ -1,6 +1,7 @@
 .section {
   padding: 64px 20px;
   background: var(--color-scheme-2-background);
+ 
 }
 
 .h2 {
@@ -126,6 +127,7 @@
   .list {
     grid-template-columns: repeat(3, 1fr);
     /* ✅ 3 в ряд */
+    
   }
 
   .item {
