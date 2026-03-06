@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
-import { fetchCategories, fetchStoryById } from "@/lib/api/clientApi";
+import { fetchCategories, fetchStoryById, updateStory } from "@/lib/api/clientApi";
 import { SelectChevron } from "../AddStoryForm/SelectChevronIcon";
 import AuthNavModal from "../AuthNavModal/AuthNavModal";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import { log } from "console";
+import toast from "react-hot-toast";
 
 type ApiCategory = { _id: string; name: string };
 
@@ -129,11 +129,6 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
           .required("Вкажіть заголовок")
           .max(80, "Максимум 80 символів"),
         category: Yup.string().required("Оберіть категорію"),
-        description: Yup.string()
-          .transform((value) => (value === "" ? null : value))
-  .max(DESC_MAX, `Максимум ${DESC_MAX} символів`)
-  .nullable()
-  .notRequired(),
         article: Yup.string()
           .trim()
           .required("Вкажіть текст історії")
@@ -142,6 +137,30 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
     [storyId, previewUrl],
   );
 
+  const handleSubmit = async (values: any, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    if (!storyId) {
+    toast.error("Помилка: ID історії не знайдено");
+    return;
+  }
+  try {
+    setSaveErrorOpen(false);
+    const data = await updateStory(storyId, {
+      ...values,
+      cover: values.cover 
+    });
+    const id = data?.story?._id || data?._id || storyId;
+    toast.success("Історію оновлено👌!");
+    router.push(`/stories/${id}`);
+    
+  } catch (error) {
+    console.error("Update error:", error);
+    toast.error("Помилка збереження історії❌");
+    setSaveErrorOpen(true);
+  } finally {
+    setSubmitting(false);
+  }
+};
+
   return (
     <div className={css.page}>
       <Formik
@@ -149,38 +168,7 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
         enableReinitialize
         validationSchema={schema}
         validateOnMount
-        onSubmit={async (values, { setSubmitting }) => {
-          try {
-            setSaveErrorOpen(false);
-
-            const formData = new FormData();
-            formData.append("img", values.cover as File);
-            formData.append("title", values.title);
-            formData.append("category", values.category);
-            formData.append("article", values.article);
-            formData.append("description", values.description);
-
-            const res = await fetch(`/api/stories/${storyId}`, {
-              method: "PATCH",
-              body: formData,
-              credentials: "include",
-            });
-            if (!res.ok) throw new Error("Failed");
-
-            const json = await res.json();
-            const id =
-              json?.story?._id ?? json?.story?.id ?? json?._id ?? json?.id;
-
-            // по ТЗ: редирект на /stories/[storyId]
-            if (id) router.push(`/stories/${id}`);
-            else router.push("/stories");
-          } catch {
-            // ✅ по ТЗ: модалка "Помилка збереження"
-            setSaveErrorOpen(true);
-          } finally {
-            setSubmitting(false);
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {({
           resetForm,
@@ -299,7 +287,7 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
                 </div>
 
                 {/* Description */}
-                <div className={css.field}>
+                {/* <div className={css.field}>
                   <div className={css.label}>Короткий опис</div>
                   <Field
                     as="textarea"
@@ -315,7 +303,7 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
                   <div className={css.error}>
                     <ErrorMessage name="description" />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Article */}
                 <div className={css.field}>

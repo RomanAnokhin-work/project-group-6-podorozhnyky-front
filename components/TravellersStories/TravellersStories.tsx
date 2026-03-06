@@ -5,6 +5,7 @@ import TravellersStoriesItem from "../TravellersStoriesItem/TravellersStoriesIte
 import Button from "../Button/Button";
 import css from "./TravellersStories.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
+import { useEffect } from "react";
 
 interface Props {
   stories: ApiStory[];
@@ -23,6 +24,11 @@ const TravellersStories = ({
 }: Props) => {
   const { isAuthenticated, user } = useAuthStore();
 
+  useEffect(() => {
+  console.log("Stories оновилися!", stories);
+  
+  // Тут можна, наприклад, проскролити сторінку або відправити метрику
+}, [stories]);
   if (!stories) {
     return <p>Немає історій</p>;
   }

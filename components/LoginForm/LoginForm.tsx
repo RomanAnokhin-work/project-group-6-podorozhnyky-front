@@ -43,6 +43,7 @@ function LoginForm() {
       const user = await getMe(); // з clientApi
       setUser(user);
       router.push("/profile");
+      toast.success("Ви успішно увійшли! Ласкаво просимо в мережу мандрівників!👋"); 
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

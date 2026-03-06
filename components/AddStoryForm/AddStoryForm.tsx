@@ -11,6 +11,7 @@ import { SelectChevron } from "./SelectChevronIcon";
 import AuthNavModal from "../AuthNavModal/AuthNavModal";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import { instance } from "@/lib/api/api";
+import toast from "react-hot-toast";
 
 type ApiCategory = { _id: string; name: string };
 
@@ -124,8 +125,10 @@ export default function AddStoryForm() {
             } else {
               router.push("/stories");
             }
+            toast.success("Історію створено👌!");
           } catch (error) {
             console.error("Помилка при збереженні історії:", error);
+              toast.error("Помилка збереження історії❌");
             setSaveErrorOpen(true);
           } finally {
             setSubmitting(false);

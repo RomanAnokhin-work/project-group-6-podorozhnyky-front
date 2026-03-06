@@ -47,6 +47,14 @@ interface CreateStoryData {
   article: string;
 }
 
+interface UpdateStoryData {
+  title: string;
+  category: string;
+  description: string;
+  article: string;
+  cover?: File | null; 
+}
+
 export const createStory = async (storyData: CreateStoryData) => {
   const formData = new FormData();
   formData.append("img", storyData.cover);
@@ -219,5 +227,22 @@ export const updateCurrentUser = async (formData: FormData) => {
       "Content-Type": "multipart/form-data",
     },
   });
+  return data;
+};
+
+export const updateStory = async (storyId: string, storyData: UpdateStoryData) => {
+  const formData = new FormData();
+  if (storyData.cover instanceof File) {
+    formData.append("img", storyData.cover);
+  }
+  formData.append("title", storyData.title);
+  formData.append("category", storyData.category);
+  formData.append("article", storyData.article);
+  const { data } = await instance.patch(`/stories/${storyId}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
   return data;
 };

@@ -2,6 +2,7 @@
 
 import { useThemeContext } from "@/hooks/useThemeContext";
 import css from "./ThemeSwitcher.module.css";
+import toast from "react-hot-toast";
 
 const ThemeSwitcher = () => {
   const { theme, setTheme } = useThemeContext();
@@ -10,6 +11,7 @@ const ThemeSwitcher = () => {
 
   const handleToggle = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    toast.success(`Тема змінена на ${isDark ? "світлу☀️" : "темну🌑"}!`);
   };
 
   return (
