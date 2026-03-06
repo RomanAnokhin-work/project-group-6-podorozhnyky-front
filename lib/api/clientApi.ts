@@ -83,17 +83,17 @@ export const deleteStory = async (storyId: string) => {
   return res.data;
 };
 
-export const addFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.patch(`/stories/saved`, { storyId });
-  return data.data;
-};
+// export const addFavorite = async (storyId: string): Promise<User> => {
+//   const { data } = await instance.patch(`/stories/saved`, { storyId });
+//   return data.data;
+// };
 
-export const removeFavorite = async (storyId: string): Promise<User> => {
-  const { data } = await instance.delete(`/stories/saved`, {
-    data: { storyId },
-  });
-  return data.data;
-};
+// export const removeFavorite = async (articleId: string): Promise<User> => {
+//   const { data } = await instance.delete(`/stories/saved`, {
+//     data: { articleId },
+//   });
+//   return data.data;
+// };
 
 export const addArticleToSaved = async (articleId: string) => {
   const { data } = await instance.patch("/stories/saved", { articleId });

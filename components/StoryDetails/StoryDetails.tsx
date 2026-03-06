@@ -1,10 +1,10 @@
 "use client";
 
 import {
-  addFavorite,
+  addArticleToSaved,
   deleteStory,
   fetchStoryById,
-  removeFavorite,
+  removeArticleFromSaved,
 } from "@/lib/api/clientApi";
 import { ApiStory } from "@/types/story";
 import Image from "next/image";
@@ -44,7 +44,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
   }, [storyId]);
 
   const toggleFavorite = async () => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       router.push("/auth/login");
       return;
     }
@@ -52,25 +52,25 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
     setSaving(true);
 
     try {
-      let updatedFavorites;
+      let updatedFavorites: string[] = [];
 
       if (isFavorite) {
-        const res = await removeFavorite(storyId);
-
-        updatedFavorites = res.savedArticles;
+        const res = await removeArticleFromSaved(storyId);
+        const rawFavorites = res.savedArticles || user.savedArticles.filter(id => id !== storyId);
+        updatedFavorites = rawFavorites.map((item: any) => typeof item === 'object' ? item._id : item);
         toast.success("Історію видалено із збережених");
       } else {
-        const res = await addFavorite(storyId);
-
-        updatedFavorites = res.savedArticles;
+        const res = await addArticleToSaved(storyId);
+        const rawFavorites = res.savedArticles || [...user.savedArticles, storyId];
+        updatedFavorites = rawFavorites.map((item: any) => typeof item === 'object' ? item._id : item);
         toast.success("Історію збережено!");
       }
 
       // просто замінюємо популяцію
-      setUser({
-        ...user!,
-        savedArticles: updatedFavorites,
-      });
+        setUser({
+          ...user,
+          savedArticles: updatedFavorites, 
+        });
     } catch {
       toast.error("Сталася помилка");
     } finally {
@@ -136,7 +136,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
           <p className={css.article}>{story.article}</p>
 
           <FavoriteActions
-            storyId={storyId}
+            articleId={storyId}
             isAuthenticated={isAuthenticated}
             isFavorite={isFavorite}
             saving={saving}
