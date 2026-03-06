@@ -20,7 +20,7 @@ export async function fetchPopularStoriesPage(
   page = 1,
   perPage = 10,
 ): Promise<PopularResponse> {
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL + "/api";
+  const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) throw new Error("BACKEND_URL is not defined");
 
   const res = await fetch(

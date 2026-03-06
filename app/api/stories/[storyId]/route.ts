@@ -7,7 +7,7 @@ export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ storyId: string }> },
 ) {
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+  const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },
