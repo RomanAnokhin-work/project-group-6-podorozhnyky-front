@@ -43,7 +43,7 @@ export async function fetchPopularStoriesPage(
 
 export async function getServerMe(): Promise<User> {
   const cookieStore = await cookies();
-  console.log(cookieStore);
+  
   
 
   const { data } = await instance.get<User>("/users/me", {
@@ -57,7 +57,7 @@ export async function getServerMe(): Promise<User> {
 
 export async function getMyStoriesServer(page = 1, perPage = 10) {
   const cookieStore = await cookies();
-  console.log(cookieStore);
+  
   
   
   const { data } = await instance.get(`/stories/own`, {

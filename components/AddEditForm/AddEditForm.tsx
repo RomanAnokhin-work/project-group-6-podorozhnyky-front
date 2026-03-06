@@ -63,7 +63,7 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
             try {
                 setStoryLoading(true);
                 const data = await fetchStoryById(storyId);
-                console.log(data);
+                
                 
                 
                 if (data) {

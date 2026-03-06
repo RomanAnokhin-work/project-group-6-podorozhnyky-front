@@ -134,7 +134,7 @@ export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
 
 export async function checkSession(): Promise<CheckSessionResponse> {
   const { data } = await instance.post<CheckSessionResponse>("/auth/session");
-  console.log(data);
+ 
   
   return data;
 }
@@ -163,9 +163,7 @@ export type ApiCategory = { _id: string; name: string };
 
 export async function fetchCategories() {
   const res = await instance.get("/categories");
-  console.log("AXIOS categories url:", res.config.baseURL, res.config.url);
-  console.log("AXIOS categories status:", res.status);
-  console.log("AXIOS categories data:", res.data);
+ 
   return res.data;
 }
 export const getMyStories = async (page = 1, perPage = 10) => {

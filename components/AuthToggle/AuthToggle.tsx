@@ -7,7 +7,7 @@ import css from "./AuthToggle.module.css";
 
 export default function AuthTabs() {
   const pathname = usePathname();
-  console.log(pathname);
+  
   return (
     <div className={css.tabsContainer}>
       <Link

@@ -13,7 +13,7 @@ interface AuthPageProps {
 
 export default async function AuthPage({ params }: AuthPageProps) {
   const { authType } = await params;
-  // console.log(authType)
+  
   if (authType !== "login" && authType !== "register") {
     notFound();
   }

@@ -22,7 +22,7 @@ export default async function EditStoryPage({
   params: Promise<{ storyId: string }>;
 }) {
   const { storyId } = await params;
-  console.log(storyId);
+  
 
  return (
     <Container className={css.container}>

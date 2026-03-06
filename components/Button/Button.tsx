@@ -8,7 +8,7 @@ interface ButtonProps {
 }
 
 export default function Button({ buttonType, onClick, isFetching = false, children }: ButtonProps) {
-  console.log(isFetching);
+  
   return (
     <button type={`${buttonType}`} onClick={onClick} className={css.loadMoreBtn} disabled={isFetching}>
 

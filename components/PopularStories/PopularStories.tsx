@@ -26,13 +26,13 @@ export default function PopularStories({showMoreButton = true,
         setLoading(true);
         setError(null);
 
-        console.log("fetch popular start");
+        
         const data = await fetchPopularStoriesPage(1, ITEMS_FOR_LAYOUT);
-        console.log("fetch popular done", data);
+       
 
         setStories(data?.stories ?? []);
       } catch (e) {
-        console.log("fetch popular error", e);
+        
         setError("Не вдалося завантажити історії");
       } finally {
         setLoading(false);

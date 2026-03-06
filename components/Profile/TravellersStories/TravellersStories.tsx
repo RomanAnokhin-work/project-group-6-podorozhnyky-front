@@ -48,7 +48,7 @@ if (!stories || stories.length === 0) {
     );
   }
 
-console.log('page:', page, 'totalPages:', totalPages, 'isFetching:', isFetching);
+
  return (
     <div className={css.container}>
       <ul className={css.grid}>
