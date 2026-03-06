@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import css from "./MessageNoStories.module.css";
+import Container from "../Container/Container";
+  
 
 export interface MessageNoStoriesProps {
   text: string;
@@ -15,12 +17,14 @@ const MessageNoStories = ({
   buttonRoute = "/stories",
 }: MessageNoStoriesProps) => {
   return (
+    <Container className={css.container}>
     <div className={css.wrapper} role="status" aria-live="polite">
       <p className={css.text}>{text}</p>
       <Link href={buttonRoute} className={css.button}>
         {buttonText}
       </Link>
-    </div>
+      </div>
+      </Container>
   );
 };
 
