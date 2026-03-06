@@ -1,7 +1,7 @@
 .about {
   padding: 64px 20px;
   background-color: var(--color-royal-blue-lightest);
-  display: flex;
+  /* display: flex; */
 }
 .title {
   font-weight: 700;
