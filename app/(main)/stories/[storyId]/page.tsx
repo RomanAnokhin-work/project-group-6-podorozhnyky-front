@@ -1,8 +1,12 @@
 import StoryDetails from "@/components/StoryDetails/StoryDetails";
 import { fetchStoryById } from "@/lib/api/clientApi";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const story = await fetchStoryById(params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: { storyId: string };
+}) {
+  const story = await fetchStoryById(params.storyId);
 
   return {
     icons: {
