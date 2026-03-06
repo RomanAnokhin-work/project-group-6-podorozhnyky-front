@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   const perPage = searchParams.get("perPage") ?? "10";
   const category = searchParams.get("category");
 
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL; // НЕ public
+  const backendUrl = process.env.BACKEND_URL; // НЕ public
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },
@@ -41,7 +41,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+  const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },

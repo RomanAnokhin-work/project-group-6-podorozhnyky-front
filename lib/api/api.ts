@@ -13,7 +13,7 @@ export async function fetchStories(
   perPage = 10,
   category?: string,
 ): Promise<StoriesResponse> {
-  const backendUrl = baseURL;
+  const backendUrl = process.env.BACKEND_URL;
   if (!backendUrl) throw new Error("BACKEND_URL is not defined in .env.local");
 
   const qs = new URLSearchParams({
