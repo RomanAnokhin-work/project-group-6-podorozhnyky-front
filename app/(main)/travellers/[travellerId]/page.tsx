@@ -1,8 +1,12 @@
 import { getTravellerById } from "@/lib/api/serverApi";
 import TravellerPageByIdClient from "./TravellersPageById.client";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const { user } = await getTravellerById(params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: { travellerId: string };
+}) {
+  const { user } = await getTravellerById(params.travellerId);
 
   return {
     icons: {
@@ -17,6 +21,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     },
   };
 }
+
 
 type Props = {
   params: Promise<{ travellerId: string }>;
