@@ -142,7 +142,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
-  color: var(--color-neutral-darkest);
+  color: var(--color-dark-text);
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -151,11 +151,12 @@
 }
 
 .uploadButton:hover {
-  background: var(--opacity-neutral-darkest-5);
+  background: var(--color-royal-blue-lighter);
 }
 
 .uploadButton:active {
-  transform: translateY(1px);
+  background-color: var(--color-btn-background-active);
+  color: var(--color-neutral-darkest-active);
 }
 
 /* Textarea */
@@ -174,14 +175,14 @@
   line-height: 150%;
   overflow-y: auto;
   scrollbar-width: none;
-  color: var(--opacity-neutral-darkest-60);
+  color: var(--color-dark-text);
 }
 .textarea::-webkit-scrollbar {
   display: none;
   /* Chrome / Safari */
 }
 .textarea::placeholder {
-  color: var(--opacity-neutral-darkest-60);
+  color: var(--color-input-placeholder);
 }
 
 .textarea:focus {
