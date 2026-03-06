@@ -6,6 +6,8 @@ import { useAuthStore } from "@/lib/store/authStore";
 import { ApiStory } from "@/types/story";
 import TravellersStories from "@/components/Profile/TravellersStories/TravellersStories";
 import { useEffect, useState } from "react";
+import Container from "@/components/Container/Container";
+import css from "./ProfilePage.module.css"
 
 export default function ProfileStoriesClient({ variant }: { variant: "saved" | "own" }) {
   const { user } = useAuthStore();
@@ -59,6 +61,7 @@ export default function ProfileStoriesClient({ variant }: { variant: "saved" | "
   });
 
   return (
+     <Container className={css.container}>
     <TravellersStories
       stories={data}
       variant={variant}
@@ -67,5 +70,6 @@ export default function ProfileStoriesClient({ variant }: { variant: "saved" | "
       totalPages={totalPages ?? 1}
       isFetching={isFetching}
     />
+    </Container>
   );
 }
