@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },
