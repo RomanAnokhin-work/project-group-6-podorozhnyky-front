@@ -13,7 +13,7 @@ export default function Button({
   isFetching = false,
   children,
 }: ButtonProps) {
-  console.log(isFetching);
+  // console.log(isFetching);
   return (
     <button
       type={`${buttonType}`}

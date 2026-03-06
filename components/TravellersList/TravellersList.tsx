@@ -18,7 +18,7 @@ const TravellersList = ({
   onLoadMore,
   isFetching,
 }: Props) => {
-  console.log(`${isFetching} - isFetching in TravellersList`);
+  console.log(page, totalPages, isFetching);  
   return (
     <div className={css.travellersListWrapper}>
       {users.length === 0 ? (
@@ -32,8 +32,8 @@ const TravellersList = ({
           ))}
         </ul>
       )}
-
-      {page < totalPages && (
+      
+      {page < (totalPages-2) && (
         <Button
           buttonType="button"
           onClick={onLoadMore}
