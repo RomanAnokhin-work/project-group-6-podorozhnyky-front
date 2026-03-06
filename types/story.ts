@@ -16,6 +16,7 @@ export interface ApiStory {
   img: string;
   title: string;
   article: string;
+  description: string;
   category: ApiCategory;
   ownerId: ApiOwner;
   date: string;
