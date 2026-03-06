@@ -11,6 +11,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateCurrentUser } from "@/lib/api/clientApi";
 import { MdAddAPhoto } from "react-icons/md";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon-1.svg"
+  },
+  title: "Редагувати | Podorozhnyky",
+  description: "Редагування контенту на Podorozhnyky",
+  robots: { index: false, follow: false },
+};
 
 interface FormValues {
   name: string;

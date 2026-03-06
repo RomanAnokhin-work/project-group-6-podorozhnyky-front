@@ -1,4 +1,23 @@
 import StoryDetails from '@/components/StoryDetails/StoryDetails';
+import { fetchStoryById } from '@/lib/api/clientApi';
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const story = await fetchStoryById(params.id);
+
+  return {
+    icons: {
+    icon: "/favicon-1.svg"
+  },
+    title: story.title,
+    description: story.article,
+    openGraph: {
+      title: story.title,
+      description: story.article,
+      images: [story.img],
+    },
+  };
+}
 
 export default async function StoryPage({
   params,
