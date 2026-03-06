@@ -7,7 +7,7 @@ import Modal from "../../Modal/Modal";
 import css from "./FavoriteActions.module.css";
 
 type Props = {
-  storyId: string;
+  articleId: string;
   isAuthenticated: boolean;
   isFavorite: boolean;
   saving: boolean;
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function FavoriteActions({
-  storyId,
+  articleId,
   isAuthenticated,
   isFavorite,
   saving,
@@ -52,7 +52,7 @@ export default function FavoriteActions({
           <div className={css.buttonsRow}>
             <button
               className={css.saveButton}
-              onClick={() => router.push(`/stories/${storyId}/edit`)}
+              onClick={() => router.push(`/stories/${articleId}/edit`)}
             >
               Редагувати
             </button>
