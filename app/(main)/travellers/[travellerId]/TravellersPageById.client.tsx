@@ -7,6 +7,7 @@ import { ApiStory } from "@/types/story";
 import TravellerInfo from "@/components/TravellerInfo/TravellerInfo";
 import TravellersStories from "@/components/TravellersStories/TravellersStories";
 import MessageNoStories from "@/components/MessageNoStories/MessageNoStories";
+import Container from "@/components/Container/Container";
 
 type Props = {
   user: User;
@@ -44,7 +45,7 @@ export default function TravellerPageByIdClient({ user, articles }: Props) {
   };
 
   return (
-    <div className="container">
+    <Container className="container">
       <TravellerInfo user={user} />
 
       <h2 className={css.h2}>Історії Мандрівника</h2>
@@ -64,6 +65,6 @@ export default function TravellerPageByIdClient({ user, articles }: Props) {
           buttonRoute="/travellers"
         />
       )}
-    </div>
+    </Container>
   );
 }
