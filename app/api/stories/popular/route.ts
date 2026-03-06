@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
-  const backendUrl = process.env.BACKEND_URL;
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!backendUrl) {
     return NextResponse.json(
       { message: "BACKEND_URL is not defined" },
