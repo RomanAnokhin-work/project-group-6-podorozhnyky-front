@@ -338,7 +338,6 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
                   className={css.primaryBtn}
                   disabled={
                     !isValid ||
-                    !dirty ||
                     isSubmitting ||
                     catLoading ||
                     !!catError
