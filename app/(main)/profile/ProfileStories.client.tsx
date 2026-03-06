@@ -18,26 +18,21 @@ export default function ProfileStoriesClient({ variant }: { variant: "saved" | "
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Визначаємо розміри згідно з ТЗ та обмеженнями бекенду
   const initialSize = isDesktop ? 6 : 4;
   const nextStepSize = isDesktop ? 3 : 2;
 
   const { data, handleLoadMore, totalPages, page, isFetching } = usePagination<ApiStory>({
     queryKey: `${variant}-stories-${user?.savedArticles?.join(",")}-${initialSize}`,
-    initialSizeDesktop: 6, // Перша порція для ПК
-    initialSizeMobile: 4,  // Перша порція для мобілки/планшета
+    initialSizeDesktop: 6, 
+    initialSizeMobile: 4,  
     loadMoreSize: nextStepSize,
     fetchFn: async ({ page, perPage }) => {
-      // Важливо: для першої сторінки використовуємо initialSize, 
-      // для наступних — perPage (який буде дорівнювати loadMoreSize)
       const currentLimit = page === 1 ? initialSize : perPage;
 
       if (variant === "saved") {
         const allIds = user?.savedArticles || [];
         if (allIds.length === 0) return { items: [], totalPages: 0, page: 1 };
 
-        // Розрахунок відступу: перша сторінка завжди з 0
-        // Наступні: пропускаємо першу порцію (initialSize) + попередні кроки (loadMoreSize)
         const start = page === 1 ? 0 : initialSize + (page - 2) * nextStepSize;
         const end = start + currentLimit;
         
@@ -46,7 +41,6 @@ export default function ProfileStoriesClient({ variant }: { variant: "saved" | "
 
         return {
           items,
-          // Розрахунок totalPages враховує різний розмір першої та наступних сторінок
           totalPages: allIds.length <= initialSize 
             ? 1 
             : Math.ceil((allIds.length - initialSize) / nextStepSize) + 1,

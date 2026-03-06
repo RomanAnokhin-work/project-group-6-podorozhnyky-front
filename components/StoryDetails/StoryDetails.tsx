@@ -34,6 +34,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
         const data = await fetchStoryById(storyId);
 
         setStory(data);
+      
       } catch {
         toast.error("Помилка завантаження історії");
       } finally {
@@ -48,7 +49,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
       router.push("/auth/login");
       return;
     }
-
+    
     setSaving(true);
 
     try {
@@ -102,6 +103,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
       toast.error("Помилка під час видалення");
     }
   };
+  
   return (
     <Container className={css.container}>
       <section className={css.storyDetails}>
@@ -136,6 +138,7 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
           <p className={css.article}>{story.article}</p>
 
           <FavoriteActions
+            idForDelete={story._id}
             articleId={storyId}
             isAuthenticated={isAuthenticated}
             isFavorite={isFavorite}
