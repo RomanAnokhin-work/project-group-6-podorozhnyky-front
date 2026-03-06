@@ -73,7 +73,8 @@ export async function fetchPopularStoriesPage(
 
 export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
   const { data } = await instance.get(`/stories/${storyId}`);
-
+  console.log(data);
+  
   return data.data;
 };
 
