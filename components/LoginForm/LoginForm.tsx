@@ -109,9 +109,9 @@ function LoginForm() {
                   placeholder="********"
                 />
               </div>
-               <Link href="/auth/send-reset-email" className={css.forgotLink}>
-               Забули пароль?
-               </Link>
+              <Link href="/auth/send-reset-email" className={css.forgotLink}>
+                Забули пароль?
+              </Link>
 
               <ErrorMessage
                 className={css.error}

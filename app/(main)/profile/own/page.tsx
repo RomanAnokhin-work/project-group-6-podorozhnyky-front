@@ -1,4 +1,8 @@
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import ProfileStoriesClient from "../ProfileStories.client";
 
 export default async function OwnStoriesPage() {
@@ -6,7 +10,7 @@ export default async function OwnStoriesPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-        <ProfileStoriesClient variant="own" />
+      <ProfileStoriesClient variant="own" />
     </HydrationBoundary>
   );
 }

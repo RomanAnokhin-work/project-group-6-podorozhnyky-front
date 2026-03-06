@@ -31,15 +31,15 @@ export default function ProfileInfo() {
   if (loading) return <div>Завантаження...</div>;
   if (!user) return <div>Користувача не знайдено</div>;
 
-  const {  description, name } = user;
+  const { description, name } = user;
   let avatarSrc: string;
-    if (user.avatarUrl) {
-      avatarSrc = user.avatarUrl;
-    } else {
-      const {seedString, bgColor} = useRandomAvatar(user._id, user.name);
-      
-      avatarSrc = `https://api.dicebear.com/9.x/lorelei/svg?seed=${seedString}&backgroundColor=${bgColor}`;
-    }
+  if (user.avatarUrl) {
+    avatarSrc = user.avatarUrl;
+  } else {
+    const { seedString, bgColor } = useRandomAvatar(user._id, user.name);
+
+    avatarSrc = `https://api.dicebear.com/9.x/lorelei/svg?seed=${seedString}&backgroundColor=${bgColor}`;
+  }
 
   return (
     <div className={css.wrapper}>
@@ -56,7 +56,6 @@ export default function ProfileInfo() {
         <Link href="/edit">
           <Button buttonType="button">Редагувати профіль</Button>
         </Link>
-    
       </div>
     </div>
   );

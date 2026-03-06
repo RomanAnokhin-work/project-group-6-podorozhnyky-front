@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/favicon-1.svg"
+    icon: "/favicon-1.svg",
   },
   title: "Історії | Podorozhnyky",
   description: "Читайте найцікавіші історії мандрівників зі всього світу.",
@@ -13,7 +13,12 @@ export const metadata: Metadata = {
     url: "https://project-group-6-podorozhnyky-front.vercel.app/stories",
     siteName: "Podorozhnyky",
     images: [
-      { url: "/images/cover/cover.jpg", width: 1200, height: 630, alt: "Stories" },
+      {
+        url: "/images/cover/cover.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Stories",
+      },
     ],
     type: "website",
     locale: "uk_UA",
@@ -25,13 +30,15 @@ export const metadata: Metadata = {
     images: ["/images/cover/cover.jpg"],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://project-group-6-podorozhnyky-front.vercel.app/stories" },
+  alternates: {
+    canonical: "https://project-group-6-podorozhnyky-front.vercel.app/stories",
+  },
 };
 
 export default function StoriesPage() {
   return (
     <main>
-        <StoriesPageClient />
+      <StoriesPageClient />
     </main>
   );
 }

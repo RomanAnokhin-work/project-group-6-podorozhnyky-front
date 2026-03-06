@@ -141,7 +141,6 @@
   border-color: var(--color-royal-blue, #407bff);
 }
 
-
 :global(body.bodyLock) {
   overflow: hidden;
   width: 100%;

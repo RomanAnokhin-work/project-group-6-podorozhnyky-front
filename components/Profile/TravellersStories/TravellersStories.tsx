@@ -1,8 +1,8 @@
-import TravellersStoriesItem from '../../TravellersStoriesItem/TravellersStoriesItem';
-import  MessageNoStories  from '@/components/MessageNoStories/MessageNoStories';
-import css from './TravellersStories.module.css';
-import Button from '@/components/Button/Button';
-import { ApiStory } from '@/types/story';
+import TravellersStoriesItem from "../../TravellersStoriesItem/TravellersStoriesItem";
+import MessageNoStories from "@/components/MessageNoStories/MessageNoStories";
+import css from "./TravellersStories.module.css";
+import Button from "@/components/Button/Button";
+import { ApiStory } from "@/types/story";
 
 interface Story {
   _id: string;
@@ -16,31 +16,30 @@ interface Story {
 
 interface Props {
   stories: ApiStory[];
-  variant: 'saved' | 'own';
-  onLoadMore: ()=>void,
+  variant: "saved" | "own";
+  onLoadMore: () => void;
   page: number;
-  totalPages:number;
-  isFetching:boolean
-
+  totalPages: number;
+  isFetching: boolean;
 }
 
-const TravellersStories = ({ 
-  stories, 
-  variant, 
-  onLoadMore, 
-  page, 
-  totalPages = 0, 
-  isFetching 
+const TravellersStories = ({
+  stories,
+  variant,
+  onLoadMore,
+  page,
+  totalPages = 0,
+  isFetching,
 }: Props) => {
-
-if (!stories || stories.length === 0) {
-    const isOwn = variant === 'own';
+  if (!stories || stories.length === 0) {
+    const isOwn = variant === "own";
 
     return (
-      <MessageNoStories 
-        text={isOwn 
-          ? "У вас ще немає створених історій. Поділіться своїми пригодами з іншими!" 
-          : "Ваш список збережених історій поки що порожній."
+      <MessageNoStories
+        text={
+          isOwn
+            ? "У вас ще немає створених історій. Поділіться своїми пригодами з іншими!"
+            : "Ваш список збережених історій поки що порожній."
         }
         buttonText={isOwn ? "Опублікувати історію" : "Перейти до історій"}
         buttonRoute={isOwn ? "/stories/create" : "/stories"}
@@ -48,30 +47,38 @@ if (!stories || stories.length === 0) {
     );
   }
 
-console.log('page:', page, 'totalPages:', totalPages, 'isFetching:', isFetching);
- return (
+  console.log(
+    "page:",
+    page,
+    "totalPages:",
+    totalPages,
+    "isFetching:",
+    isFetching,
+  );
+  return (
     <div className={css.container}>
       <ul className={css.grid}>
         {stories.map((story) => (
-          <TravellersStoriesItem 
-            key={story._id} 
-            story={story} 
-            isOwnStory={variant === 'own'} 
-            isSaved={variant === 'saved'} 
+          <TravellersStoriesItem
+            key={story._id}
+            story={story}
+            isOwnStory={variant === "own"}
+            isSaved={variant === "saved"}
             isAuthenticated={true}
           />
         ))}
       </ul>
-      
+
       {/* Кнопка показується тільки якщо є ще сторінки для завантаження */}
-      {page < (totalPages===2 ? totalPages : totalPages - 1) && ( 
-        <div className={css.buttonWrapper}> {/* Додайте обгортку для центрування, якщо треба */}
-         <Button
-          buttonType="button" 
+      {page < (totalPages === 2 ? totalPages : totalPages - 1) && (
+        <div className={css.buttonWrapper}>
+          {" "}
+          {/* Додайте обгортку для центрування, якщо треба */}
+          <Button
+            buttonType="button"
             onClick={onLoadMore}
             isFetching={isFetching}
           />
-
         </div>
       )}
     </div>

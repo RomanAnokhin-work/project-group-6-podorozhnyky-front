@@ -47,7 +47,6 @@ interface CreateStoryData {
   article: string;
 }
 
-
 export const createStory = async (storyData: CreateStoryData) => {
   const formData = new FormData();
   formData.append("img", storyData.cover);
@@ -57,7 +56,7 @@ export const createStory = async (storyData: CreateStoryData) => {
   formData.append("article", storyData.article);
 
   const { data } = await instance.post("/stories", formData);
-  
+
   return data;
 };
 
@@ -73,8 +72,7 @@ export async function fetchPopularStoriesPage(
 }
 
 export const fetchStoryById = async (storyId: string): Promise<ApiStory> => {
-
- const { data } = await instance.get(`/stories/${storyId}`);
+  const { data } = await instance.get(`/stories/${storyId}`);
 
   return data.data;
 };
@@ -91,26 +89,27 @@ export const addFavorite = async (storyId: string): Promise<User> => {
 
 export const removeFavorite = async (storyId: string): Promise<User> => {
   const { data } = await instance.delete(`/stories/saved`, {
-    data: { storyId }
+    data: { storyId },
   });
   return data.data;
 };
 
 export const addArticleToSaved = async (articleId: string) => {
-  const { data } = await instance.patch('/stories/saved', { articleId });
+  const { data } = await instance.patch("/stories/saved", { articleId });
   return data;
 };
 
 export const removeArticleFromSaved = async (articleId: string) => {
-  const { data } = await instance.delete('/stories/saved', {
+  const { data } = await instance.delete("/stories/saved", {
     data: { articleId },
   });
   return data;
 };
 
-export const getUsers = async (
-  { page, perPage }: GetUsersParams
-): Promise<GetUsersResponse> => {
+export const getUsers = async ({
+  page,
+  perPage,
+}: GetUsersParams): Promise<GetUsersResponse> => {
   const { data } = await instance.get<GetUsersResponse>("/users", {
     params: {
       page,
@@ -135,7 +134,7 @@ export const getPopularUsers = async (): Promise<GetPopularUsersResponse> => {
 export async function checkSession(): Promise<CheckSessionResponse> {
   const { data } = await instance.post<CheckSessionResponse>("/auth/session");
   console.log(data);
-  
+
   return data;
 }
 
@@ -169,15 +168,14 @@ export async function fetchCategories() {
   return res.data;
 }
 export const getMyStories = async (page = 1, perPage = 10) => {
-
   const { data } = await instance.get(`/stories/own`, {
     params: {
       page,
-      perPage
-    }
+      perPage,
+    },
   });
-  
-  return data; 
+
+  return data;
 };
 
 export async function updateEmail(newEmail: string) {
@@ -199,7 +197,6 @@ export const sendResetEmail = async (
 ): Promise<void> => {
   await instance.post("/auth/send-reset-email", credentials);
 };
-
 
 export const getSavedStories = async () => {
   try {

@@ -53,7 +53,7 @@ body[data-theme="dark"] {
   --color-btn-background-active: #4c4c4c;
   --color-neutral-darkest-active: #fff;
   --color-dark-text: #fff;
-  --color-stories-background: #000; 
+  --color-stories-background: #000;
   --color-btn-background-populr: rgba(255, 255, 255, 0.1);
   --color-btn-background-populr-hover: #e8eeff;
   --color-royal-blue-darker: #7a96ea;
@@ -108,12 +108,10 @@ body {
   }
 
   .storyPageWrapper [class*="PopularStories-module"][class*="section"] {
-      padding-left: 0px !important;
-      padding-right: 0px !important;
-      margin-left: 0px !important;
-    }
- 
-    
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-left: 0px !important;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -122,15 +120,13 @@ body {
   }
 
   .storyPageWrapper [class*="PopularStories-module"][class*="section"] {
-      padding-left: 0px !important;
-      padding-right: 64px !important;
-      margin-left: 0px !important ;
-   }
-   .storyPageWrapper [class*="PopularStories-module"][class*="list"]{
-gap: 32px !important;
-
-}
-
+    padding-left: 0px !important;
+    padding-right: 64px !important;
+    margin-left: 0px !important ;
+  }
+  .storyPageWrapper [class*="PopularStories-module"][class*="list"] {
+    gap: 32px !important;
+  }
 }
 
 h1,

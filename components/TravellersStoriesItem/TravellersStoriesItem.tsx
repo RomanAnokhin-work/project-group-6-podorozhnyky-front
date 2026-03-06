@@ -1,15 +1,12 @@
 "use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import {
-  addArticleToSaved,
-  removeArticleFromSaved,
-} from '@/lib/api/clientApi';
-import AuthNavModal from '@/components/AuthNavModal/AuthNavModal';
-import css from './TravellersStoriesItem.module.css';
-import { useAuthStore } from '@/lib/store/authStore';
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { addArticleToSaved, removeArticleFromSaved } from "@/lib/api/clientApi";
+import AuthNavModal from "@/components/AuthNavModal/AuthNavModal";
+import css from "./TravellersStoriesItem.module.css";
+import { useAuthStore } from "@/lib/store/authStore";
 import { useQueryClient } from "@tanstack/react-query";
 
 type StoryOwner = {
@@ -65,8 +62,8 @@ export default function TravellersStoriesItem({
   const [showAuthModal, setShowAuthModal] = useState(false);
 
   useEffect(() => {
-    setSaved(isSaved)
-  },[isSaved])
+    setSaved(isSaved);
+  }, [isSaved]);
 
   const categoryName = getCategoryName(story.category);
   const ownerSource = (story.owner || story.ownerId) as StoryOwner;
@@ -74,8 +71,12 @@ export default function TravellersStoriesItem({
   const authorName = ownerSource?.name || "";
   const authorAvatarUrl = ownerSource?.avatarUrl || "";
   const formattedDate = new Date(story.date).toLocaleDateString("uk-UA");
-  const saveButtonClassName = saved ? `${css.saveButton} ${css.saveButtonSaved}` : css.saveButton;
-  const bookmarkIconClassName = saved ? `${css.bookmarkIcon} ${css.bookmarkIconSaved}` : css.bookmarkIcon
+  const saveButtonClassName = saved
+    ? `${css.saveButton} ${css.saveButtonSaved}`
+    : css.saveButton;
+  const bookmarkIconClassName = saved
+    ? `${css.bookmarkIcon} ${css.bookmarkIconSaved}`
+    : css.bookmarkIcon;
 
   const openAuthModal = () => setShowAuthModal(true);
 
@@ -100,20 +101,19 @@ export default function TravellersStoriesItem({
         await addArticleToSaved(story._id);
         if (!user) return;
 
-setUser({
-  ...user,
-  savedArticles: [...user.savedArticles, story._id],
-});
+        setUser({
+          ...user,
+          savedArticles: [...user.savedArticles, story._id],
+        });
       } else {
         await removeArticleFromSaved(story._id);
-       if (!user) return;
+        if (!user) return;
 
-setUser({
-  ...user,
-  savedArticles: user.savedArticles.filter(id => id !== story._id),
-});
+        setUser({
+          ...user,
+          savedArticles: user.savedArticles.filter((id) => id !== story._id),
+        });
       }
-      
     } catch {
       setSaved(oldSaved);
       setCount(oldCount);
@@ -192,14 +192,18 @@ setUser({
             aria-pressed={saved}
             aria-label={saved ? "Видалити зі збережених" : "Додати в збережені"}
           >
-
-            {isOwnStory ? <Link href={`/stories/${story._id}/edit`}><svg className={css.editIcon} aria-hidden="true">
-              <use href="/icons.svg#icon-edit" />
-            </svg></Link> : <svg className={bookmarkIconClassName} aria-hidden="true">
-              <use href="/icons.svg#icon-bookmark" />
-            </svg>}
+            {isOwnStory ? (
+              <Link href={`/stories/${story._id}/edit`}>
+                <svg className={css.editIcon} aria-hidden="true">
+                  <use href="/icons.svg#icon-edit" />
+                </svg>
+              </Link>
+            ) : (
+              <svg className={bookmarkIconClassName} aria-hidden="true">
+                <use href="/icons.svg#icon-bookmark" />
+              </svg>
+            )}
           </button>
-            
         </div>
 
         <AuthNavModal

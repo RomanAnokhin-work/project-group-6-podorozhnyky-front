@@ -9,13 +9,13 @@ import type { ApiStory } from "@/types/story";
 
 const ITEMS_FOR_LAYOUT = 4;
 
-export default function PopularStories({showMoreButton = true, 
-  mobileLimit = 3 
-}: { 
-  showMoreButton?: boolean; 
+export default function PopularStories({
+  showMoreButton = true,
+  mobileLimit = 3,
+}: {
+  showMoreButton?: boolean;
   mobileLimit?: number;
-})
-{
+}) {
   const [stories, setStories] = useState<ApiStory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,11 +47,12 @@ export default function PopularStories({showMoreButton = true,
         <h2 className={css.h2}>Популярні історії</h2>
         {loading && <p>Завантаження…</p>}
         {error && <p>{error}</p>}
-         <PopularStoriesClient  
-    stories={stories} 
-    showMoreButton={showMoreButton}
-    mobileLimit={mobileLimit} /> 
-           </section>
+        <PopularStoriesClient
+          stories={stories}
+          showMoreButton={showMoreButton}
+          mobileLimit={mobileLimit}
+        />
+      </section>
     </Container>
   );
 }

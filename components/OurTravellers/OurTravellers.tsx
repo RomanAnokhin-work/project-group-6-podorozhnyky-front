@@ -22,8 +22,7 @@ const OurTravellers = () => {
 
   return (
     <Container className={css.container}>
-    <section className={css.our_container}>
-      
+      <section className={css.our_container}>
         <h2 className={css.title}>Наші Мандрівники</h2>
         <TravellersList users={users} page={1} totalPages={1} />
         <div className={css.container_btn}>
@@ -31,9 +30,8 @@ const OurTravellers = () => {
             Переглянути всіх
           </Link>
         </div>
-      
-    </section >
-      </Container>
+      </section>
+    </Container>
   );
 };
 

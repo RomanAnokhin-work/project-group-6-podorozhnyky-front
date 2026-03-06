@@ -23,9 +23,7 @@ export default function ConfirmModal({
   isLoading = false,
 }: ConfirmModalProps) {
   useEffect(() => {
-   
     const scrollY = window.scrollY;
-    
 
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
@@ -38,7 +36,6 @@ export default function ConfirmModal({
     window.addEventListener("keydown", handleEscape);
 
     return () => {
-
       document.body.classList.remove("bodyLock");
       document.body.style.top = "";
       document.body.style.width = "";
