@@ -130,8 +130,10 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
           .max(80, "Максимум 80 символів"),
         category: Yup.string().required("Оберіть категорію"),
         description: Yup.string()
-          .trim()
-          .max(DESC_MAX, `Максимум ${DESC_MAX} символів`),
+          .transform((value) => (value === "" ? null : value))
+  .max(DESC_MAX, `Максимум ${DESC_MAX} символів`)
+  .nullable()
+  .notRequired(),
         article: Yup.string()
           .trim()
           .required("Вкажіть текст історії")
