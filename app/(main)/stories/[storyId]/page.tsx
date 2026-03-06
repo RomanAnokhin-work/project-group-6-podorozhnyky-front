@@ -1,5 +1,6 @@
 import StoryDetails from "@/components/StoryDetails/StoryDetails";
 import { fetchStoryById } from "@/lib/api/clientApi";
+import { emit } from "node:process";
 
 export async function generateMetadata({
   params,
@@ -22,12 +23,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function StoryPage({
+export default function StoryPage({
   params,
 }: {
-  params: Promise<{ storyId: string }>;
+  params: { storyId: string };
 }) {
-  const { storyId } = await params;
+  const { storyId } = params;
 
   return (
     <main className="storyPageWrapper">
