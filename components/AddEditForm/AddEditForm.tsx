@@ -70,7 +70,7 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
           setInitialStoryData({
             title: data.title,
             category: data.category._id,
-            description: "",
+            description: data.description ||"",
             article: data.article,
             cover: null, // File object ми не можемо зберегти, тільки URL
           });
