@@ -12,8 +12,9 @@ const Join = () => {
   const buttonHref = isAuthenticated ? "/profile" : "/auth/register";
 
   return (
+    <Container className={css.container}>
     <section className={css.join} id="join">
-      <Container className={css.container}>
+      
         <div className={css.content}>
           <h2 className={css.title}>Приєднуйтесь до нашої спільноти</h2>
           <p className={css.description}>
@@ -24,8 +25,8 @@ const Join = () => {
             {buttonLabel}
           </Link>
         </div>
-      </Container>
-    </section>
+    </section >
+       </Container>
   );
 };
 
