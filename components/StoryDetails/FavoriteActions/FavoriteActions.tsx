@@ -5,6 +5,8 @@ import { ReactNode, useState } from "react";
 import ConfirmDeleteContent from "../../ConfirmDeleteContent/ConfirmDeleteContent";
 import Modal from "../../Modal/Modal";
 import css from "./FavoriteActions.module.css";
+import { deleteStory } from "@/lib/api/clientApi";
+import toast from "react-hot-toast";
 
 type Props = {
   articleId: string;
@@ -14,9 +16,11 @@ type Props = {
   isOwner: boolean;
   onToggle: () => void;
   onDelete: () => void;
+  idForDelete: string
 };
 
 export default function FavoriteActions({
+  idForDelete,
   articleId,
   isAuthenticated,
   isFavorite,
@@ -27,7 +31,24 @@ export default function FavoriteActions({
 }: Props) {
   const router = useRouter();
   const [showConfirm, setShowConfirm] = useState(false);
+  const handleClick = async ()=>{
+    const deletePromise = deleteStory(idForDelete);
+    toast.promise(deletePromise, {
+    loading: 'Видалення історії...',
+    success: 'Історію успішно видалено! Відправляємо вас на сторінку профілю.',
+    error: 'Не вдалося видалити історію.',
+  });
+    try {
+    await deletePromise;
 
+    setTimeout(() => {
+      router.push("/profile/own");
+    }, 3000);
+    
+  } catch (error) {
+    console.error("Delete error:", error);
+  }
+  }
   if (isOwner) {
     return (
       <>
@@ -59,7 +80,7 @@ export default function FavoriteActions({
 
             <button
               className={css.deleteButton}
-              onClick={() => setShowConfirm(true)}
+              onClick={handleClick }
             >
               Видалити
             </button>

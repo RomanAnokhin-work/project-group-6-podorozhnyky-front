@@ -5,6 +5,7 @@ import "./globals.css";
 // import Footer from "@/components/Footer/Footer";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import { Toaster } from "react-hot-toast";
 // import css from "./(main)/Home.module.css";
 
 export const metadata: Metadata = {
@@ -81,6 +82,7 @@ export default function RootLayout({
             <Footer /> */}
 
             {children}
+            <Toaster   position="top-right"reverseOrder={false}/>
           </AuthProvider>
         </TanStackProvider>
       </body>
