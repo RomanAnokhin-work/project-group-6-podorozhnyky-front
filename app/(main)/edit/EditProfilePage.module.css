@@ -204,35 +204,71 @@
 }
 
 /* Submit button */
+
 .submitBtn {
   border: 1px solid var(--color-royal-blue);
   border-radius: 8px;
   padding: 4px 10px;
+
   width: 100%;
   height: 44px;
+
   background: var(--color-royal-blue);
+  color: var(--color-white);
+
   opacity: 0.3;
   cursor: not-allowed;
+
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
-  color: var(--color-white);
+
   margin-top: 24px;
   margin-bottom: 83px;
+
   transition:
     background-color 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.05s ease,
+    box-shadow 0.2s ease;
 }
 
-.submitBtn:hover,
-.submitBtn:focus {
-  background: var(--color-royal-blue-lighter);
-}
+/* Кнопка доступна (enabled) */
+
 .submitBtn.active {
-  background: var(--color-royal-blue-light);
+  opacity: 1;
+  cursor: pointer;
+  background: var(--color-royal-blue);
+  color: var(--color-white);
 }
+
+/* Hover */
+
+.submitBtn.active:hover {
+  background: var(--color-royal-blue-lighter);
+  color: var(--color-scheme-2-text);
+}
+
+/* Focus */
+
+.submitBtn.active:focus {
+  background: var(--color-royal-blue-lighter);
+  color: var(--color-scheme-2-text);
+  outline: none;
+}
+
+/* Pressed */
+
+.submitBtn.active:active {
+  background: var(--color-royal-blue-light);
+  color: var(--color-scheme-2-text);
+  transform: translateY(1px);
+}
+
+/* Disabled */
+
 .submitBtn:disabled {
   background: var(--color-royal-blue);
   opacity: 0.3;
