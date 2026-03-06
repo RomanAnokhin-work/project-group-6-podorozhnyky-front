@@ -13,8 +13,7 @@ const Join = () => {
 
   return (
     <Container className={css.container}>
-    <section className={css.join} id="join">
-      
+      <section className={css.join} id="join">
         <div className={css.content}>
           <h2 className={css.title}>Приєднуйтесь до нашої спільноти</h2>
           <p className={css.description}>
@@ -25,8 +24,8 @@ const Join = () => {
             {buttonLabel}
           </Link>
         </div>
-    </section >
-       </Container>
+      </section>
+    </Container>
   );
 };
 

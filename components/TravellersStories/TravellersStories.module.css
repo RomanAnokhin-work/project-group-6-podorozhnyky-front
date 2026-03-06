@@ -24,8 +24,9 @@
     grid-template-columns: repeat(2, 1fr);
     max-width: 704px;
   }
-    .travellersStoriesList>*:nth-child(n+9) {
-      display: none; }
+  .travellersStoriesList > *:nth-child(n + 9) {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -37,7 +38,7 @@
     grid-template-columns: repeat(3, 1fr);
     max-width: 1312px;
   }
-  .travellersStoriesList>*:nth-child(n+9) {
+  .travellersStoriesList > *:nth-child(n + 9) {
     display: block;
   }
 }

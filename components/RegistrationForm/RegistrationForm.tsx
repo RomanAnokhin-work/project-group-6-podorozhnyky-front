@@ -56,9 +56,11 @@ export default function RegistrationForm() {
           err.response &&
           typeof err.response === "object"
         ) {
-          const response = (err as {
-            response: { status?: number; data?: unknown };
-          }).response;
+          const response = (
+            err as {
+              response: { status?: number; data?: unknown };
+            }
+          ).response;
 
           if (response.status === 400 || response.status === 409) {
             message = "Цей користувач вже зареєстрований";
@@ -82,81 +84,81 @@ export default function RegistrationForm() {
     <section className={css.section}>
       <Container className={css.container}>
         <Toaster position="top-right" />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className={css.form} noValidate>
-            <div className={css.formGroup}>
-              <label htmlFor="name" className={css.label}>
-                Ім&apos;я та Прізвище*
-              </label>
-              <Field
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Ваше ім'я та прізвище"
-                className={css.input}
-                autoComplete="name"
-              />
-              <ErrorMessage
-                name="name"
-                component="span"
-                className={css.error}
-              />
-            </div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form className={css.form} noValidate>
+              <div className={css.formGroup}>
+                <label htmlFor="name" className={css.label}>
+                  Ім&apos;я та Прізвище*
+                </label>
+                <Field
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Ваше ім'я та прізвище"
+                  className={css.input}
+                  autoComplete="name"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
 
-            <div className={css.formGroup}>
-              <label htmlFor="email" className={css.label}>
-                Пошта*
-              </label>
-              <Field
-                id="email"
-                name="email"
-                type="email"
-                placeholder="hello@podorozhnyky.ua"
-                className={css.input}
-                autoComplete="email"
-              />
-              <ErrorMessage
-                name="email"
-                component="span"
-                className={css.error}
-              />
-            </div>
+              <div className={css.formGroup}>
+                <label htmlFor="email" className={css.label}>
+                  Пошта*
+                </label>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="hello@podorozhnyky.ua"
+                  className={css.input}
+                  autoComplete="email"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
 
-            <div className={css.formGroup}>
-              <label htmlFor="password" className={css.label}>
-                Пароль*
-              </label>
-              <Field
-                id="password"
-                name="password"
-                type="password"
-                placeholder="********"
-                className={css.input}
-                autoComplete="new-password"
-              />
-              <ErrorMessage
-                name="password"
-                component="span"
-                className={css.error}
-              />
-            </div>
+              <div className={css.formGroup}>
+                <label htmlFor="password" className={css.label}>
+                  Пароль*
+                </label>
+                <Field
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="********"
+                  className={css.input}
+                  autoComplete="new-password"
+                />
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
 
-            <button
-              type="submit"
-              className={css.submitButton}
-              disabled={isSubmitting}
-              aria-busy={isSubmitting}
-            >
-              {isSubmitting ? "Зачекайте" : "Зареєструватись"}
-            </button>
-          </Form>
-        )}
-      </Formik>
+              <button
+                type="submit"
+                className={css.submitButton}
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+              >
+                {isSubmitting ? "Зачекайте" : "Зареєструватись"}
+              </button>
+            </Form>
+          )}
+        </Formik>
       </Container>
     </section>
   );

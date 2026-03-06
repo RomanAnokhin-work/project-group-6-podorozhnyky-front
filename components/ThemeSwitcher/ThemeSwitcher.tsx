@@ -17,7 +17,9 @@ const ThemeSwitcher = () => {
       type="button"
       className={css.switch}
       onClick={handleToggle}
-      aria-label={isDark ? "Переключити на світлу тему" : "Переключити на темну тему"}
+      aria-label={
+        isDark ? "Переключити на світлу тему" : "Переключити на темну тему"
+      }
       aria-pressed={isDark}
     >
       <span className={css.track}>
@@ -29,4 +31,3 @@ const ThemeSwitcher = () => {
 };
 
 export default ThemeSwitcher;
-

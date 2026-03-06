@@ -34,7 +34,11 @@ const TravellersList = ({
       )}
 
       {page < totalPages && (
-        <Button buttonType="button" onClick={onLoadMore} isFetching={isFetching} />
+        <Button
+          buttonType="button"
+          onClick={onLoadMore}
+          isFetching={isFetching}
+        />
       )}
     </div>
   );

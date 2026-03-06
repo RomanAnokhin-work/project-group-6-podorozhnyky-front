@@ -11,16 +11,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateCurrentUser } from "@/lib/api/clientApi";
 import { MdAddAPhoto } from "react-icons/md";
 import Image from "next/image";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  icons: {
-    icon: "/favicon-1.svg"
-  },
-  title: "Редагувати | Podorozhnyky",
-  description: "Редагування контенту на Podorozhnyky",
-  robots: { index: false, follow: false },
-};
 
 interface FormValues {
   name: string;
@@ -115,7 +105,13 @@ export default function EditProfilePage() {
                   <div className={css.avatarSection}>
                     <div className={css.avatarCircle}>
                       {previewUrl ? (
-                        <Image src={previewUrl} alt="Аватар" className={css.avatarImage} width={117} height={117}/>
+                        <Image
+                          src={previewUrl}
+                          alt="Аватар"
+                          className={css.avatarImage}
+                          width={117}
+                          height={117}
+                        />
                       ) : (
                         <MdAddAPhoto className={css.placeholderIcon} />
                       )}
@@ -155,7 +151,9 @@ export default function EditProfilePage() {
                 </div>
 
                 <div className={css.fieldGroup}>
-                  <label htmlFor="description" className={css.label}>Короткий опис</label>
+                  <label htmlFor="description" className={css.label}>
+                    Короткий опис
+                  </label>
                   <Field
                     as="textarea"
                     id="description"
@@ -164,7 +162,9 @@ export default function EditProfilePage() {
                     maxLength={150}
                     className={css.textarea}
                   />
-                  <p className={`${css.charCount} ${values.description.length >= 150 ? css.error : ""}`}>
+                  <p
+                    className={`${css.charCount} ${values.description.length >= 150 ? css.error : ""}`}
+                  >
                     {values.description.length >= 150
                       ? "Досягнуто ліміту символів (150)"
                       : `Лишилось символів: ${150 - values.description.length}`}

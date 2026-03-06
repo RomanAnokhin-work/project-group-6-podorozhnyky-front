@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 interface PaginationConfig<T> {
   queryKey: string;
   fetchFn: (params: { page: number; perPage: number }) => Promise<{
-    items: T[]; 
+    items: T[];
     totalPages: number;
     page: number;
   }>;
@@ -45,8 +45,8 @@ export function usePagination<T>({
 
   const initialSize = isDesktop ? initialSizeDesktop : initialSizeMobile;
   const perPage = page === 1 ? initialSize : loadMoreSize;
-  
-  const backendPage = page === 1 ? 1 : (initialSize / loadMoreSize) + (page - 1);
+
+  const backendPage = page === 1 ? 1 : initialSize / loadMoreSize + (page - 1);
 
   const query = useQuery({
     queryKey: [queryKey, backendPage, perPage, isDesktop],

@@ -37,7 +37,7 @@ const STORY_FILTERS = [
   { label: "Гори", value: "Гори" },
   { label: "Америка", value: "Америка" },
   { label: "Океанія", value: "Океанія" },
-  {label:"Кавказ",value:"Кавказ"}
+  { label: "Кавказ", value: "Кавказ" },
 ];
 
 const getInitialCount = () => {
@@ -101,7 +101,11 @@ export default function StoriesPageClient() {
   const handleLoadMore = async () => {
     if (isFetchingMore) return;
 
-    const nextCount = Math.min(stories.length + LOAD_STEP, totalItems, MAX_API_SIZE);
+    const nextCount = Math.min(
+      stories.length + LOAD_STEP,
+      totalItems,
+      MAX_API_SIZE,
+    );
     if (nextCount <= stories.length) return;
     setIsFetchingMore(true);
     setError("");
@@ -147,7 +151,9 @@ export default function StoriesPageClient() {
             id="stories-category"
             type="button"
             className={
-              isCategoryMenuOpen ? `${css.select} ${css.selectOpen}` : css.select
+              isCategoryMenuOpen
+                ? `${css.select} ${css.selectOpen}`
+                : css.select
             }
             aria-haspopup="listbox"
             aria-expanded={isCategoryMenuOpen}

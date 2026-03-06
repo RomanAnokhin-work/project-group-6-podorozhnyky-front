@@ -38,28 +38,28 @@ export default function AddStoryForm() {
   const [cancelOpen, setCancelOpen] = useState(false);
 
   // 1) Загружаем категории один раз
-useEffect(() => {
-  (async () => {
-    try {
-      setCatLoading(true);
-      setCatError(null);
-      const data = await fetchCategories();
-      setCategories(data ?? []);
-    } catch {
-      setCatError("Не вдалося завантажити категорії");
-    } finally {
-      setCatLoading(false);
-    }
-  })();
-}, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        setCatLoading(true);
+        setCatError(null);
+        const data = await fetchCategories();
+        setCategories(data ?? []);
+      } catch {
+        setCatError("Не вдалося завантажити категорії");
+      } finally {
+        setCatLoading(false);
+      }
+    })();
+  }, []);
 
-// 2) Чистим blob URL при смене/размонтаже
-useEffect(() => {
-  return () => {
-    if (previewUrl) URL.revokeObjectURL(previewUrl);
-  };
-}, [previewUrl]);
-  
+  // 2) Чистим blob URL при смене/размонтаже
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
   const initialValues: Values = {
     cover: null,
     title: "",
@@ -71,17 +71,22 @@ useEffect(() => {
   const schema = useMemo(
     () =>
       Yup.object({
-       cover: Yup.mixed<File>()
-  .nullable()
-  .required("Додайте обкладинку")
-  .test("isFile", "Додайте обкладинку", (v) => v instanceof File)
-  .test("fileSize", "Файл завеликий (макс 5MB)", (file) =>
-    file instanceof File ? file.size <= MAX_MB * 1024 * 1024 : false
-  )
-  .test("fileType", "Тільки JPG/PNG/WebP", (file) =>
-    file instanceof File ? ["image/jpeg", "image/png", "image/webp"].includes(file.type) : false
-  ),
-        title: Yup.string().trim().required("Вкажіть заголовок").max(80, "Максимум 80 символів"),
+        cover: Yup.mixed<File>()
+          .nullable()
+          .required("Додайте обкладинку")
+          .test("isFile", "Додайте обкладинку", (v) => v instanceof File)
+          .test("fileSize", "Файл завеликий (макс 5MB)", (file) =>
+            file instanceof File ? file.size <= MAX_MB * 1024 * 1024 : false,
+          )
+          .test("fileType", "Тільки JPG/PNG/WebP", (file) =>
+            file instanceof File
+              ? ["image/jpeg", "image/png", "image/webp"].includes(file.type)
+              : false,
+          ),
+        title: Yup.string()
+          .trim()
+          .required("Вкажіть заголовок")
+          .max(80, "Максимум 80 символів"),
         category: Yup.string().required("Оберіть категорію"),
         description: Yup.string()
           .trim()
@@ -105,44 +110,59 @@ useEffect(() => {
           try {
             setSaveErrorOpen(false);
 
-          const data = await createStory({
+            const data = await createStory({
               cover: values.cover as File,
               title: values.title,
               category: values.category,
               description: values.description,
               article: values.article,
             });
-            const id = data?.story?._id ?? data?.story?.id ?? data?._id ?? data?.id;
+            const id =
+              data?.story?._id ?? data?.story?.id ?? data?._id ?? data?.id;
             if (id) {
               router.push(`/stories/${id}`);
             } else {
               router.push("/stories");
             }
-            } catch (error) {
-              console.error("Помилка при збереженні історії:", error);
-              setSaveErrorOpen(true);
-            } finally {
-              setSubmitting(false);
-            }
-}}
+          } catch (error) {
+            console.error("Помилка при збереженні історії:", error);
+            setSaveErrorOpen(true);
+          } finally {
+            setSubmitting(false);
+          }
+        }}
       >
-        {({ resetForm, isValid, dirty, isSubmitting, setFieldValue, validateField,values, errors, touched }) => (
+        {({
+          resetForm,
+          isValid,
+          dirty,
+          isSubmitting,
+          setFieldValue,
+          validateField,
+          values,
+          errors,
+          touched,
+        }) => (
           <>
             <Form className={css.form}>
               <div className={css.left}>
                 {/* Cover */}
                 <div>
                   <div className={css.label}>Обкладинка статті</div>
-                     <div className={css.coverBox}>
-                      <Image
-                      src={previewUrl ?? "/images/cover-placeholder/cover-placeholder.webp"}
+                  <div className={css.coverBox}>
+                    <Image
+                      src={
+                        previewUrl ??
+                        "/images/cover-placeholder/cover-placeholder.webp"
+                      }
                       alt="cover"
                       fill
                       className={css.coverImg}
                       unoptimized={!!previewUrl}
                       priority={!previewUrl}
-                      sizes="(min-width: 1440px) 416px, (min-width: 768px) 340px, 335px"/>
-                     </div>
+                      sizes="(min-width: 1440px) 416px, (min-width: 768px) 340px, 335px"
+                    />
+                  </div>
 
                   <div className={css.uploadRow}>
                     <input
@@ -154,21 +174,25 @@ useEffect(() => {
                         const input = e.currentTarget;
                         const file = input.files?.[0] ?? null;
 
-                        setFieldValue("cover", file);  
+                        setFieldValue("cover", file);
                         validateField("cover");
 
                         setPreviewUrl((prev) => {
-                           if (prev) URL.revokeObjectURL(prev);
-                           return file ? URL.createObjectURL(file) : null;
-                           }); input.value = "";
-                      }} />
-                    
+                          if (prev) URL.revokeObjectURL(prev);
+                          return file ? URL.createObjectURL(file) : null;
+                        });
+                        input.value = "";
+                      }}
+                    />
+
                     <label htmlFor="cover" className={css.uploadBtn}>
                       Завантажити фото
                     </label>
                   </div>
 
-                 {touched.cover && errors.cover ? <div className={css.error}>{errors.cover}</div> : null}
+                  {touched.cover && errors.cover ? (
+                    <div className={css.error}>{errors.cover}</div>
+                  ) : null}
                 </div>
 
                 {/* Title */}
@@ -281,34 +305,37 @@ useEffect(() => {
                       resetForm();
                       setPreviewUrl(null);
                       return;
-                    };
+                    }
 
                     setCancelOpen(true);
-                  }}>Відмінити</button>
-            {cancelOpen && (
-  <ConfirmModal
-    title="Скасувати створення історії?"
-    text="Усі введені дані та обкладинка буде втрачено."
-    confirmButtonText="Так, скасувати"
-    cancelButtonText="Ні, продовжити"
-    isLoading={isSubmitting}
-    onCancel={() => setCancelOpen(false)}
-    onConfirm={() => {
-      // закрыть модалку
-      setCancelOpen(false);
+                  }}
+                >
+                  Відмінити
+                </button>
+                {cancelOpen && (
+                  <ConfirmModal
+                    title="Скасувати створення історії?"
+                    text="Усі введені дані та обкладинка буде втрачено."
+                    confirmButtonText="Так, скасувати"
+                    cancelButtonText="Ні, продовжити"
+                    isLoading={isSubmitting}
+                    onCancel={() => setCancelOpen(false)}
+                    onConfirm={() => {
+                      // закрыть модалку
+                      setCancelOpen(false);
 
-      // очистить превью + освободить blob
-      setPreviewUrl((prev) => {
-        if (prev) URL.revokeObjectURL(prev);
-        return null;
-      });
+                      // очистить превью + освободить blob
+                      setPreviewUrl((prev) => {
+                        if (prev) URL.revokeObjectURL(prev);
+                        return null;
+                      });
 
-      // очистить Formik
-      resetForm();
-    }}
-  />
-)}
-            </div>
+                      // очистить Formik
+                      resetForm();
+                    }}
+                  />
+                )}
+              </div>
             </Form>
           </>
         )}

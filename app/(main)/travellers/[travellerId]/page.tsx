@@ -2,12 +2,12 @@ import { getTravellerById } from "@/lib/api/serverApi";
 import TravellerPageByIdClient from "./TravellersPageById.client";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const {user} = await getTravellerById(params.id);
+  const { user } = await getTravellerById(params.id);
 
   return {
-     icons: {
-    icon: "/favicon-1.svg"
-  },
+    icons: {
+      icon: "/favicon-1.svg",
+    },
     title: user.name,
     description: user.description,
     openGraph: {

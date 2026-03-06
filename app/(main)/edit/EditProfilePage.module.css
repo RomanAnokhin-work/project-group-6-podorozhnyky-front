@@ -3,11 +3,11 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-    column-gap: 16px;
-    padding: 0px 20px;
-      width: 100%;
-      background: var(--color-scheme-1-background);
-      margin: 0 auto;
+  column-gap: 16px;
+  padding: 0px 20px;
+  width: 100%;
+  background: var(--color-scheme-1-background);
+  margin: 0 auto;
   /* лёгкий серый фон как на макете */
 }
 
@@ -17,13 +17,13 @@
   padding: 18px 0;
   background: transparent;
 }
-.logo_text{
+.logo_text {
   font-family: var(--third-family);
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 110%;
-    letter-spacing: -0.01em;
-    color: var(--color-scheme-1-text);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 110%;
+  letter-spacing: -0.01em;
+  color: var(--color-scheme-1-text);
 }
 
 /* Logo */
@@ -56,7 +56,7 @@
 }
 
 .main h1 {
-font-family: var(--second-family);
+  font-family: var(--second-family);
   font-weight: 700;
   font-size: 28px;
   line-height: 120%;
@@ -65,10 +65,9 @@ font-family: var(--second-family);
   color: var(--color-scheme-1-text);
   margin-bottom: 24px;
   width: 100%;
-    max-width: 335px;
-    margin: 0 auto 24px;
+  max-width: 335px;
+  margin: 0 auto 24px;
 }
-
 
 /* Card */
 .form {
@@ -81,7 +80,6 @@ font-family: var(--second-family);
   margin: 0 auto;
 }
 
-
 /* ===== Fields ===== */
 .fieldGroup {
   display: flex;
@@ -90,7 +88,7 @@ font-family: var(--second-family);
 }
 
 .label {
-font-family: var(--font-family);
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -131,7 +129,6 @@ font-family: var(--font-family);
 
 /* Upload/Delete button */
 .uploadButton {
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -139,15 +136,18 @@ font-family: var(--font-family);
   border-radius: 8px;
   padding: 4px 10px;
   white-space: nowrap;
-height: 32px;
-background: var(--opacity-neutral-darkest-5);
+  height: 32px;
+  background: var(--opacity-neutral-darkest-5);
   font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    color: var(--color-neutral-darkest);
-    cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.05s ease;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-neutral-darkest);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.05s ease;
 }
 
 .uploadButton:hover {
@@ -160,7 +160,7 @@ background: var(--opacity-neutral-darkest-5);
 
 /* Textarea */
 .textarea {
-border: 1px solid var(--opacity-neutral-darkest-15);
+  border: 1px solid var(--opacity-neutral-darkest-15);
   border-radius: 8px;
   padding: 12px;
   width: 100%;
@@ -169,12 +169,12 @@ border: 1px solid var(--opacity-neutral-darkest-15);
   border: 1px solid #d1d5db;
   background: var(--opacity-transparent);
   font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    overflow-y: auto;
-    scrollbar-width: none;
-    color: var(--opacity-neutral-darkest-60);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  color: var(--opacity-neutral-darkest-60);
 }
 .textarea::-webkit-scrollbar {
   display: none;
@@ -191,10 +191,10 @@ border: 1px solid var(--opacity-neutral-darkest-15);
 /* Counter */
 .charCount {
   font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-    color: var(--color-scheme-2-text);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: var(--color-scheme-2-text);
 }
 
 /* ВАЖНО: у тебя в JSX используется css.error */
@@ -205,36 +205,39 @@ border: 1px solid var(--opacity-neutral-darkest-15);
 
 /* Submit button */
 .submitBtn {
-border: 1px solid var(--color-royal-blue);
+  border: 1px solid var(--color-royal-blue);
   border-radius: 8px;
   padding: 4px 10px;
   width: 100%;
   height: 44px;
   background: var(--color-royal-blue);
-    opacity: 0.3;
+  opacity: 0.3;
   cursor: not-allowed;
   font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 150%;
-    color: var(--color-white);
-    margin-top: 24px;
-    margin-bottom: 83px;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--color-white);
+  margin-top: 24px;
+  margin-bottom: 83px;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.submitBtn:hover, .submitBtn:focus {
+.submitBtn:hover,
+.submitBtn:focus {
   background: var(--color-royal-blue-lighter);
 }
 .submitBtn.active {
   background: var(--color-royal-blue-light);
-
 }
 .submitBtn:disabled {
   background: var(--color-royal-blue);
-    opacity: 0.3;
-    color: var(--color-white);
-    cursor: not-allowed;
+  opacity: 0.3;
+  color: var(--color-white);
+  cursor: not-allowed;
 }
 
 /* Footer */
@@ -246,11 +249,11 @@ border: 1px solid var(--color-royal-blue);
 
 .text {
   font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 150%;
-    text-align: center;
-    color: var(--color-scheme-1-text);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--color-scheme-1-text);
 }
 
 @media screen and (min-width: 768px) {
@@ -258,56 +261,56 @@ border: 1px solid var(--color-royal-blue);
     padding: 0 30px;
   }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.main h1 {
-  font-size: 44px;
-  max-width: 644px;
-}
-.form{
-  max-width: 644px;
-}
-.submitBtn{
-  margin-bottom: 187px;
-}
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .main h1 {
+    font-size: 44px;
+    max-width: 644px;
+  }
+  .form {
+    max-width: 644px;
+  }
+  .submitBtn {
+    margin-bottom: 187px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .wrapper {
     padding: 0 64px;
     max-width: 1312px;
   }
- .main{
-  padding-top: 64px;
- }
- .main h1 {
-   font-size: 52px;
+  .main {
+    padding-top: 64px;
+  }
+  .main h1 {
+    font-size: 52px;
     max-width: 644px;
- }
- .label {
-   font-size: 18px;
- }
- .uploadButton{
-  height: 35px;
-  font-size: 18px;
- }
- .textarea{
-  width: 644px;
-  font-size: 18px;
- }
- .charCount{
-  font-size: 16px;
- }
- .submitBtn{
-  width: 644px;
-  height: 44px;
-  font-size: 18px;
-  margin-bottom: 97px;
- }
- .text{
-  font-size: 16px;
-  padding:  24px 0;
- }
+  }
+  .label {
+    font-size: 18px;
+  }
+  .uploadButton {
+    height: 35px;
+    font-size: 18px;
+  }
+  .textarea {
+    width: 644px;
+    font-size: 18px;
+  }
+  .charCount {
+    font-size: 16px;
+  }
+  .submitBtn {
+    width: 644px;
+    height: 44px;
+    font-size: 18px;
+    margin-bottom: 97px;
+  }
+  .text {
+    font-size: 16px;
+    padding: 24px 0;
+  }
 }

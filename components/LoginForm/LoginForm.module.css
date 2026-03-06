@@ -131,13 +131,13 @@
   .label {
     font-size: 18px;
   }
-    .forgotLink {
-      position: absolute;
-      right: 14px;
-      top: 60px;
-  
-      font-size: 16px;
-    }
+  .forgotLink {
+    position: absolute;
+    right: 14px;
+    top: 60px;
+
+    font-size: 16px;
+  }
 
   .btn {
     font-size: 18px;

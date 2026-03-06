@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const MAX_AVATAR_SIZE = 500 * 1024; 
+const MAX_AVATAR_SIZE = 500 * 1024;
 
 export const profileEditSchema = Yup.object({
   name: Yup.string()
@@ -13,9 +13,7 @@ export const profileEditSchema = Yup.object({
     .max(64, "Максимум 64 символи")
     .required("Email обов'язковий"),
 
-  description: Yup.string()
-    .max(150, "Максимум 150 символів"),
-    
+  description: Yup.string().max(150, "Максимум 150 символів"),
 
   avatar: Yup.mixed()
     .nullable()

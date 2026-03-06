@@ -1,11 +1,9 @@
 .profileContainer {
-  width: 375px; 
+  width: 375px;
   margin: 0 auto;
   padding: 32px 20px 40px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
-
-
 
 /* Планшет (фіксована ширина від точки перелому) */
 @media (min-width: 768px) {
@@ -13,7 +11,6 @@
     width: 768px;
     margin: 0 auto;
     padding: 64px 32px;
-    
   }
 
   .content {

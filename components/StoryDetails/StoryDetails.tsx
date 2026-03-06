@@ -18,7 +18,6 @@ import PopularStories from "../PopularStories/PopularStories";
 import Container from "../Container/Container";
 import css from "./StoryDetails.module.css";
 
-
 const StoryDetails = ({ storyId }: { storyId: string }) => {
   const [story, setStory] = useState<ApiStory | null>(null);
   const [loading, setLoading] = useState(true);
@@ -105,33 +104,35 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
   };
   return (
     <Container className={css.container}>
-    <section className={css.storyDetails}>
-    
+      <section className={css.storyDetails}>
         <div className={css.info}>
-        <div className={css.block_title}>
-          <h2 className={css.title}>{story.title}</h2>
-        </div>
-        <div className={css.infoDetails}>
-          <div className={css.info_text}>
-            <p className={css.value}>
-              <strong className={css.label}>Автор статті </strong>{" "}
-              {story.ownerId.name}
-            </p>
-            <p className={css.value}>
-              <strong className={css.label}>Опубліковано </strong>{" "}
-              {formattedDate}
-            </p>
+          <div className={css.block_title}>
+            <h2 className={css.title}>{story.title}</h2>
           </div>
-          <div className={css.block_category}>
-            <p className={css.infoCategory}>{story.category.name}</p>
+          <div className={css.infoDetails}>
+            <div className={css.info_text}>
+              <p className={css.value}>
+                <strong className={css.label}>Автор статті </strong>{" "}
+                {story.ownerId.name}
+              </p>
+              <p className={css.value}>
+                <strong className={css.label}>Опубліковано </strong>{" "}
+                {formattedDate}
+              </p>
+            </div>
+            <div className={css.block_category}>
+              <p className={css.infoCategory}>{story.category.name}</p>
+            </div>
           </div>
-        </div>
-      </div> <Image
+        </div>{" "}
+        <Image
           className={css.image}
           src={story.img || "/placeholder-image.png"}
           alt={story.title}
           width={1312}
-          height={874}    />   <div className={css.content}>
+          height={874}
+        />{" "}
+        <div className={css.content}>
           <p className={css.article}>{story.article}</p>
 
           <FavoriteActions
@@ -144,13 +145,9 @@ const StoryDetails = ({ storyId }: { storyId: string }) => {
             onDelete={deleteHandler}
           />
         </div>
-        <PopularStories
-         mobileLimit={2}       
-         showMoreButton={false}
-        />
-    
+        <PopularStories mobileLimit={2} showMoreButton={false} />
       </section>
-     </Container>
+    </Container>
   );
 };
 export default StoryDetails;

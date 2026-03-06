@@ -3,8 +3,7 @@ import css from "./About.module.css";
 const About = () => {
   return (
     <Container className={css.container}>
-    <section className={css.about}>
-    
+      <section className={css.about}>
         <div className={css.title_text}>
           <h2 className={css.title}>
             Проєкт, створений для тих, хто живе подорожами
@@ -49,9 +48,8 @@ const About = () => {
             </p>
           </div>
         </div>
-        
       </section>
-      </Container>
+    </Container>
   );
 };
 

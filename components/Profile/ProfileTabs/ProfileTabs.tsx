@@ -25,4 +25,4 @@ export default function ProfileTabs() {
       </div>
     </div>
   );
-};
+}

@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import axios from 'axios';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import * as Yup from 'yup';
-import { sendResetEmail } from '@/lib/api/clientApi';
+import axios from "axios";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import * as Yup from "yup";
+import { sendResetEmail } from "@/lib/api/clientApi";
 import { openMailClient } from "@/app/api/_utils/openMailClient";
-import css from './SendResetEmailForm.module.css';
+import css from "./SendResetEmailForm.module.css";
 
 const SendResetEmailSchema = Yup.object({
   email: Yup.string()
-    .email('Невірний email')
-    .max(64, 'Максимум 64 символи')
+    .email("Невірний email")
+    .max(64, "Максимум 64 символи")
     .required("Обов'язкове поле"),
 });
 
@@ -27,42 +27,42 @@ export default function SendResetEmailForm() {
       setMessage(null);
       await sendResetEmail(values);
       setEmail(values.email);
-      setMessage('Лист надіслано');
+      setMessage("Лист надіслано");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         const status = err.response?.status;
 
         if (status === 400) {
-          toast.error('Некоректна пошта.');
-          setMessage('Некоректна пошта.');
+          toast.error("Некоректна пошта.");
+          setMessage("Некоректна пошта.");
           return;
         }
         if (status === 404) {
-          toast.error('Некоректна пошта.');
-          setMessage('Некоректна пошта.');
+          toast.error("Некоректна пошта.");
+          setMessage("Некоректна пошта.");
           return;
         }
         if (status === 500) {
-          toast.error('Помилка сервера. Спробуйте пізніше.');
-          setMessage('Помилка сервера. Спробуйте пізніше.');
+          toast.error("Помилка сервера. Спробуйте пізніше.");
+          setMessage("Помилка сервера. Спробуйте пізніше.");
           return;
         }
       }
-      toast.error('Невідома помилка. Спробуйте ще раз.');
-      setMessage('Невідома помилка. Спробуйте ще раз.');
+      toast.error("Невідома помилка. Спробуйте ще раз.");
+      setMessage("Невідома помилка. Спробуйте ще раз.");
     }
   };
 
   useEffect(() => {
-    if (message === 'Лист надіслано') {
+    if (message === "Лист надіслано") {
       const timer = setTimeout(() => {
-        router.push('/auth/login');
+        router.push("/auth/login");
       }, 10000);
       return () => clearTimeout(timer);
     }
   }, [message, router]);
 
-  if (message === 'Лист надіслано') {
+  if (message === "Лист надіслано") {
     return (
       <div className={css.authForm}>
         <h1 className={css.title}>Лист надіслано</h1>
@@ -73,7 +73,7 @@ export default function SendResetEmailForm() {
             onClick={() => openMailClient(email!)}
             className={css.submitBtn}
           >
-            Відкрити пошту {email.split('@')[1]}
+            Відкрити пошту {email.split("@")[1]}
           </button>
         )}
       </div>
@@ -83,7 +83,7 @@ export default function SendResetEmailForm() {
   return (
     <div className={css.authForm}>
       <Formik
-        initialValues={{ email: '' }}
+        initialValues={{ email: "" }}
         validationSchema={SendResetEmailSchema}
         onSubmit={handleSubmit}
       >
@@ -117,7 +117,7 @@ export default function SendResetEmailForm() {
               disabled={!isValid || isSubmitting}
               className={css.submitBtn}
             >
-              {isSubmitting ? 'Надсилаємо...' : 'Надіслати'}
+              {isSubmitting ? "Надсилаємо..." : "Надіслати"}
             </button>
           </Form>
         )}

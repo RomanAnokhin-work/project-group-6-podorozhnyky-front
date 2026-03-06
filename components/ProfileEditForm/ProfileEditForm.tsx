@@ -25,7 +25,7 @@ export const ProfileEditForm = () => {
     validationSchema: profileEditSchema,
     enableReinitialize: true,
     onSubmit: async (values) => {
-      // 
+      //
       const isNameChanged = values.name !== user?.name;
       const isEmailChanged = values.email !== user?.email;
       const isDescriptionChanged = values.description !== user?.description;
@@ -136,7 +136,7 @@ export const ProfileEditForm = () => {
             id="name"
             name="name"
             type="text"
-            maxLength={32} 
+            maxLength={32}
             className={`${css.input} ${formik.touched.name && formik.errors.name ? css.input_error : ""}`}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}

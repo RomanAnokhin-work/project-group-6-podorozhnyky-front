@@ -30,7 +30,7 @@ const TravellersStories = ({
   return (
     <div className={css.travellersStoriesWrapper}>
       <ul className={css.travellersStoriesList}>
-      {stories?.map((story) => (
+        {stories?.map((story) => (
           <li key={story._id} className={css.travellersStoriesItem}>
             <TravellersStoriesItem
               story={story}
@@ -41,7 +41,11 @@ const TravellersStories = ({
         ))}
       </ul>
       {page < totalPages && (
-        <Button buttonType="button" onClick={onLoadMore} isFetching={isFetching} />
+        <Button
+          buttonType="button"
+          onClick={onLoadMore}
+          isFetching={isFetching}
+        />
       )}
     </div>
   );

@@ -7,4 +7,3 @@ export function logErrorResponse(errorObj: unknown): void {
   console.log(`${green}> ${yellow}Error Response Data:${reset}`);
   console.dir(errorObj, { depth: null, colors: true });
 }
-

@@ -44,7 +44,6 @@ export async function fetchPopularStoriesPage(
 export async function getServerMe(): Promise<User> {
   const cookieStore = await cookies();
   console.log(cookieStore);
-  
 
   const { data } = await instance.get<User>("/users/me", {
     headers: {
@@ -54,12 +53,10 @@ export async function getServerMe(): Promise<User> {
   return data;
 }
 
-
 export async function getMyStoriesServer(page = 1, perPage = 10) {
   const cookieStore = await cookies();
   console.log(cookieStore);
-  
-  
+
   const { data } = await instance.get(`/stories/own`, {
     params: {
       page,
@@ -72,7 +69,6 @@ export async function getMyStoriesServer(page = 1, perPage = 10) {
 
   return data;
 }
-
 
 export const getSavedStories = async () => {
   try {
@@ -87,11 +83,12 @@ export const getSavedStories = async () => {
     return [];
   }
 };
-export async function getTravellerById(id: string): Promise<GetTavellerByIdResponse> {
+export async function getTravellerById(
+  id: string,
+): Promise<GetTavellerByIdResponse> {
   const cookieStore = await cookies();
   const { data } = await instance.get<GetTavellerByIdResponse>(`/users/${id}`, {
     headers: { Cookie: cookieStore.toString() },
   });
   return data;
 }
-

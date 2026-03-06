@@ -8,14 +8,13 @@ interface Props {
   user: User;
 }
 
-
 export default function TravellersListItem({ user }: Props) {
   let avatarSrc: string;
   if (user.avatarUrl) {
     avatarSrc = user.avatarUrl;
   } else {
-    const {seedString, bgColor} = useRandomAvatar(user._id, user.name);
-    
+    const { seedString, bgColor } = useRandomAvatar(user._id, user.name);
+
     avatarSrc = `https://api.dicebear.com/9.x/lorelei/svg?seed=${seedString}&backgroundColor=${bgColor}`;
   }
 
