@@ -131,7 +131,6 @@ export default function AddEditForm({ storyId }: { storyId?: string }) {
         category: Yup.string().required("Оберіть категорію"),
         description: Yup.string()
           .trim()
-          .required("Вкажіть короткий опис")
           .max(DESC_MAX, `Максимум ${DESC_MAX} символів`),
         article: Yup.string()
           .trim()
