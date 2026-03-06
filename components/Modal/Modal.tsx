@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { logout } from "../../lib/api/clientApi";
 import css from "./Modal.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
+import toast from "react-hot-toast";
 
 interface ModalProps {
   children: ReactNode;
@@ -43,8 +44,10 @@ export default function Modal({ onClose }: ModalProps) {
       localStorage.removeItem("user");
       onClose();
       router.push("/");
+      toast.success("Ви успішно вийшли з акаунту! До нових зустрічей👋");
     } catch (error) {
       console.error("Помилка при виході:", error);
+      toast.error("Помилка при виході з акаунту❌");
     } finally {
       setIsLoading(false);
     }

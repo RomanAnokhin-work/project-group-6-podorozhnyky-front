@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateCurrentUser } from "@/lib/api/clientApi";
 import { MdAddAPhoto } from "react-icons/md";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface FormValues {
   name: string;
@@ -72,6 +73,8 @@ export default function EditProfilePage() {
     }
 
     mutate(formData);
+    toast.success("Профіль оновлено👌!");
+
   };
 
   return (

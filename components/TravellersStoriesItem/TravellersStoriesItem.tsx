@@ -8,6 +8,7 @@ import AuthNavModal from "@/components/AuthNavModal/AuthNavModal";
 import css from "./TravellersStoriesItem.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 type StoryOwner = {
   name?: string;
@@ -99,6 +100,10 @@ export default function TravellersStoriesItem({
     try {
       if (nextSaved) {
         await addArticleToSaved(story._id);
+        if (!isOwnStory) {
+          toast.success("Історію додано до збережених❤️");
+        }
+        
         if (!user) return;
 
         setUser({
@@ -107,6 +112,7 @@ export default function TravellersStoriesItem({
         });
       } else {
         await removeArticleFromSaved(story._id);
+        toast.success("Історію видалено зі збережених💔");
         if (!user) return;
 
         setUser({
@@ -122,6 +128,7 @@ export default function TravellersStoriesItem({
       }
     } finally {
       setLoading(false);
+      
     }
   };
 

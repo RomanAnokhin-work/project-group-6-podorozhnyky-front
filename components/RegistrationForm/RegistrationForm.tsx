@@ -46,8 +46,10 @@ export default function RegistrationForm() {
         password: values.password,
       };
       const user = await register(payload);
+      toast.success("Ви успішно зареєструвались! Ласкаво просимо в мережу мандрівників!👋");
       setUser(user);
       router.push("/");
+      
     } catch (err: unknown) {
       let message = "Сталася помилка. Спробуйте ще раз.";
       if (err && typeof err === "object") {
@@ -63,7 +65,9 @@ export default function RegistrationForm() {
           ).response;
 
           if (response.status === 400 || response.status === 409) {
-            message = "Цей користувач вже зареєстрований";
+            message = "Цей користувач вже зареєстрований";      
+            toast.error(message);
+            return;
           } else {
             const data = response.data;
             if (data && typeof data === "object" && "message" in data) {
