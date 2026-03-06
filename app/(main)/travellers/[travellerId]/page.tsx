@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default async function TravellersPageById({ params }: Props) {
-  const { travellerId } = params;
+  const { travellerId } = await params;
 
   const { user, articles } = await getTravellerById(travellerId);
 

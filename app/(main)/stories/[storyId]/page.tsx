@@ -4,12 +4,13 @@ import { emit } from "node:process";
 
 
 
-export default function StoryPage({
+export default async function StoryPage({
   params,
 }: {
   params: { storyId: string };
 }) {
-  const { storyId } = params;
+  const { storyId } = await params;
+  console.log("params:", params);
 
   return (
     <main className="storyPageWrapper">
